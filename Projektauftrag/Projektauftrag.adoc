@@ -13,6 +13,7 @@ Verantwortlicher Ansprechspartner: Thomas Stütz
 E-Mail: l.findenig@students.htl-leonding.ac.at
 
 == 2. Projektbeschreibung
+Das Projekt *"Einkaufshelfer"* zielt darauf ab, eine mobile oder Web-Anwendung zu entwickeln, die es Kunden ermöglicht, die Herkunft und Nachhaltigkeit von Produkten direkt beim Einkauf zu überprüfen. Mithilfe eines Barcode-Scanners können Kunden Produkte scannen und sofort Informationen zur Nachhaltigkeit und Herkunft abrufen, um bewusstere Kaufentscheidungen zu treffen.
 
 == 3. Projektziele
 
