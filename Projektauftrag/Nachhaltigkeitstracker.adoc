@@ -22,7 +22,8 @@ Unsere Software soll einer Person die Informationen über die Nachhaltigkeit ein
 Sie können die Daten erhalten, indem sie den Barcode des Produkts scannen oder den Namen, Hersteller oder die Produkt Kategorie des Produktes eingeben.
 Die Software soll auf eine Datenbank zugreifen können, in der Informationen zur Nachhaltigkeit von Produkten gespeichert sind.
 Die Software soll die Nachhaltigkeitsdaten in einem strukturierten Format anzeigen.
-Zusätzlich könnte z.B. ein Nachhaltigkeitsscore oder eine Einteilung in Kategorien („sehr nachhaltig“, „nachhaltig“, „wenig nachhaltig“) angezeigt werden, damit der Nutzer die Informationen leicht einordnen kann.
+Zusätzlich könnte z.B. ein Nachhaltigkeitsscore oder eine Einteilung in Kategorien („sehr nachhaltig“, „nachhaltig“, „wenig nachhaltig“)
+angezeigt werden, damit der Nutzer die Informationen leicht einordnen kann.
 
 ==== Nichtfunktionale Anforderungen (NFA)
 
