@@ -16,6 +16,14 @@ E-Mail: l.findenig@students.htl-leonding.ac.at
 Das Projekt *"Einkaufshelfer"* zielt darauf ab, eine mobile oder Web-Anwendung zu entwickeln, die es Kunden ermöglicht, die Herkunft und Nachhaltigkeit von Produkten direkt beim Einkauf zu überprüfen. Mithilfe eines Barcode-Scanners können Kunden Produkte scannen und sofort Informationen zur Nachhaltigkeit und Herkunft abrufen, um bewusstere Kaufentscheidungen zu treffen.
 
 == 3. Projektziele
+==== 3.1 Ziele
+* Entwicklung einer intuitiven App, die Kunden Transparenz über Produkte bietet.
+* Vereinfachung des Einkaufsprozesses durch Anzeige der Nachhaltigkeitsbewertung gescannter Produkte.
+* Verbesserung der Kundenbindung und Stärkung des Images als nachhaltiges Unternehmen.
+
+==== 3.2 Projektergebniss
+Kunden soll es vereinfacht werden nachhaltig einzukaufen. Mit der App ersparen sie sich lange Recherchen über ein Produkt und die Kunden können mit wenigen Klicken die Informationen bekommen.
+
 
 == 4. Geplanter Umfang und Leistungen
 
