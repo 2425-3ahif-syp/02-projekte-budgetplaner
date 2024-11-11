@@ -26,13 +26,27 @@ Kunden soll es vereinfacht werden nachhaltig einzukaufen. Mit der App ersparen s
 
 
 == 4. Geplanter Umfang und Leistungen
+* Implementierung eines Barcode-Scanners, der Produktinformationen anzeigt.
+
+* Einbindung einer Datenbank mit Nachhaltigkeitsinformationen zu Produkten.
+
+* Benutzerfreundliches Design zur Erleichterung der Bedienung, auch für ältere Kunden.
+
+* Bereitstellung der App für mobile Endgeräte als Webanwendung.
+
 
 == 5. Risiken
 
 == 6. Konsequenzen bei Nichtdurchführung
 
 == 7. Projektorganisation
+*Projektleiter:* Lena Graßauer
 
+*Teammitglieder:*
+
+* Leonie Findenig
+* Leona Feichtinger
+* Lind Arifi
 
 == 8. Zeitplan
 
