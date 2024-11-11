@@ -1,0 +1,65 @@
+= Nachhaltigkeitstracker
+FIndenig Leonie, Lena Graßauer, Lind Arifi
+
+=== Ausgangssituation:
+
+Das Unternehmen GoodFood in Leonding bietet eine vielfältige Auswahl an Lebensmitteln an, beschäftigt 20 Mitarbeiter und legt großen Wert auf Umweltbewusstsein.
+
+=== Problemstellung:
+
+Wir möchten, dass unsere Kunden auf einen Blick sehen können, wie nachhaltig unsere Produkte wirklich sind und so einen transparenteren Einblick in unser Unternehmen gewinnen.
+Derzeit ist es jedoch sehr zeitaufwendig, bei jedem einzelnen Produkt nachzuprüfen, wie nachhaltig es tatsächlich ist.
+Dadurch hinterfragen unsere Kunden häufiger unsere Bemühungen um Nachhaltigkeit.
+
+=== Aufgabenstellung
+
+Eine App oder WebApp womit man mit Hilfe eines Barcode Scanners sofort die Inhaltsstoffe, Herkunft und Nachhaltigkeitsbewertung sehen kann.
+Das erleichtert es unseren Kunden zu sehen das wir uns wirklich mit Nachhaltigkeit beschäftigen und Ihnen auch Einblicke dazu gewähren.
+
+==== Funktionale Anforderungen
+
+Unsere Software soll einer Person die Informationen über die Nachhaltigkeit eines Produktes liefern.
+Sie können die Daten erhalten, indem sie den Barcode des Produkts scannen oder den Namen, Hersteller oder die Produkt Kategorie des Produktes eingeben.
+Die Software soll auf eine Datenbank zugreifen können, in der Informationen zur Nachhaltigkeit von Produkten gespeichert sind.
+Die Software soll die Nachhaltigkeitsdaten in einem strukturierten Format anzeigen.
+Zusätzlich könnte z.B. ein Nachhaltigkeitsscore oder eine Einteilung in Kategorien („sehr nachhaltig“, „nachhaltig“, „wenig nachhaltig“) angezeigt werden, damit der Nutzer die Informationen leicht einordnen kann.
+
+==== Nichtfunktionale Anforderungen (NFA)
+
+Die Benutzeroberfläche soll so gestaltet sein, dass auch unerfahrene Nutzer problemlos die benötigten Informationen finden und die Software bedienen können.
+Sie wird auch ein einfaches, minimalistisches und strukturiertes Layout bekommen um es Kunden einfacher zu machen einen überblick zu bewahren.
+
+=== Ziele
+Mehr Menschen kaufen nachhaltiger ein, da es ihnen einfacher gemacht wird, die Nachhaltigkeit von Produkten zu überprüfen.
+Dies kann dazu beitragen, den Klimawandel zu stoppen oder zumindest zu verlangsamen, wenn mehr Menschen einen nachhaltigen Lebensstil führen.
+
+=== Mengengerüst
+=== Rahmenbedingungen zB Vorgaben vom Auftraggeber
+
+== Entwurf "Wie mache ich es"
+
+=== Systemarchitektur
+
+=== ...
+
+== Projekthandbuch "Organisatorische Rahmenbedingungen"
+
+=== GANTT-Diagramm
+
+mit User-Stories (definiert in YouTrack)
+
+[plantuml,gantt-protoype,png]
+----
+@startgantt
+[Test prototype] lasts 10 days
+[Prototype completed] happens at [Test prototype]'s end
+[Setup assembly line] lasts 12 days
+[Setup assembly line] starts at [Test prototype]'s end
+[Test prototype 2] lasts 3 days
+[Test prototype 2] starts at [Prototype completed]'s end
+@endgantt
+----
+
+* link:minutes-of-meeting.html[Protokollvorlage]
+* link:demo.html[Demo]
+
