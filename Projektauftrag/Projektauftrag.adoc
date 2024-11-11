@@ -19,7 +19,7 @@ Das Projekt *"Einkaufshelfer"* zielt darauf ab, eine mobile oder Web-Anwendung z
 ==== 3.1 Ziele
 * Entwicklung einer intuitiven App, die Kunden Transparenz über Produkte bietet.
 * Vereinfachung des Einkaufsprozesses durch Anzeige der Nachhaltigkeitsbewertung gescannter Produkte.
-* Verbesserung der Kundenbindung und Stärkung des Images als nachhaltiges Unternehmen.
+
 
 ==== 3.2 Projektergebniss
 Kunden soll es vereinfacht werden nachhaltig einzukaufen. Mit der App ersparen sie sich lange Recherchen über ein Produkt und die Kunden können mit wenigen Klicken die Informationen bekommen.
