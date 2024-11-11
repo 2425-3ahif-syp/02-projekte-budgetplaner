@@ -6,6 +6,11 @@
 Projektname: Einkaufshelfer
 
 ====  1.2 Projektauftraggeber
+Auftraggeber: Leonie Findenig
+
+Verantwortlicher Ansprechspartner: Thomas Stütz
+
+E-Mail: l.findenig@students.htl-leonding.ac.at
 
 == 2. Projektbeschreibung
 
