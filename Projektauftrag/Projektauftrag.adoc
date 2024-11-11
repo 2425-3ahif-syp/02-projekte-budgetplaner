@@ -37,6 +37,10 @@ Kunden soll es vereinfacht werden nachhaltig einzukaufen. Mit der App ersparen s
 
 == 5. Risiken
 
+* Mögliche technische Herausforderungen bei der Implementierung der App und beim Management der Datenbank.
+* Daten werden dem falschen Produkt zugeordnet und dadurch bekommen die Kunden falsche Informationen.
+
+
 == 6. Konsequenzen bei Nichtdurchführung
 
 == 7. Projektorganisation
