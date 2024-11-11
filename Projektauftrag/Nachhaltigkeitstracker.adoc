@@ -11,6 +11,8 @@ Wir möchten, dass unsere Kunden auf einen Blick sehen können, wie nachhaltig u
 
 === Aufgabenstellung
 
+Eine App oder WebApp womit man mit Hilfe eines Barcode Scanners sofort die Inhaltsstoffe, Herkunft und Nachhaltigkeitsbewertung sehen kann.
+Das erleichtert es unseren Kunden zu sehen das wir uns wirklich mit Nachhaltigkeit beschäftigen und Ihnen auch Einblicke dazu gewähren.
 
 ==== Funktionale Anforderungen
 
