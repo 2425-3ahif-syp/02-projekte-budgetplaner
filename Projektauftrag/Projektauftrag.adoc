@@ -19,7 +19,7 @@ Das Projekt *"Einkaufshelfer"* zielt darauf ab, eine mobile oder Web-Anwendung z
 ==== 3.1 Ziele
 * Entwicklung einer intuitiven App, die Kunden Transparenz über Produkte bietet.
 * Vereinfachung des Einkaufsprozesses durch Anzeige der Nachhaltigkeitsbewertung gescannter Produkte.
-* Verbesserung der Kundenbindung und Stärkung des Images als nachhaltiges Unternehmen.
+
 
 ==== 3.2 Projektergebniss
 Kunden soll es vereinfacht werden nachhaltig einzukaufen. Mit der App ersparen sie sich lange Recherchen über ein Produkt und die Kunden können mit wenigen Klicken die Informationen bekommen.
@@ -37,7 +37,13 @@ Kunden soll es vereinfacht werden nachhaltig einzukaufen. Mit der App ersparen s
 
 == 5. Risiken
 
+* Mögliche technische Herausforderungen bei der Implementierung der App und beim Management der Datenbank.
+* Daten werden dem falschen Produkt zugeordnet und dadurch bekommen die Kunden falsche Informationen.
+
+
 == 6. Konsequenzen bei Nichtdurchführung
+
+* Kunden könnten weiterhin Schwierigkeiten haben, nachhaltige Produkte zu identifizieren, was zu Frustration führt.
 
 == 7. Projektorganisation
 ==== 7.1 *Projektleiter:*
@@ -57,6 +63,8 @@ Projektleiter: Lena Graßauer
 *Geplantes Projektende:* Juni 2025
 
 == 9. Annahmen und Bedingungen
+* Zugriff auf eine umfassende Produktdatenbank mit Nachhaltigkeitsinformationen.
+
 
 == 10. Genehmigung
 *Name des Genehmigenden:* ____________________
