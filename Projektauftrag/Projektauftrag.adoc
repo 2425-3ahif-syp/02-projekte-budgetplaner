@@ -3,7 +3,7 @@
 == 1. Projektauftrag:
 
 ====  1.1 Projektbezeichnung
-Projektname: Einkaufshelfer
+Projektname: Nachhaltigkeitstracker
 
 ====  1.2 Projektauftraggeber
 Auftraggeber: Leonie Findenig
