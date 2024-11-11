@@ -43,6 +43,8 @@ Kunden soll es vereinfacht werden nachhaltig einzukaufen. Mit der App ersparen s
 
 == 6. Konsequenzen bei Nichtdurchführung
 
+* Kunden könnten weiterhin Schwierigkeiten haben, nachhaltige Produkte zu identifizieren, was zu Frustration führt.
+
 == 7. Projektorganisation
 ==== 7.1 *Projektleiter:*
 Projektleiter: Lena Graßauer
@@ -61,6 +63,8 @@ Projektleiter: Lena Graßauer
 *Geplantes Projektende:* Juni 2025
 
 == 9. Annahmen und Bedingungen
+* Zugriff auf eine umfassende Produktdatenbank mit Nachhaltigkeitsinformationen.
+
 
 == 10. Genehmigung
 *Name des Genehmigenden:* ____________________
