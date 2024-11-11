@@ -1,34 +1,20 @@
 = Nachhaltigkeitstracker
 FIndenig Leonie, Lena Graßauer, Lind Arifi
 
+=== Ausgangssituation:
 
-== Pflichtenheft "Was mache ich"
+Das Unternehmen GoodFood in Leonding bietet eine vielfältige Auswahl an Lebensmitteln an, beschäftigt 20 Mitarbeiter und legt großen Wert auf Umweltbewusstsein.
 
+=== Problemstellung:
 
-=== Ausgangssituation
-Unternehmen GoodFood in Leonding vielfaltige Auswahl an Lebensmiteln, 20 Mittarbeiter, Umweltbewusst
-
-=== Problemstellung
-
-Wir möchten das unsere Kunden die Nachhaltigkeit unserer Produkte sehen und unser Unternehmen dadurch transparenter wird.
-Leider dauert es sehr lange bei jeden Produckt nachzuschauen wie Nachhaltig und gut es wirklich ist. Unsere Kunden stellen dadurch unsere Nachhaltigkeit öfter in Frage.
-
+Wir möchten, dass unsere Kunden auf einen Blick sehen können, wie nachhaltig unsere Produkte wirklich sind und so einen transparenteren Einblick in unser Unternehmen gewinnen. Derzeit ist es jedoch sehr zeitaufwendig, bei jedem einzelnen Produkt nachzuprüfen, wie nachhaltig es tatsächlich ist. Dadurch hinterfragen unsere Kunden häufiger unsere Bemühungen um Nachhaltigkeit.
 
 === Aufgabenstellung
 
+
 ==== Funktionale Anforderungen
 
-[plantuml,wireframe,png]
-----
-@startsalt
-{
-Name         | "                 "
-Modifiers:   | { (X) public | () default | () private | () protected
-	            [] abstract | [] final   | [] static }
-Superclass:  | { "java.lang.Object " | [Browse...] }
-}
-@endsalt
-----
+
 ==== Nichtfunktionale Anforderungen (NFA)
 === Ziele
 === Mengengerüst
