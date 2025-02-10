@@ -63,3 +63,6 @@ Kunde -- UC3
 
 @enduml
 ----
+== Welche Probleme löst es
+
+Der Nachhaltigkeitstracker hilft Leuten schneller Umweltfreundliche und ökologische Produckte zufinden. Dazu beweisst es Leuten unsere Transparenz zu sehen/glauben.
