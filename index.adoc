@@ -1,0 +1,65 @@
+= Nachhaltigkeitstracker
+ifndef::imagesdir[:imagesdir: images]
+
+
+Lind Arifi, Leonie Findenig, Lena Graßauer, Leona Feichtinger
+
+== Nachhaltigkeitstracker - UML-Diagramme
+
+=== Datenmodell (UML-Klassendiagramm)
+
+[plantuml]
+----
+@startuml
+class Produkt {
+    - ID: int
+    - Name: String
+    - Hersteller: String
+    - Herkunftsland: String
+    - Nachhaltigkeitsscore: float
+    - KategorieID
+    - BarcodeID: int
+}
+
+class ProduktKategorie{
+    - ID: int
+    - Bezeichnung: string
+}
+
+class Barcode {
+    - ID: int
+    - Code: String
+}
+
+class Nutzer {
+    - ID: int
+    - Name: String
+    - Email: String
+    - TelNr: String
+}
+
+Produkt <--  Barcode
+Produkt <-- ProduktKategorie
+@enduml
+----
+
+
+=== Anwendungsfalldiagramm
+
+[plantuml]
+----
+@startuml
+actor Kunde
+
+rectangle "Nachhaltigkeitstracker" {
+  usecase "Produkt scannen" as UC1
+  usecase "Nachhaltigkeitsbewertung anzeigen" as UC2
+  usecase "Produkt manuell suchen" as UC3
+}
+
+Kunde -- UC1
+Kunde -- UC2
+Kunde -- UC3
+
+@enduml
+----
