@@ -19,11 +19,11 @@ jobs:
         run: sudo apt-get install -y asciidoctor
 
       - name: HTML-Slides generieren
-        run: asciidoctor-revealjs -o docs/index.html slides.adoc
+        run: asciidoctor-revealjs slides.adoc
 
       - name: GitHub Pages veröffentlichen
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
+          publish_dir: ./
           publish_branch: gh-pages
