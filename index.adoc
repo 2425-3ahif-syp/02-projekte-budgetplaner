@@ -1,0 +1,81 @@
+= Nachhaltigkeitstracker
+ifndef::imagesdir[:imagesdir: images]
+
+
+Lind Arifi, Leonie Findenig, Lena Graßauer, Leona Feichtinger
+
+== Nachhaltigkeitstracker - UML-Diagramme
+
+=== Datenmodell (UML-Klassendiagramm)
+
+[plantuml]
+----
+@startuml
+class Produkt {
+    - ID: int
+    - Name: String
+    - Hersteller: String
+    - Herkunftsland: String
+    - Nachhaltigkeitsscore: float
+    - KategorieID
+    - BarcodeID: int
+}
+
+class ProduktKategorie{
+    - ID: int
+    - Bezeichnung: string
+}
+
+class Barcode {
+    - ID: int
+    - Code: String
+}
+
+class Nutzer {
+    - ID: int
+    - Name: String
+    - Email: String
+    - TelNr: String
+}
+
+Produkt <--  Barcode
+Produkt <-- ProduktKategorie
+@enduml
+----
+
+
+=== Anwendungsfalldiagramm
+
+[plantuml]
+----
+@startuml
+actor Kunde
+
+rectangle "Nachhaltigkeitstracker" {
+  usecase "Produkt scannen" as UC1
+  usecase "Nachhaltigkeitsbewertung anzeigen" as UC2
+  usecase "Produkt manuell suchen" as UC3
+}
+
+Kunde -- UC1
+Kunde -- UC2
+Kunde -- UC3
+
+@enduml
+----
+== Welche Probleme löst es
+
+Der Nachhaltigkeitstracker hilft Leuten schneller Umweltfreundliche und ökologische Produkte zu finden. Dazu beweist es Leuten unsere Transparenz zu sehen/glauben.
+
+== Aufgabenstellung
+
+Entwicklung einer Anwendung zur Bewertung der Nachhaltigkeit von Produkten.
+Die Anwendung soll eine Datenbank enthalten, in der Produkte mit relevanten Informationen (z. B. Herkunft, Hersteller, Nachhaltigkeitsscore) gespeichert werden.
+Nutzer können Produkte mithilfe einer Suchleiste oder durch Scannen eines QR-codes finden und deren Nachhaltigkeitsbewertung abrufen.
+
+Hauptfunktionen:
+
+Datenbank: Speicherung von Produktdaten inklusive Kategorien und Barcodes
+Produktsuche: Manuelle Suche oder Barcode-Scan
+Nachhaltigkeitsbewertung: Anzeige von Umwelt- und Nachhaltigkeitsinformationen
+Ziel ist es, Transparenz zu schaffen und nachhaltige Kaufentscheidungen zu erleichtern.
