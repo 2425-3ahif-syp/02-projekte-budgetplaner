@@ -1,12 +1,18 @@
 = Nachhaltigkeitstracker
 ifndef::imagesdir[:imagesdir: images]
 
-
 Lind Arifi, Leonie Findenig, Lena Graßauer, Leona Feichtinger
 
-== Nachhaltigkeitstracker - UML-Diagramme
+== Überblick
 
-=== Datenmodell (UML-Klassendiagramm)
+=== 1. Datenmodell
+=== 2. Anwendungsfalldiagramm
+=== 3. Funktionsweise des Nachhaltigkeitstrackers
+=== 4. Problemlösung durch die Anwendung
+
+---
+
+== Datenmodell - UML-Klassendiagramm
 
 [plantuml]
 ----
@@ -43,8 +49,9 @@ Produkt <-- ProduktKategorie
 @enduml
 ----
 
+----
 
-=== Anwendungsfalldiagramm
+== Anwendungsfalldiagramm
 
 [plantuml]
 ----
@@ -63,19 +70,40 @@ Kunde -- UC3
 
 @enduml
 ----
-== Welche Probleme löst es
 
-Der Nachhaltigkeitstracker hilft Leuten schneller Umweltfreundliche und ökologische Produkte zu finden. Dazu beweist es Leuten unsere Transparenz zu sehen/glauben.
+**Design-Tipp:**  
+Verwenden Sie visuelle Trennlinien und einheitliche Symbole, um die Akteure und Use-Cases hervorzuheben.
 
-== Aufgabenstellung
+---
 
-Entwicklung einer Anwendung zur Bewertung der Nachhaltigkeit von Produkten.
-Die Anwendung soll eine Datenbank enthalten, in der Produkte mit relevanten Informationen (z. B. Herkunft, Hersteller, Nachhaltigkeitsscore) gespeichert werden.
-Nutzer können Produkte mithilfe einer Suchleiste oder durch Scannen eines QR-codes finden und deren Nachhaltigkeitsbewertung abrufen.
+== Problemstellung und Lösungsansatz
 
-Hauptfunktionen:
+=== Problem:
+Viele Konsumenten sind unsicher über die Nachhaltigkeit von Produkten und haben Schwierigkeiten, umweltfreundliche Optionen schnell zu finden.
 
-Datenbank: Speicherung von Produktdaten inklusive Kategorien und Barcodes
-Produktsuche: Manuelle Suche oder Barcode-Scan
-Nachhaltigkeitsbewertung: Anzeige von Umwelt- und Nachhaltigkeitsinformationen
-Ziel ist es, Transparenz zu schaffen und nachhaltige Kaufentscheidungen zu erleichtern.
+=== Lösung:
+Der Nachhaltigkeitstracker ermöglicht eine einfache Suche nach nachhaltigen Produkten und bietet transparente Informationen zu deren ökologischen Eigenschaften.
+
+== Aufgabenstellung und Funktionen
+
+=== Ziel:
+Entwicklung einer Anwendung zur Bewertung der Nachhaltigkeit von Produkten. Nutzer sollen über eine Datenbank nachhaltige Produkte finden können.
+
+=== Hauptfunktionen:
+- **Datenbank:** Speicherung relevanter Produktdaten
+- **Produktsuche:** Manuelle Suche oder Barcode-Scan
+- **Nachhaltigkeitsbewertung:** Anzeige von Umwelt- und Nachhaltigkeitsinformationen
+
+**Design-Tipp:**  
+Verwenden Sie eine klare Bullet-Point-Liste oder Icons zur Darstellung der Funktionen.
+
+---
+
+== Fazit und Ausblick
+
+Der Nachhaltigkeitstracker fördert umweltbewusste Kaufentscheidungen und bietet eine transparente Übersicht über Produkte.
+
+=== Ausblick:
+Weitere Erweiterungen könnten eine Bewertung durch Nutzer oder Kooperationen mit Herstellern umfassen.
+
+---
