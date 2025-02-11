@@ -95,6 +95,7 @@ Der Nachhaltigkeitstracker ermöglicht eine einfache Suche nach nachhaltigen Pro
 
 === Ziel:
 Entwicklung einer Anwendung zur Bewertung der Nachhaltigkeit von Produkten. Nutzer sollen über eine Datenbank nachhaltige Produkte finden können.
+
 ***
 
 === Hauptfunktionen:
