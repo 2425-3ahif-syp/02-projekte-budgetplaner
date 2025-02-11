@@ -10,7 +10,7 @@ Lind Arifi, Leonie Findenig, Lena Graßauer, Leona Feichtinger
 === 3. Funktionsweise des Nachhaltigkeitstrackers
 === 4. Problemlösung durch die Anwendung
 
----
+***
 
 == Datenmodell - UML-Klassendiagramm
 
@@ -54,7 +54,7 @@ Produkt <-- ProduktKategorie
 ----
 
 
----
+***
 
 === Anwendungsfalldiagramm
 
@@ -76,8 +76,7 @@ Kunde -- UC3
 @enduml
 ----
 
-
----
+***
 
 == Problemstellung und Lösungsansatz
 ***
@@ -88,7 +87,7 @@ Viele Konsumenten sind unsicher über die Nachhaltigkeit von Produkten und haben
 Der Nachhaltigkeitstracker ermöglicht eine einfache Suche nach nachhaltigen Produkten und bietet transparente Informationen zu deren ökologischen Eigenschaften.
 
 
----
+***
 
 == Aufgabenstellung und Funktionen
 ***
@@ -103,8 +102,7 @@ Entwicklung einer Anwendung zur Bewertung der Nachhaltigkeit von Produkten. Nutz
 - **Produktsuche:** Manuelle Suche oder Barcode-Scan
 - **Nachhaltigkeitsbewertung:** Anzeige von Umwelt- und Nachhaltigkeitsinformationen
 
-
----
+***
 
 == Fazit und Ausblick
 ***
@@ -116,4 +114,3 @@ Der Nachhaltigkeitstracker fördert umweltbewusste Kaufentscheidungen und bietet
 Weitere Erweiterungen könnten eine Bewertung durch Nutzer oder Kooperationen mit Herstellern umfassen.
 
 
----
