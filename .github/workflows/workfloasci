@@ -1,4 +1,4 @@
-name: Asciidoc Slides CI
+name: Asciidoc HTML Slides CI
 
 on:
   push:
@@ -18,15 +18,12 @@ jobs:
       - name: Set up Asciidoctor
         run: sudo apt-get install -y asciidoctor
 
-      - name: Slides generieren
-        run: asciidoctor -r asciidoctor-revealjs -b revealjs slides.adoc
-
-      - name: HTML generieren
-        run: asciidoctor -o index.html slides.adoc
+      - name: HTML-Slides generieren
+        run: asciidoctor-revealjs -o docs/index.html slides.adoc
 
       - name: GitHub Pages veröffentlichen
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./docs
           publish_branch: gh-pages
