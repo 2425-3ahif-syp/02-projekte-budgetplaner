@@ -38,7 +38,7 @@ jobs:
             -a source-highlighter=highlight.js \
             -D slides \
             -o index.html \
-            slides/presentation.adoc
+            slides/index.adoc
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
