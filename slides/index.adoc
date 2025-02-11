@@ -108,6 +108,8 @@ Entwicklung einer Anwendung zur Bewertung der Nachhaltigkeit von Produkten. Nutz
 
 == Fazit und Ausblick
 ***
+
+=== Fazit
 Der Nachhaltigkeitstracker fördert umweltbewusste Kaufentscheidungen und bietet eine transparente Übersicht über Produkte.
 
 === Ausblick:
