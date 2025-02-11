@@ -76,31 +76,31 @@ Kunde -- UC3
 ---
 
 == Problemstellung und Lösungsansatz
-----
+***
 === Problem:
 Viele Konsumenten sind unsicher über die Nachhaltigkeit von Produkten und haben Schwierigkeiten, umweltfreundliche Optionen schnell zu finden.
 
 === Lösung:
 Der Nachhaltigkeitstracker ermöglicht eine einfache Suche nach nachhaltigen Produkten und bietet transparente Informationen zu deren ökologischen Eigenschaften.
 
-----
+
 ---
 
 == Aufgabenstellung und Funktionen
-----
+***
 === Ziel:
 Entwicklung einer Anwendung zur Bewertung der Nachhaltigkeit von Produkten. Nutzer sollen über eine Datenbank nachhaltige Produkte finden können.
-----
+***
 === Hauptfunktionen:
 - **Datenbank:** Speicherung relevanter Produktdaten
 - **Produktsuche:** Manuelle Suche oder Barcode-Scan
 - **Nachhaltigkeitsbewertung:** Anzeige von Umwelt- und Nachhaltigkeitsinformationen
-----
+
 
 ---
 
 == Fazit und Ausblick
-
+***
 Der Nachhaltigkeitstracker fördert umweltbewusste Kaufentscheidungen und bietet eine transparente Übersicht über Produkte.
 
 === Ausblick:
