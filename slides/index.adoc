@@ -58,18 +58,17 @@ Nutzer <-- Budget
 [plantuml]
 ----
 @startuml
-actor Kunde
+actor Nutzer
 
-rectangle "Nachhaltigkeitstracker" {
-  usecase "Produkt scannen" as UC1
-  usecase "Nachhaltigkeitsbewertung anzeigen" as UC2
-  usecase "Produkt manuell suchen" as UC3
+rectangle "Budgetplaner" {
+usecase "Einnahmen und Fixkosten eingeben" as UC1
+usecase "Ausgaben erfassen" as UC2
+usecase "Budgetanalyse anzeigen" as UC3
 }
 
-Kunde -- UC1
-Kunde -- UC2
-Kunde -- UC3
-
+Nutzer -- UC1
+Nutzer -- UC2
+Nutzer -- UC3
 @enduml
 ----
 
