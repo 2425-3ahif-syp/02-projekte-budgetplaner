@@ -1,4 +1,4 @@
-= Nachhaltigkeitstracker
+= Budgetplaner
 ifndef::imagesdir[:imagesdir: images]
 
 Lind Arifi, Leonie Findenig, Lena Graßauer, Leona Feichtinger
@@ -21,35 +21,32 @@ Lind Arifi, Leonie Findenig, Lena Graßauer, Leona Feichtinger
 [plantuml]
 ----
 @startuml
-class Produkt {
-    - ID: int
-    - Name: String
-    - Hersteller: String
-    - Herkunftsland: String
-    - Nachhaltigkeitsscore: float
-    - KategorieID
-    - BarcodeID: int
+@startuml
+class Budget {
+- ID: int
+- Monat: String
+- Einkommen: float
+- Fixkosten: float
+- Verfügbares Budget: float
 }
 
-class ProduktKategorie{
-    - ID: int
-    - Bezeichnung: string
-}
-
-class Barcode {
-    - ID: int
-    - Code: String
+class Ausgabe{
+- ID: int
+- Betrag: float
+- Kategorie: String
+- Datum: Date
+- BudgetID: int
 }
 
 class Nutzer {
-    - ID: int
-    - Name: String
-    - Email: String
-    - TelNr: String
+- ID: int
+- Name: String
+- Email: String
+- TelNr: String
 }
 
-Produkt <--  Barcode
-Produkt <-- ProduktKategorie
+Budget <-- Ausgabe
+Nutzer <-- Budget
 @enduml
 ----
 
