@@ -77,11 +77,10 @@ Nutzer -- UC3
 == Problemstellung und Lösungsansatz
 ***
 === Problem:
-Viele Konsumenten sind unsicher über die Nachhaltigkeit von Produkten und haben Schwierigkeiten, umweltfreundliche Optionen schnell zu finden.
+Viele Menschen haben Schwierigkeiten, ihre Finanzen zu überblicken und ein Budget effizient zu verwalten.
 
 === Lösung:
-Der Nachhaltigkeitstracker ermöglicht eine einfache Suche nach nachhaltigen Produkten und bietet transparente Informationen zu deren ökologischen Eigenschaften.
-
+Der Budgetplaner hilft Nutzern, ihre Einnahmen und Ausgaben einfach zu erfassen, ihr Budget zu überwachen und bessere finanzielle Entscheidungen zu treffen.
 
 ***
 
@@ -89,14 +88,13 @@ Der Nachhaltigkeitstracker ermöglicht eine einfache Suche nach nachhaltigen Pro
 ***
 
 === Ziel:
-Entwicklung einer Anwendung zur Bewertung der Nachhaltigkeit von Produkten. Nutzer sollen über eine Datenbank nachhaltige Produkte finden können.
-
+Entwicklung einer Anwendung zur Verwaltung und Analyse von Einnahmen und Ausgaben, um eine bessere finanzielle Planung zu ermöglichen.
 ***
 
 === Hauptfunktionen:
-- **Datenbank:** Speicherung relevanter Produktdaten
-- **Produktsuche:** Manuelle Suche oder Barcode-Scan
-- **Nachhaltigkeitsbewertung:** Anzeige von Umwelt- und Nachhaltigkeitsinformationen
+- **Budgetverwaltung:** Erfassen von Einnahmen, Fixkosten und variablen Ausgaben
+- **Kategorien:** Ausgaben in verschiedene Kategorien einteilen
+
 
 ***
 
