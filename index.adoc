@@ -1,4 +1,4 @@
-= Nachhaltigkeitstracker
+= Budgetplaner
 ifndef::imagesdir[:imagesdir: images]
 
 Lind Arifi, Leonie Findenig, Lena Graßauer, Leona Feichtinger
@@ -21,35 +21,32 @@ Lind Arifi, Leonie Findenig, Lena Graßauer, Leona Feichtinger
 [plantuml]
 ----
 @startuml
-class Produkt {
-    - ID: int
-    - Name: String
-    - Hersteller: String
-    - Herkunftsland: String
-    - Nachhaltigkeitsscore: float
-    - KategorieID
-    - BarcodeID: int
+@startuml
+class Budget {
+- ID: int
+- Monat: String
+- Einkommen: float
+- Fixkosten: float
+- Verfügbares Budget: float
 }
 
-class ProduktKategorie{
-    - ID: int
-    - Bezeichnung: string
-}
-
-class Barcode {
-    - ID: int
-    - Code: String
+class Ausgabe{
+- ID: int
+- Betrag: float
+- Kategorie: String
+- Datum: Date
+- BudgetID: int
 }
 
 class Nutzer {
-    - ID: int
-    - Name: String
-    - Email: String
-    - TelNr: String
+- ID: int
+- Name: String
+- Email: String
+- TelNr: String
 }
 
-Produkt <--  Barcode
-Produkt <-- ProduktKategorie
+Budget <-- Ausgabe
+Nutzer <-- Budget
 @enduml
 ----
 
@@ -61,18 +58,17 @@ Produkt <-- ProduktKategorie
 [plantuml]
 ----
 @startuml
-actor Kunde
+actor Nutzer
 
-rectangle "Nachhaltigkeitstracker" {
-  usecase "Produkt scannen" as UC1
-  usecase "Nachhaltigkeitsbewertung anzeigen" as UC2
-  usecase "Produkt manuell suchen" as UC3
+rectangle "Budgetplaner" {
+usecase "Einnahmen und Fixkosten eingeben" as UC1
+usecase "Ausgaben erfassen" as UC2
+usecase "Budgetanalyse anzeigen" as UC3
 }
 
-Kunde -- UC1
-Kunde -- UC2
-Kunde -- UC3
-
+Nutzer -- UC1
+Nutzer -- UC2
+Nutzer -- UC3
 @enduml
 ----
 
