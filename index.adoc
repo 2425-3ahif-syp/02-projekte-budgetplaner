@@ -102,7 +102,7 @@ Entwicklung einer Anwendung zur Verwaltung und Analyse von Einnahmen und Ausgabe
 ***
 
 === Fazit
-Der Nachhaltigkeitstracker fördert umweltbewusste Kaufentscheidungen und bietet eine transparente Übersicht über Produkte.
+Der Budgetplaner erleichtert die Verwaltung der persönlichen Finanzen, bietet eine bessere Kostenkontrolle und hilft bei der Erreichung finanzieller Ziele.
 
 === Ausblick:
 Weitere Erweiterungen könnten eine Bewertung durch Nutzer oder Kooperationen mit Herstellern umfassen.
