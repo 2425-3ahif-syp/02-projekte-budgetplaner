@@ -1,48 +1,44 @@
-name: Build and Deploy AsciiDoc Reveal.js Presentation
+name: Docs
 
 on:
   push:
     branches:
       - 'main'
     paths:
-      - 'slides/**'
-  pull_request:
-    branches:
-      - 'main'
-    paths:
-      - 'slides/**'
+      - asciidocs/**
   workflow_dispatch:
-
 permissions:
   contents: write
-  
 jobs:
-  build-and-deploy:
+  build:
+    name: Build & Publish 🚀
     runs-on: ubuntu-latest
+    env:
+      INPUTPATH: asciidocs
+      SLIDES: true
+      BRANCH: gh-pages
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Build Presentation
+      #- name: install packages
+      #  uses: awalsh128/cache-apt-pkgs-action@latest
+      #  with:
+      #    packages:  asciidoctor graphviz
+      #    version: 1.0
+
+      #- name: Setup tmate session
+      #  uses: mxschmitt/action-tmate@v3
+
+      - name: run docker
         run: |
-          docker run --rm \
-            -v ${{ github.workspace }}:/documents \
-            -w /documents \
-            asciidoctor/docker-asciidoctor:latest \
-            asciidoctor-revealjs \
-            -r asciidoctor-revealjs \
-            -a revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@4.5.0 \
-            -a revealjs_theme=white \
-            -a revealjs_history=true \
-            -a revealjs_plugin_highlight=enabled \
-            -a source-highlighter=highlight.js \
-            -D slides \
-            -o index.html \
-            slides/index.adoc
+          sudo ${{ env.INPUTPATH }}/scripts/docker-convert.sh ${{ env.INPUTPATH }} ${{ env.SLIDES }}
+          tree
+
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./slides
-          publish_branch: gh-pages
+          # GITHUB_TOKEN: ${{ github.TOKEN }}
+          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ env.BRANCH }}
+          folder: ${{ env.INPUTPATH }}
