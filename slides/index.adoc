@@ -48,9 +48,6 @@ Nutzer <-- Budget
 @enduml
 ----
 
-----
-
-
 
 
 === Anwendungsfalldiagramm
