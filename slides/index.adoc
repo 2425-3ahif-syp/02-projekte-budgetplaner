@@ -17,36 +17,37 @@ Lind Arifi, Leonie Findenig, Lena Graßauer, Leona Feichtinger
 
 === Klassendiagram
 
-[plantuml,target=diagram-1, format=svg]
+[plantuml, diagram-klassendiagramm, svg]
 ----
 @startuml
-@startuml
 class Budget {
-- ID: int
-- Monat: String
-- Einkommen: float
-- Fixkosten: float
-- Verfügbares Budget: float
+  - ID: int
+  - Monat: String
+  - Einkommen: float
+  - Fixkosten: float
+  - Verfügbares Budget: float
 }
 
-class Ausgabe{
-- ID: int
-- Betrag: float
-- Kategorie: String
-- Datum: Date
-- BudgetID: int
+class Ausgabe {
+  - ID: int
+  - Betrag: float
+  - Kategorie: String
+  - Datum: Date
+  - BudgetID: int
 }
 
 class Nutzer {
-- ID: int
-- Name: String
-- Email: String
-- TelNr: String
+  - ID: int
+  - Name: String
+  - Email: String
+  - TelNr: String
 }
 
 Budget <-- Ausgabe
 Nutzer <-- Budget
 @enduml
+----
+
 ----
 
 
