@@ -10,15 +10,14 @@ Lind Arifi, Leonie Findenig, Lena Graßauer, Leona Feichtinger
 === 3. Funktionsweise des Nachhaltigkeitstrackers
 === 4. Problemlösung durch die Anwendung
 
-***
+
 
 == Datenmodell - UML-Klassendiagramm
 
-***
 
 === Klassendiagram
 
-[plantuml]
+[plantuml,target=diagram-1, format=svg]
 ----
 @startuml
 @startuml
@@ -55,7 +54,7 @@ Nutzer <-- Budget
 
 === Anwendungsfalldiagramm
 
-[plantuml]
+[plantuml,target=diagram-1, format=svg]
 ----
 @startuml
 actor Nutzer
