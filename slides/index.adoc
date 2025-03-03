@@ -74,10 +74,10 @@ Nutzer -- UC3
 == Problemstellung und Lösungsansatz
 
 === Problem:
-Viele Personen sind sich am Ende des Monats unsicher wofür sie  ihr Geld ausgegeben haben.
+Viele Menschen haben Schwierigkeiten, ihre Finanzen zu überblicken und ein Budget effizient zu verwalten.
 
 === Lösung:
-Der Budgetplanner ist eine Web Aplikation um am Ende des Monats eine klare Übersicht über seine Finanzen zu haben. Das man aber nicht jedes Monat nur den Schock hat wie viel man ausgegeben hat in gewissen Bereichen, gitb es auch einen Planner.
+Der Budgetplaner hilft Nutzern, ihre Einnahmen und Ausgaben einfach zu erfassen, ihr Budget zu überwachen und bessere finanzielle Entscheidungen zu treffen.
 
 
 == Aufgabenstellung und Funktionen
@@ -87,9 +87,10 @@ Entwicklung einer Anwendung zur Verwaltung und Analyse von Einnahmen und Ausgabe
 
 
 === Hauptfunktionen:
+- **Budgetverwaltung:** Erfassen von Einnahmen, Fixkosten und variablen Ausgaben
 - **Datenbank:** Einlesen der Bankdaten: Konto Auszüge und Eingänge 
-- **Diagramm:** Ein Diagramm das die Ausgaben in gewisse Bereiche einteilt und abbildet 
-- **Planner:** Eien Funktion zum Plannen der AUsgaben für das Monat 
+- **Diagramm:** Ein Diagramm das die Ausgaben in gewisse Kategorien einteilt und abbildet
+
 
 
 
@@ -100,6 +101,6 @@ Entwicklung einer Anwendung zur Verwaltung und Analyse von Einnahmen und Ausgabe
 Der Budgetplaner erleichtert die Verwaltung der persönlichen Finanzen, bietet eine bessere Kostenkontrolle und hilft bei der Erreichung finanzieller Ziele.
 
 === Ausblick:
-Weitere Erweiterungen könnten eine Bewertung durch Nutzer oder Kooperationen mit Herstellern umfassen.= Budgetplaner
+Weitere Erweiterungen könnten eine Bewertung durch Nutzer oder Kooperationen mit Herstellern umfassen.
 ifndef::imagesdir[:imagesdir: images]
 
