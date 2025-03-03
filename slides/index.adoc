@@ -104,3 +104,20 @@ Der Budgetplaner erleichtert die Verwaltung der persönlichen Finanzen, bietet e
 Weitere Erweiterungen könnten eine Bewertung durch Nutzer oder Kooperationen mit Herstellern umfassen.
 ifndef::imagesdir[:imagesdir: images]
 
+== Skizzen
+
+=== Ausgaben
+
+image::/Users/leoniefindenig/Desktop/02-projekte-nachhaltigkeitstracker/slides/images/Untitled-5.jpg[Ein tolles Bild, width=400, align=center]
+
+=== Plannung
+
+image::/Users/leoniefindenig/Desktop/02-projekte-nachhaltigkeitstracker/slides/images/Untitled-6.jpg[Ein tolles Bild, width=400, align=center]
+
+=== Monats vergleich
+
+image::/Users/leoniefindenig/Desktop/02-projekte-nachhaltigkeitstracker/slides/images/Untitled-7.jpg[Ein tolles Bild, width=400, align=center]
+
+=== Einstellungen
+
+image::/Users/leoniefindenig/Desktop/02-projekte-nachhaltigkeitstracker/slides/images/Untitled-8.jpg[Ein tolles Bild, width=400, align=center]
