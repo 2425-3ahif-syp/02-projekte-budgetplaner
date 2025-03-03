@@ -105,3 +105,16 @@ Der Budgetplaner erleichtert die Verwaltung der persönlichen Finanzen, bietet e
 Weitere Erweiterungen könnten eine Bewertung durch Nutzer oder Kooperationen mit Herstellern umfassen.= Budgetplaner
 ifndef::imagesdir[:imagesdir: images]
 
+== Skizzen 
+
+=== Ausgaben 
+image::untitled-5.jpg[width=400, align=center]
+
+=== Plannung 
+image::my-image.png[ width=400, align=center]
+
+=== Monats vergleich 
+image::my-image.png[ width=400, align=center]
+
+=== Einstellungen 
+image::my-image.png[ width=400, align=center]
