@@ -121,3 +121,11 @@ image::Untitled-7.jpg[width=400, align=center]
 === Einstellungen
 
 image::Untitled-8.jpg[E width=400, align=center]
+
+Erweiterungsvorschlag:
+
+Implementierung einer Sparziel-Funktion, mit der Nutzer ihre Ersparnisse planen und verfolgen können.
+
+Integration von Benachrichtigungen, die den Nutzer auf ungewöhnliche Ausgaben oder Budgetüberschreitungen hinweisen.
+
+Visualisierung von Trends im Ausgabeverhalten über mehrere Monate hinweg.
