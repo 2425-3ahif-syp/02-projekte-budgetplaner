@@ -108,16 +108,16 @@ ifndef::imagesdir[:imagesdir: images]
 
 === Ausgaben
 
-image::/Users/leoniefindenig/Desktop/02-projekte-nachhaltigkeitstracker/slides/images/Untitled-5.jpg[Ein tolles Bild, width=400, align=center]
+image::Untitled-5.jpg[ width=400, align=center]
 
 === Plannung
 
-image::/Users/leoniefindenig/Desktop/02-projekte-nachhaltigkeitstracker/slides/images/Untitled-6.jpg[Ein tolles Bild, width=400, align=center]
+image::Untitled-6.jpg[width=400, align=center]
 
 === Monats vergleich
 
-image::/Users/leoniefindenig/Desktop/02-projekte-nachhaltigkeitstracker/slides/images/Untitled-7.jpg[Ein tolles Bild, width=400, align=center]
+image::Untitled-7.jpg[width=400, align=center]
 
 === Einstellungen
 
-image::/Users/leoniefindenig/Desktop/02-projekte-nachhaltigkeitstracker/slides/images/Untitled-8.jpg[Ein tolles Bild, width=400, align=center]
+image::Untitled-8.jpg[E width=400, align=center]
