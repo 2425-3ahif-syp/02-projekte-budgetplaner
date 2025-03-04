@@ -1,5 +1,5 @@
 = Budgetplaner
-:author: firstname lastname
+:author: Findenig Leonie
 :email: x.y@htl.at
 :revnumber: 1.0
 :revdate: {docdate}
