@@ -1,0 +1,164 @@
+= Budgetplaner
+:author: Findenig Leonie
+:email: x.y@htl.at
+:revnumber: 1.0
+:revdate: {docdate}
+:revremark: SLIDEDEMO @ HTL Leonding
+:encoding: utf-8
+:lang: de
+:doctype: article
+//:icons: font
+:customcss: css/presentation.css
+//:revealjs_customtheme: css/sky.css
+//:revealjs_customtheme: css/black.css
+:revealjs_width: 1408
+:revealjs_height: 792
+:source-highlighter: highlightjs
+//:revealjs_parallaxBackgroundImage: images/background-landscape-light-orange.jpg
+//:revealjs_parallaxBackgroundSize: 4936px 2092px
+//:highlightjs-theme: css/atom-one-light.css
+// we want local served font-awesome fonts
+:iconfont-remote!:
+:iconfont-name: fonts/fontawesome/css/all
+//:revealjs_parallaxBackgroundImage: background-landscape-light-orange.jpg
+//:revealjs_parallaxBackgroundSize: 4936px 2092px
+ifdef::env-ide[]
+:imagesdir: ../images
+endif::[]
+ifndef::env-ide[]
+:imagesdir: images
+endif::[]
+//:revealjs_theme: sky
+//:title-slide-background-image: img.png
+:title-slide-transition: zoom
+:title-slide-transition-speed: fast
+
+
+Lind Arifi, Leonie Findenig, Lena Graßauer, Leona Feichtinger
+
+== Überblick
+
+=== 1. Datenmodell
+=== 2. Anwendungsfalldiagramm
+=== 3. Funktionsweise des Nachhaltigkeitstrackers
+=== 4. Problemlösung durch die Anwendung
+
+
+
+== Datenmodell - UML-Klassendiagramm
+
+
+=== Klassendiagram
+
+[plantuml, diagram-klassendiagramm, svg]
+----
+@startuml
+class Budget {
+  - ID: int
+  - Monat: String
+  - Einkommen: float
+  - Fixkosten: float
+  - Verfügbares Budget: float
+}
+
+class Ausgabe {
+  - ID: int
+  - Betrag: float
+  - Kategorie: String
+  - Datum: Date
+  - BudgetID: int
+}
+
+class Nutzer {
+  - ID: int
+  - Name: String
+  - Email: String
+  - TelNr: String
+}
+
+Budget <-- Ausgabe
+Nutzer <-- Budget
+@enduml
+----
+
+
+
+=== Anwendungsfalldiagramm
+
+[plantuml,target=diagram-1, format=svg]
+----
+@startuml
+actor Nutzer
+
+rectangle "Budgetplaner" {
+usecase "Einnahmen und Fixkosten eingeben" as UC1
+usecase "Ausgaben erfassen" as UC2
+usecase "Budgetanalyse anzeigen" as UC3
+}
+
+Nutzer -- UC1
+Nutzer -- UC2
+Nutzer -- UC3
+@enduml
+----
+
+
+
+== Problemstellung und Lösungsansatz
+
+=== Problem:
+Viele Menschen haben Schwierigkeiten, ihre Finanzen zu überblicken und ein Budget effizient zu verwalten.
+
+=== Lösung:
+Der Budgetplaner hilft Nutzern, ihre Einnahmen und Ausgaben einfach zu erfassen, ihr Budget zu überwachen und bessere finanzielle Entscheidungen zu treffen.
+
+
+== Aufgabenstellung und Funktionen
+
+=== Ziel:
+Entwicklung einer Anwendung zur Verwaltung und Analyse von Einnahmen und Ausgaben, um eine bessere finanzielle Planung zu ermöglichen.
+
+
+=== Hauptfunktionen:
+- **Budgetverwaltung:** Erfassen von Einnahmen, Fixkosten und variablen Ausgaben
+- **Datenbank:** Einlesen der Bankdaten: Konto Auszüge und Eingänge
+- **Diagramm:** Ein Diagramm das die Ausgaben in gewisse Kategorien einteilt und abbildet
+
+
+
+
+== Fazit und Ausblick
+
+
+=== Fazit
+Der Budgetplaner erleichtert die Verwaltung der persönlichen Finanzen, bietet eine bessere Kostenkontrolle und hilft bei der Erreichung finanzieller Ziele.
+
+=== Ausblick:
+Weitere Erweiterungen könnten eine Bewertung durch Nutzer oder Kooperationen mit Herstellern umfassen.
+ifndef::imagesdir[:imagesdir: images]
+
+== Skizzen
+
+=== Ausgaben
+
+image::Untitled-5.jpg[ width=400, align=center]
+
+=== Plannung
+
+image::Untitled-6.jpg[width=400, align=center]
+
+=== Monatsvergleich
+
+image::Untitled-7.jpg[width=400, align=center]
+
+=== Einstellungen
+
+image::Untitled-8.jpg[E width=400, align=center]
+
+Erweiterungsvorschlag:
+
+Implementierung einer Sparziel-Funktion, mit der Nutzer ihre Ersparnisse planen und verfolgen können.
+
+Integration von Benachrichtigungen, die den Nutzer auf ungewöhnliche Ausgaben oder Budgetüberschreitungen hinweisen.
+
+Visualisierung von Trends im Ausgabeverhalten über mehrere Monate hinweg.
