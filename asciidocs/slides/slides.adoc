@@ -1,6 +1,6 @@
 = Budgetplaner
-:author: Findenig Leonie
-:email: x.y@htl.at
+:author: Findenig Leonie, Feichtinger Leona, Lind Arifi, Lena Graßauer
+:email:
 :revnumber: 1.0
 :revdate: {docdate}
 :revremark: SLIDEDEMO @ HTL Leonding
