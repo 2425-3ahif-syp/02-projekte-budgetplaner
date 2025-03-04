@@ -168,4 +168,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,maven,windows,linux,intellij
+
+dist/
+docs/slides/revealjs
+.idea/
