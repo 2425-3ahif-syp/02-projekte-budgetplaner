@@ -1,6 +1,5 @@
 = Budgetplaner
 :author: Findenig Leonie, Feichtinger Leona, Lind Arifi, Lena Graßauer
-:email:
 :revnumber: 1.0
 :revdate: {docdate}
 :revremark: SLIDEDEMO @ HTL Leonding
