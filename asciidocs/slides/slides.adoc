@@ -33,8 +33,6 @@ endif::[]
 :title-slide-transition-speed: fast
 
 
-Lind Arifi, Leonie Findenig, Lena Graßauer, Leona Feichtinger
-
 == Überblick
 
 === 1. Datenmodell
