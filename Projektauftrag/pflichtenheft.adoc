@@ -27,11 +27,10 @@ angezeigt werden, damit der Nutzer die Informationen leicht einordnen kann.
 ==== Nichtfunktionale Anforderungen (NFA)
 
 Die Benutzeroberfläche soll so gestaltet sein, dass auch unerfahrene Nutzer problemlos die benötigten Informationen finden und die Software bedienen können.
-Sie wird auch ein einfaches, minimalistisches und strukturiertes Layout bekommen um es Kunden einfacher zu machen einen überblick zu bewahren.
+Sie wird auch ein einfaches, minimalistisches und strukturiertes Layout bekommen, um es Kunden einfacher zu machen einen überblick über ihre Finanzen zu bewahren. Unteranderem sollen die Benutzer auch diagramme über ihre Monatliche veränderungen, Ausgaben und Einnahmen sehen können.
 
 === Ziele
-Mehr Menschen kaufen nachhaltiger ein, da es ihnen einfacher gemacht wird, die Nachhaltigkeit von Produkten zu überprüfen.
-Dies kann dazu beitragen, den Klimawandel zu stoppen oder zumindest zu verlangsamen, wenn mehr Menschen einen nachhaltigen Lebensstil führen.
+Mehr Menschen beginnen zu sparen da es ihnen viel einfacher fällt einen überblick über ihre Finanzen zu behalten. Dass führt dazu das Menschen gerade in jungen Jahren schon anfangen zu sparen und sich ein finanzielles Polster aufbauen.
 
 
 === Mengengerüst
