@@ -12,17 +12,16 @@ Dadurch fehlt vielen Nutzern die Kontrolle über ihre Finanzen.
 
 === Aufgabenstellung
 
-Eine App oder WebApp womit man mit Hilfe eines Barcode Scanners sofort die Inhaltsstoffe, Herkunft und Nachhaltigkeitsbewertung sehen kann.
-Das erleichtert es unseren Kunden zu sehen das wir uns wirklich mit Nachhaltigkeit beschäftigen und Ihnen auch Einblicke dazu gewähren.
+Eine App oder WebApp, mit der Nutzer ihre Einnahmen und Ausgaben verwalten und analysieren können.
+Das erleichtert es unseren Kunden, ihre finanzielle Situation im Blick zu behalten und fundierte Entscheidungen zu treffen.
 
 ==== Funktionale Anforderungen
 
-Unsere Software soll einer Person die Informationen über die Nachhaltigkeit eines Produktes liefern.
-Sie können die Daten erhalten, indem sie den Barcode des Produkts scannen oder den Namen, Hersteller oder die Produkt Kategorie des Produktes eingeben.
-Die Software soll auf eine Datenbank zugreifen können, in der Informationen zur Nachhaltigkeit von Produkten gespeichert sind.
-Die Software soll die Nachhaltigkeitsdaten in einem strukturierten Format anzeigen.
-Zusätzlich könnte z.B. ein Nachhaltigkeitsscore oder eine Einteilung in Kategorien („sehr nachhaltig“, „nachhaltig“, „wenig nachhaltig“)
-angezeigt werden, damit der Nutzer die Informationen leicht einordnen kann.
+Unsere Software soll einer Person ermöglichen, ihre finanziellen Daten strukturiert zu erfassen und auszuwerten.
+Sie können die Daten eingeben, indem sie manuell Einnahmen und Ausgaben erfassen oder bestehende Transaktionsdaten importieren.
+Die Software soll auf eine Datenbank zugreifen können, in der finanzielle Informationen gespeichert und analysiert werden.
+Die Software soll die Finanzdaten in einem strukturierten Format anzeigen.
+
 
 ==== Nichtfunktionale Anforderungen (NFA)
 
