@@ -6,9 +6,9 @@ Viele Menschen haben Schwierigkeiten, ihre Finanzen im Blick zu behalten und ein
 
 === Problemstellung:
 
-Wir möchten, dass unsere Kunden auf einen Blick sehen können, wie nachhaltig unsere Produkte wirklich sind und so einen transparenteren Einblick in unser Unternehmen gewinnen.
-Derzeit ist es jedoch sehr zeitaufwendig, bei jedem einzelnen Produkt nachzuprüfen, wie nachhaltig es tatsächlich ist.
-Dadurch hinterfragen unsere Kunden häufiger unsere Bemühungen um Nachhaltigkeit.
+Wir möchten, dass unsere Nutzer auf einen Blick sehen können, wie viel Budget ihnen zur Verfügung steht, welche Ausgaben sie haben und wie sie ihre Finanzen effizienter verwalten können.
+Derzeit ist es jedoch sehr zeitaufwendig und kompliziert, alle Einnahmen und Ausgaben manuell zu erfassen und zu analysieren.
+Dadurch fehlt vielen Nutzern die Kontrolle über ihre Finanzen.
 
 === Aufgabenstellung
 
