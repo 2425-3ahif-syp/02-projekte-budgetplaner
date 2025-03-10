@@ -2,8 +2,7 @@
 FIndenig Leonie, Lena Graßauer, Lind Arifi
 
 === Ausgangssituation:
-
-Das Unternehmen GoodFood in Leonding bietet eine vielfältige Auswahl an Lebensmitteln an, beschäftigt 20 Mitarbeiter und legt großen Wert auf Umweltbewusstsein.
+Viele Menschen haben Schwierigkeiten, ihre Finanzen im Blick zu behalten und ein effektives Budget zu verwalten. Besonders unerwartete Ausgaben oder fehlende Transparenz über laufende Kosten führen oft zu finanziellen Engpässen.
 
 === Problemstellung:
 
