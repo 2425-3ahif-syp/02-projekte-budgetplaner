@@ -152,7 +152,7 @@ image::Untitled-7.jpg[width=700, align=center]
 
 image::Untitled-8.jpg[width=700, align=center]
 
-Erweiterungsvorschlag:
+== Erweiterungsvorschlag:
 
 Implementierung einer Sparziel-Funktion, mit der Nutzer ihre Ersparnisse planen und verfolgen können.
 
