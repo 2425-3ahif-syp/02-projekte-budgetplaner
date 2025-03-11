@@ -1,0 +1,28 @@
+= Budgetplaner
+1.0.0, {docdate}
+:imagesdir: img
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+// :toc:
+// :toclevels: 1
+:experimental:
+//https://gist.github.com/dcode/0cfbf2699a1fe9b46ff04c41721dda74?permalink_comment_id=3948218
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+== Teilnehmer
+
+* Findenig Leonie
+* Feichtinger Leona
+* Arifi Lind
+* Lena Graßauer
+
+== Links
+
+https://2425-3ahif-syp.github.io/02-projekte-budgetplaner/slides/slides[Slides]
+
