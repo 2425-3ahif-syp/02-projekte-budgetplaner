@@ -134,7 +134,7 @@ Der Budgetplaner erleichtert die Verwaltung der persönlichen Finanzen, bietet e
 Weitere Erweiterungen könnten eine Bewertung durch Nutzer oder Kooperationen mit Herstellern umfassen.
 ifndef::imagesdir[:imagesdir: images]
 
-== GUI
+== GUI 
 
 === Ausgaben
 
