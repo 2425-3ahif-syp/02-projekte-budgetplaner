@@ -1,5 +1,17 @@
-= Nachhaltigkeitstracker
-FIndenig Leonie, Lena Graßauer, Lind Arifi
+= Budgetplaner Pflichtenheft
+:author: Findenig Leonie, Feichtinger Leona, Lind Arifi, Lena Graßauer
+1.0, {docdate}
+ifndef::sourcedir[:sourcedir: ../src/main/java]
+ifndef::imagesdir[:imagesdir: images]
+ifndef::backend[:backend: html5]
+:icons: font
+:sectnums:    // Nummerierung der Überschriften / section numbering
+:toc: left
+:source-highlighter: rouge
+:docinfo: shared
+
+
+Findenig Leonie, Lena Graßauer, Lind Arifi
 
 === Ausgangssituation:
 Viele Menschen haben Schwierigkeiten, ihre Finanzen im Blick zu behalten und ein effektives Budget zu verwalten. Besonders unerwartete Ausgaben oder fehlende Transparenz über laufende Kosten führen oft zu finanziellen Engpässen.
