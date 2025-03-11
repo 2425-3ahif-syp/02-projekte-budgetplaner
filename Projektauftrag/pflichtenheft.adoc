@@ -29,8 +29,7 @@ Die Benutzeroberfläche soll so gestaltet sein, dass auch unerfahrene Nutzer pro
 Sie wird auch ein einfaches, minimalistisches und strukturiertes Layout bekommen, um es Kunden einfacher zu machen einen überblick über ihre Finanzen zu bewahren. Unteranderem sollen die Benutzer auch diagramme über ihre Monatliche veränderungen, Ausgaben und Einnahmen sehen können.
 
 === Ziele
-Mehr Menschen beginnen zu sparen da es ihnen viel einfacher fällt einen überblick über ihre Finanzen zu behalten. Dass führt dazu das Menschen gerade in jungen Jahren schon anfangen zu sparen und sich ein finanzielles Polster aufbauen.
-
+Mehr Menschen beginnen zu sparen, da sie ihre Finanzen leichter überblicken können. Dies führt dazu, dass bereits junge Menschen frühzeitig mit dem Sparen beginnen und sich eine finanzielle Reserve aufbauen.
 
 === Mengengerüst
 Die Software muss eine große Anzahl an Transaktionen verarbeiten können. Geplant ist eine Kapazität von mindestens 10.000 Transaktionen pro Monat. Zudem sollte die App problemlos bis zu 1000 gleichzeitige Nutzer unterstützen können, ohne Leistungseinbußen zu erleiden. Die Daten sollen in Echtzeit verarbeitet werden, damit Nutzer stets aktuelle Informationen über ihre Finanzen erhalten.
