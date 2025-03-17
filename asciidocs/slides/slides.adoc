@@ -140,7 +140,7 @@ ifndef::imagesdir[:imagesdir: images]
 
 image::02-syp-gui-images-ausgaben.jpeg[ width=700, align=center]
 
-=== Plannung
+=== Planung
 
 image::03-syp-gui-images-planung.jpeg[width=700, align=center]
 
