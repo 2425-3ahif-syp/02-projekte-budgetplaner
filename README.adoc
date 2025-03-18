@@ -26,5 +26,9 @@ endif::[]
 
 https://2425-3ahif-syp.github.io/02-projekte-budgetplaner/slides/slides[Slides]
 
+== Übersicht
 
+Der Budgetplaner ist eine Anwendung zur einfachen Verwaltung persönlicher Finanzen. Nutzer können ihre Einnahmen, Fixkosten und variablen Ausgaben erfassen und übersichtlich kategorisieren.
+
+Das Ziel des Budgetplaners ist es, eine einfache und intuitive Möglichkeit zu bieten, finanzielle Entscheidungen bewusst zu treffen.
 
