@@ -1,4 +1,4 @@
-package org.example.bufgetplanner;
+package org.example.budgetplaner.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

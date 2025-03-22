@@ -1,4 +1,4 @@
-package org.example.bufgetplanner;
+package org.example.budgetplaner;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
