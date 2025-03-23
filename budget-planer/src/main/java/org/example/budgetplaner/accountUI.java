@@ -21,6 +21,7 @@ public class accountUI extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Account Verwaltung");
             loginView loginview = new loginView();
+            loginview.createLoginView(primaryStage);
             new loginPresenter(loginview, primaryStage);
             primaryStage.show();
     }
