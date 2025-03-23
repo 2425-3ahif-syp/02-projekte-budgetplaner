@@ -1,4 +1,8 @@
 package org.example.budgetplaner;
+java --module-path "path/to/javafx/lib" --add-modules javafx.controls,javafx.fxml -jar deinProgramm.jar
+        import javax.swing.text.Element;
+        import javax.swing.text.html.ImageView;
+
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -15,6 +19,7 @@ import org.example.budgetplaner.view.menubar;
 
 import javax.swing.text.Element;
 import javax.swing.text.html.ImageView;
+
 
 public class accountUI extends Application {
         @Override

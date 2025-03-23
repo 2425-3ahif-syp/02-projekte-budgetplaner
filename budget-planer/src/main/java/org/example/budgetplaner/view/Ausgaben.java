@@ -1,19 +1,24 @@
-package org.example.budgetplaner.view;
-import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
 
-public class Ausgaben  {
-    @FXML
-    private PieChart pieChart;
+package org.example.meineseite;
 
-    @FXML
-    public void initialize() {
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import org.example.meineseite.HelloController;
 
-        pieChart.getData().add(new PieChart.Data("Äpfel", 30));
-        pieChart.getData().add(new PieChart.Data("Bananen", 20));
-        pieChart.getData().add(new PieChart.Data("Orangen", 50));
+public class Ausgaben extends Application {
+    @Override
+    public void start(Stage stage) {
+        HelloController controller = new HelloController();
+        VBox root = controller.createUI();
+        Scene scene = new Scene(root, 800, 600);
+        stage.setTitle("Budget Übersicht");
+        stage.setScene(scene);
+        stage.show();
+    }
 
-
-        pieChart.setTitle("Ausgaben");
+    public static void main(String[] args) {
+        launch(args);
     }
 }

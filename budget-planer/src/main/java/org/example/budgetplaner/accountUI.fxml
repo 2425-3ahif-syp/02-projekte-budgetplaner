@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="org.example.budgetplaner.AccountUI"
+          hgap="10" vgap="10" padding="20">
+
+    <!-- Name -->
+    <Label text="Name:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="nameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+    <!-- Geburtstag -->
+    <Label text="Geburtstag:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <TextField fx:id="geburtstagField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+    <!-- E-Mail -->
+    <Label text="E-Mail:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+    <TextField fx:id="emailField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+    <!-- Passwort -->
+    <Label text="Passwort:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+    <PasswordField fx:id="passwortField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+    <!-- Währungswahl -->
+    <Label text="Währung:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <HBox spacing="10" GridPane.rowIndex="4" GridPane.columnIndex="1">
+        <children>
+            <RadioButton fx:id="euroButton" text="€"/>
+            <RadioButton fx:id="dollarButton" text="$ "/>
+        </children>
+    </HBox>
+
+    <!-- Speichern Button -->
+    <Button text="Speichern" fx:id="saveButton" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+</GridPane>
