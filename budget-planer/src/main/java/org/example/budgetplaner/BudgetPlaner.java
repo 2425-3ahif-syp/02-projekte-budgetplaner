@@ -17,7 +17,7 @@ public class BudgetPlaner extends Application {
 
     @Override
     public void start(Stage stage) {
-        MenuBar menuBar = BudgetPlanerController.createMenuBar();
+        MenuBar menuBar = BudgetPlanerController.createMenuBar(stage);
         PieChart pieChart = BudgetPlanerController.createPieChart();
         VBox eingaben = BudgetPlanerController.createInputFields();
         eingaben.setPadding(new Insets(10));

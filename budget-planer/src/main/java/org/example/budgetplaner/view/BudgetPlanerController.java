@@ -1,12 +1,13 @@
 package org.example.budgetplaner.view;
 
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import org.example.budgetplaner.Ausgaben;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class BudgetPlanerController {
     private static String ergebnisTyp;
 
 
-    public static MenuBar createMenuBar() {
+    public static MenuBar createMenuBar(Stage primaryStage) {
 
 
         MenuBar menuBar = new MenuBar();
@@ -128,6 +129,18 @@ public class BudgetPlanerController {
         }
 
         createPieChart();
+    }
+
+    public static Scene createBudgetPlanerScene(Stage primaryStage) {
+        MenuBar menuBar = createMenuBar(primaryStage);
+
+        BorderPane root = new BorderPane();
+        root.setTop(menuBar);
+        root.setCenter(BudgetPlanerController.createPieChart());
+        root.setRight(BudgetPlanerController.createInputFields());
+
+        return new Scene(root, 800, 600);
+
     }
 }
 

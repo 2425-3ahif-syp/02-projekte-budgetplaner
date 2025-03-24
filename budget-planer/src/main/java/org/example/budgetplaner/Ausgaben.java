@@ -13,7 +13,7 @@ public class Ausgaben extends Application {
     @Override
     public void start(Stage stage) {
         AusgabenController controller = new AusgabenController();
-        VBox root = controller.createUI();
+        VBox root = controller.createUI(stage);
         Scene scene = new Scene(root, 800, 600);
         stage.setTitle("Budget Übersicht");
         stage.setScene(scene);

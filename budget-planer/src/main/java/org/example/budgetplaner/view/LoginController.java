@@ -119,6 +119,6 @@ public class LoginController {
         root.setTop(menuBar);
         root.setCenter(grid);
 
-        return new Scene(root, 600, 400);
+        return new Scene(root, 800, 600);
     }
 }
