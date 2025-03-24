@@ -14,33 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.example.budgetplaner.view.menubar.createMenuBar;
+
 public class BudgetPlanerController {
 
     private static final Map<String, TextField> textFieldMap = new HashMap<>();
     private static List<Integer> kategorieProzente = new ArrayList<>(List.of(20, 20, 20, 15, 15, 10));
     private static String ergebnisTyp;
-
-
-    public static MenuBar createMenuBar(Stage primaryStage) {
-
-
-        MenuBar menuBar = new MenuBar();
-
-        Menu accountMenu = new Menu("Account");
-        Menu ausgabenMenu = new Menu("Ausgaben");
-        Menu planungMenu = new Menu("Planung");
-        Menu monatsvergleichMenu = new Menu("Monatsvergleich");
-        Menu datenimportMenu = new Menu("Datenimport");
-
-
-
-
-        menuBar.getMenus().addAll(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
-        menuBar.setStyle("-fx-background-color: grey;");
-
-        return menuBar;
-    }
-
 
 
     public static PieChart createPieChart() {

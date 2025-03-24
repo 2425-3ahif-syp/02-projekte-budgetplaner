@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import static org.example.budgetplaner.view.BudgetPlanerController.createMenuBar;
+import static org.example.budgetplaner.view.menubar.createMenuBar;
 
 
 public class AusgabenController  {
