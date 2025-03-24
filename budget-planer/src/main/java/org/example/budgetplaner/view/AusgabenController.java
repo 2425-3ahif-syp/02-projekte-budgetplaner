@@ -1,10 +1,18 @@
 package org.example.budgetplaner.view;
 
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 
 public class AusgabenController  {
+    public static Stage primaryStage;
+
+
+
     public VBox createUI() {
         String[] categories = {"Haushalt", "Freizeit", "Abos", "Klamotten", "Lebensmittel", "Überschuss"};
         double[] values = {20, 15, 10, 10, 25, 20};
