@@ -3,7 +3,8 @@ package org.example.budgetplaner.view;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.VBox;
 
-class AusgabenController extends Controller {
+
+public class AusgabenController  {
     public VBox createUI() {
         String[] categories = {"Haushalt", "Freizeit", "Abos", "Klamotten", "Lebensmittel", "Überschuss"};
         double[] values = {20, 15, 10, 10, 25, 20};

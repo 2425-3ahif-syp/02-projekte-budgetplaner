@@ -3,8 +3,10 @@ package org.example.budgetplaner.view;
 import javafx.event.ActionEvent;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.example.budgetplaner.Ausgaben;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,19 +19,28 @@ public class BudgetPlanerController {
     private static List<Integer> kategorieProzente = new ArrayList<>(List.of(20, 20, 20, 15, 15, 10));
     private static String ergebnisTyp;
 
-    public static MenuBar createMenuBar(){
+
+    public static MenuBar createMenuBar() {
+
+
         MenuBar menuBar = new MenuBar();
+
         Menu accountMenu = new Menu("Account");
         Menu ausgabenMenu = new Menu("Ausgaben");
         Menu planungMenu = new Menu("Planung");
-        planungMenu.setStyle("-fx-font-weight: bold;"); // Fettgedruckt
         Menu monatsvergleichMenu = new Menu("Monatsvergleich");
         Menu datenimportMenu = new Menu("Datenimport");
+
+
+
+
         menuBar.getMenus().addAll(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
         menuBar.setStyle("-fx-background-color: grey;");
 
         return menuBar;
     }
+
+
 
     public static PieChart createPieChart() {
         PieChart pieChart = new PieChart();
@@ -119,3 +130,4 @@ public class BudgetPlanerController {
         createPieChart();
     }
 }
+
