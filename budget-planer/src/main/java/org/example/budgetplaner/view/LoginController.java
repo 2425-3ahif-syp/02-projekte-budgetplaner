@@ -120,8 +120,16 @@ public class LoginController {
         euroButton.setToggleGroup(currencyGroup);
         dollarButton.setToggleGroup(currencyGroup);
         euroButton.setSelected(true);
-        euroButton.setDisable(editMode);
-        dollarButton.setDisable(editMode);
+
+        if (editMode) {
+            euroButton.setDisable(false);
+            dollarButton.setDisable(false);
+        }
+        else {
+            euroButton.setDisable(true);
+            dollarButton.setDisable(true);
+        }
+
 
         HBox currencyBox = new HBox(10, euroButton, dollarButton);
         grid.add(currencyBox, 1, 4);
