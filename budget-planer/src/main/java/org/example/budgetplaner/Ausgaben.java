@@ -1,5 +1,5 @@
 
-package org.example.meineseite;
+package org.example.budgetplaner;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

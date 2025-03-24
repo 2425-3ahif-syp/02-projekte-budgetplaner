@@ -1,3 +1,7 @@
+package org.example.budgetplaner.view;
+
+import javafx.scene.chart.PieChart;
+import javafx.scene.layout.VBox;
 
 class AusgabenController extends Controller {
     public VBox createUI() {

@@ -1,7 +1,8 @@
 package org.example.budgetplaner.view;
 
 import javafx.stage.Stage;
-import org.example.budgetplaner.accountUI;
+import org.example.budgetplaner.AccountUI;
+import org.example.budgetplaner.AccountUI;
 
 
 public class loginPresenter {
@@ -21,7 +22,7 @@ public class loginPresenter {
 
     private void setupListeners() {
         loginView.getLoginButton().setOnAction(e -> {
-            primaryStage.setScene(accountUI.createAccountScene(primaryStage));
+            primaryStage.setScene(AccountUI.createAccountScene(primaryStage));
         });
     }
 }

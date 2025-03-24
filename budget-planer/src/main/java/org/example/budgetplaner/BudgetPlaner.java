@@ -1,4 +1,4 @@
-package org.example.budgetplaner.view;
+package org.example.budgetplaner;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -10,6 +10,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.example.budgetplaner.view.BudgetPlanerController;
 
 public class BudgetPlaner extends Application {
 

@@ -7,7 +7,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.budgetplaner.accountUI;
+import org.example.budgetplaner.AccountUI;
+import org.example.budgetplaner.AccountUI;
 
 
 public class loginView {
@@ -28,7 +29,7 @@ public class loginView {
 
         Button loginButton = new Button("Login");
         loginButton.setOnAction(e -> {
-            primaryStage.setScene(accountUI.createAccountScene(primaryStage));
+            primaryStage.setScene(AccountUI.createAccountScene(primaryStage));
         });
 
         loginLayout.getChildren().addAll(userLabel, userField, passLabel, passField, loginButton);

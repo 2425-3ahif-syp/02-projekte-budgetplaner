@@ -1,7 +1,11 @@
 package org.example.budgetplaner.view;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.stage.Stage;
 
 public class menubar {
     public static MenuBar createMenuBar() {
@@ -19,7 +23,7 @@ public class menubar {
     }
     public static void openAusgabenFenster() {
         try {
-            FXMLLoader loader = new FXMLLoader(Menubar.class.getResource("/ausgaben.fxml"));
+            FXMLLoader loader = new FXMLLoader(menubar.class.getResource("/ausgaben.fxml"));
             Parent root = loader.load();
 
             Stage ausgabenStage = new Stage();

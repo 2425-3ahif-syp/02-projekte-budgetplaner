@@ -1,5 +1,5 @@
 package org.example.budgetplaner;
-java --module-path "path/to/javafx/lib" --add-modules javafx.controls,javafx.fxml -jar deinProgramm.jar
+
         import javax.swing.text.Element;
         import javax.swing.text.html.ImageView;
 
@@ -21,7 +21,7 @@ import javax.swing.text.Element;
 import javax.swing.text.html.ImageView;
 
 
-public class accountUI extends Application {
+public class AccountUI extends Application {
         @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Account Verwaltung");
