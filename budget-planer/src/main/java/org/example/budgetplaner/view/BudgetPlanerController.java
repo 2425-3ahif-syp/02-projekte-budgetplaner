@@ -1,11 +1,13 @@
 package org.example.budgetplaner.view;
 
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.example.budgetplaner.Ausgaben;
 
 import java.util.ArrayList;
@@ -13,36 +15,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.example.budgetplaner.view.menubar.createMenuBar;
+
 public class BudgetPlanerController {
 
     private static final Map<String, TextField> textFieldMap = new HashMap<>();
     private static List<Integer> kategorieProzente = new ArrayList<>(List.of(20, 20, 20, 15, 15, 10));
     private static String ergebnisTyp;
 
-
-    public static MenuBar createMenuBar() {
-
-
-        MenuBar menuBar = new MenuBar();
-
-        Menu accountMenu = new Menu("Account");
-        Menu ausgabenMenu = new Menu("Ausgaben");
-        Menu planungMenu = new Menu("Planung");
-        Menu monatsvergleichMenu = new Menu("Monatsvergleich");
-        Menu datenimportMenu = new Menu("Datenimport");
-
-
-
-
-        menuBar.getMenus().addAll(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
-        menuBar.setStyle("-fx-background-color: grey;");
-
-        return menuBar;
-    }
-
-
-
     public static PieChart createPieChart() {
+
         PieChart pieChart = new PieChart();
         pieChart.getData().addAll(
                 new PieChart.Data("Haushalt", kategorieProzente.get(0)),
@@ -129,5 +111,18 @@ public class BudgetPlanerController {
 
         createPieChart();
     }
+
+    public static Scene createBudgetPlanerScene(Stage primaryStage) {
+        MenuBar menuBar = createMenuBar(primaryStage);
+
+        BorderPane root = new BorderPane();
+        root.setTop(menuBar);
+        root.setCenter(BudgetPlanerController.createPieChart());
+        root.setRight(BudgetPlanerController.createInputFields());
+
+        return new Scene(root, 800, 600);
+
+    }
 }
+
 

@@ -12,12 +12,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.budgetplaner.view.BudgetPlanerController;
 
+import static org.example.budgetplaner.view.menubar.createMenuBar;
+
 
 public class BudgetPlaner extends Application {
 
     @Override
     public void start(Stage stage) {
-        MenuBar menuBar = BudgetPlanerController.createMenuBar();
+
+        MenuBar menuBar = createMenuBar(stage);
         PieChart pieChart = BudgetPlanerController.createPieChart();
         VBox eingaben = BudgetPlanerController.createInputFields();
         eingaben.setPadding(new Insets(10));
