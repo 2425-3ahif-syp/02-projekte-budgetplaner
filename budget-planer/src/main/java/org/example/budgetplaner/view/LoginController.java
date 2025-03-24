@@ -3,24 +3,28 @@ package org.example.budgetplaner.view;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import org.example.budgetplaner.AccountUI;
 
+import java.util.concurrent.atomic.AtomicReference;
 
 public class LoginController {
 
-    public static MenuBar createMenuBar(){
+
+    public static MenuBar createMenuBar(Stage primaryStage) {
         MenuBar menuBar = new MenuBar();
+
         Menu accountMenu = new Menu("Account");
+        accountMenu.setStyle("-fx-font-weight: bold;");
+        MenuItem accountItem = new MenuItem("Mein Account");
+        accountItem.setOnAction(e -> primaryStage.setScene(createAccountScene(primaryStage, false)));
+        accountMenu.getItems().add(accountItem);
+
         Menu ausgabenMenu = new Menu("Ausgaben");
         Menu planungMenu = new Menu("Planung");
-        accountMenu.setStyle("-fx-font-weight: bold;"); // Fettgedruckt
         Menu monatsvergleichMenu = new Menu("Monatsvergleich");
         Menu datenimportMenu = new Menu("Datenimport");
+
         menuBar.getMenus().addAll(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
         menuBar.setStyle("-fx-background-color: grey;");
 
@@ -37,22 +41,29 @@ public class LoginController {
         Label passLabel = new Label("Passwort:");
         PasswordField passField = new PasswordField();
 
+        Label errorLabel = new Label();
+        errorLabel.setStyle("-fx-text-fill: red;");
+
         Button loginButton = new Button("Login");
         loginButton.setOnAction(e -> {
-
             if (userField.getText().equals("Max Mustermann") && passField.getText().equals("geheim123")) {
-                primaryStage.setScene(createAccountScene(primaryStage));
+                primaryStage.setScene(createAccountScene(primaryStage, false));
+            } else {
+                errorLabel.setText("Falscher Benutzername oder Passwort!");
             }
         });
 
-        loginLayout.getChildren().addAll(userLabel, userField, passLabel, passField, loginButton);
+        loginLayout.getChildren().addAll(userLabel, userField, passLabel, passField, loginButton, errorLabel);
         return loginLayout;
     }
 
-    public static Scene createAccountScene(Stage primaryStage) {
+    public static Scene createAccountScene(Stage primaryStage, boolean editMode) {
+        MenuBar menuBar = createMenuBar(primaryStage);
 
-        MenuBar menuBar = LoginController.createMenuBar();
-
+        final String[] gespeicherterName = {"Max Mustermann"};
+        final String[] gespeicherterGeburtstag = {"01.01.2001"};
+        final String[] gespeicherteEmail = {"maxmustermann@gmail.com"};
+        final String[] gespeichertesPasswort = {"geheim123"};
 
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(20));
@@ -60,45 +71,39 @@ public class LoginController {
         grid.setHgap(10);
 
         Label nameLabel = new Label("Name:");
-        TextField nameField = new TextField("Max Mustermann");
-        nameField.setEditable(false);
-
+        TextField nameField = new TextField(gespeicherterName[0]);
+        nameField.setEditable(editMode);
 
         Label geburtstagLabel = new Label("Geburtstag:");
-        TextField geburtstagField = new TextField("01.01.2001");
-        geburtstagField.setEditable(false);
-
+        TextField geburtstagField = new TextField(gespeicherterGeburtstag[0]);
+        geburtstagField.setEditable(editMode);
 
         Label emailLabel = new Label("E-Mail:");
-        TextField emailField = new TextField("maxmustermann@gmail.com");
-        emailField.setEditable(false);
+        TextField emailField = new TextField(gespeicherteEmail[0]);
+        emailField.setEditable(editMode);
 
         Label passwortLabel = new Label("Passwort:");
         PasswordField passwortField = new PasswordField();
-        passwortField.setText("geheim123");
-        passwortField.setEditable(false);
+        passwortField.setText(gespeichertesPasswort[0]);
+        passwortField.setEditable(editMode);
 
         Button editButton = new Button("Bearbeiten");
-        Button saveButton = new Button("Speichern");
-        saveButton.setDisable(true);
+        editButton.setOnAction(e -> primaryStage.setScene(createAccountScene(primaryStage, true)));
 
-        editButton.setOnAction(e -> {
-            nameField.setEditable(true);
-            geburtstagField.setEditable(true);
-            emailField.setEditable(true);
-            passwortField.setEditable(true);
-            editButton.setDisable(true);
-            saveButton.setDisable(false);
-        });
+        if (editMode) {
+            Button saveButton = new Button("Speichern");
+            saveButton.setOnAction(e -> {
+                gespeicherterName[0] = nameField.getText();
+                gespeicherterGeburtstag[0] = (geburtstagField.getText());
+                gespeicherteEmail[0] = (emailField.getText());
+                gespeichertesPasswort[0] = (passwortField.getText());
+                primaryStage.setScene(createAccountScene(primaryStage, false));
+            });
 
-        saveButton.setOnAction(e -> {
-            nameField.setEditable(false);
-            geburtstagField.setEditable(false);
-            emailField.setEditable(false);
-            passwortField.setEditable(false);
-            editButton.setDisable(false);
-            saveButton.setDisable(true);
-        });
+            grid.add(saveButton, 1, 5);
+        } else {
+            grid.add(editButton, 1, 5);
+        }
 
         grid.add(nameLabel, 0, 0);
         grid.add(nameField, 1, 0);
@@ -108,9 +113,6 @@ public class LoginController {
         grid.add(emailField, 1, 2);
         grid.add(passwortLabel, 0, 3);
         grid.add(passwortField, 1, 3);
-        grid.add(editButton, 0, 5);
-        grid.add(saveButton, 1, 5);
-
 
         ToggleGroup currencyGroup = new ToggleGroup();
         RadioButton euroButton = new RadioButton("€");
@@ -118,19 +120,16 @@ public class LoginController {
         euroButton.setToggleGroup(currencyGroup);
         dollarButton.setToggleGroup(currencyGroup);
         euroButton.setSelected(true);
-        euroButton.setDisable(true);
-        dollarButton.setDisable(true);
+        euroButton.setDisable(editMode);
+        dollarButton.setDisable(editMode);
 
         HBox currencyBox = new HBox(10, euroButton, dollarButton);
         grid.add(currencyBox, 1, 4);
 
-
         BorderPane root = new BorderPane();
         root.setTop(menuBar);
-        root.setLeft(grid);
-
+        root.setCenter(grid);
 
         return new Scene(root, 600, 400);
     }
-
 }
