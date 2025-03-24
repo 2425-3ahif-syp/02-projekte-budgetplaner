@@ -10,7 +10,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.budgetplaner.view.AusgabenController;
 import org.example.budgetplaner.view.BudgetPlanerController;
 
 
@@ -18,8 +17,6 @@ public class BudgetPlaner extends Application {
 
     @Override
     public void start(Stage stage) {
-
-
         MenuBar menuBar = BudgetPlanerController.createMenuBar();
         PieChart pieChart = BudgetPlanerController.createPieChart();
         VBox eingaben = BudgetPlanerController.createInputFields();

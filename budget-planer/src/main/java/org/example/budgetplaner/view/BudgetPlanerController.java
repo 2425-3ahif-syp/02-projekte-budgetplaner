@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
+import org.example.budgetplaner.Ausgaben;
 
 import java.util.ArrayList;
 import java.util.HashMap;

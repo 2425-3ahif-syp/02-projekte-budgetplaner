@@ -5,31 +5,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
+import org.example.budgetplaner.Ausgaben;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static org.example.budgetplaner.view.menubar.createMenuBar;
+
 public class LoginController {
-
-
-    public static MenuBar createMenuBar(Stage primaryStage) {
-        MenuBar menuBar = new MenuBar();
-
-        Menu accountMenu = new Menu("Account");
-        accountMenu.setStyle("-fx-font-weight: bold;");
-        MenuItem accountItem = new MenuItem("Mein Account");
-        accountItem.setOnAction(e -> primaryStage.setScene(createAccountScene(primaryStage, false)));
-        accountMenu.getItems().add(accountItem);
-
-        Menu ausgabenMenu = new Menu("Ausgaben");
-        Menu planungMenu = new Menu("Planung");
-        Menu monatsvergleichMenu = new Menu("Monatsvergleich");
-        Menu datenimportMenu = new Menu("Datenimport");
-
-        menuBar.getMenus().addAll(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
-        menuBar.setStyle("-fx-background-color: grey;");
-
-        return menuBar;
-    }
 
     public static VBox createLoginView(Stage primaryStage) {
         VBox loginLayout = new VBox(10);
