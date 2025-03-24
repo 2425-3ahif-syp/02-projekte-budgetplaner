@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.budgetplaner.view.MonatsvergleichController">
+    <top>
+        <MenuBar>
+            <Menu text="Account" />
+            <Menu text="Ausgaben" />
+            <Menu text="Planung" />
+            <Menu text="Monatsvergleich" />
+            <Menu text="Datenimport" />
+        </MenuBar>
+    </top>
+
+    <center>
+        <BarChart fx:id="barChart">
+            <xAxis>
+                <CategoryAxis label="Einnahmen/Ausgaben pro Monat" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="Anzahl in €" />
+            </yAxis>
+        </BarChart>
+    </center>
+</BorderPane>
