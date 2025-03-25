@@ -1,4 +1,4 @@
-module org.example.bufgetplanner {
+module org.example.budgetplanner {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
