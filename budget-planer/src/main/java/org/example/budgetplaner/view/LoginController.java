@@ -5,10 +5,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import org.example.budgetplaner.Ausgaben;
-import java.util.concurrent.atomic.AtomicReference;
 
-import static org.example.budgetplaner.view.menubar.createMenuBar;
+import static org.example.budgetplaner.view.Menubar.createMenuBar;
 
 public class LoginController {
 

@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.example.budgetplaner.view.menubar.createMenuBar;
+import static org.example.budgetplaner.view.Menubar.createMenuBar;
 
 public class BudgetPlanerController {
 

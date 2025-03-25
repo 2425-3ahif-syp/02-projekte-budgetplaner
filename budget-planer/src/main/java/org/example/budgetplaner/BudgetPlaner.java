@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.budgetplaner.view.BudgetPlanerController;
 
-import static org.example.budgetplaner.view.menubar.createMenuBar;
+import static org.example.budgetplaner.view.Menubar.createMenuBar;
 
 
 public class BudgetPlaner extends Application {

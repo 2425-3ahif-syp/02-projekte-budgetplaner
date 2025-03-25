@@ -8,30 +8,30 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import static org.example.budgetplaner.view.menubar.createMenuBar;
+import static org.example.budgetplaner.view.Menubar.createMenuBar;
 
 
 
     public class MonatsvergleichController {
 
         public static VBox createUI(Stage primaryStage) {
-            // Erstelle BarChart
+
             BarChart<String, Number> barChart = new BarChart<>(new javafx.scene.chart.CategoryAxis(), new javafx.scene.chart.NumberAxis());
             barChart.setTitle("Monatsvergleich");
 
-            // Daten für Einnahmen
+
             XYChart.Series<String, Number> einnahmen = new XYChart.Series<>();
             einnahmen.setName("Einnahmen");
             einnahmen.getData().add(new XYChart.Data<>("Jänner", 3000));
             einnahmen.getData().add(new XYChart.Data<>("Februar", 2800));
 
-            // Daten für Ausgaben
+
             XYChart.Series<String, Number> ausgaben = new XYChart.Series<>();
             ausgaben.setName("Ausgaben");
             ausgaben.getData().add(new XYChart.Data<>("Jänner", 1800));
             ausgaben.getData().add(new XYChart.Data<>("Februar", 2000));
 
-            // Daten für Überschuss
+
             XYChart.Series<String, Number> überschuss = new XYChart.Series<>();
             überschuss.setName("Überschuss");
             überschuss.getData().add(new XYChart.Data<>("Jänner", 1200));

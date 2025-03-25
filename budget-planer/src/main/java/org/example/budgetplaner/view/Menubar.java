@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import static org.example.budgetplaner.view.BudgetPlanerController.createBudgetPlanerScene;
 import static org.example.budgetplaner.view.LoginController.createAccountScene;
 
-public class menubar {
+public class Menubar {
     public static MenuBar createMenuBar(Stage primaryStage) {
         MenuBar menuBar = new MenuBar();
 
