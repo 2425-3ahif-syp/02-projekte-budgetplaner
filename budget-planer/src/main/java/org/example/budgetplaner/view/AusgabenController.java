@@ -30,6 +30,7 @@ public class AusgabenController  {
         VBox root = new VBox(10, pieChart);
         return root;
     }
+
     public static Scene createAusgabenScene(Stage primaryStage) {
         MenuBar menuBar = createMenuBar(primaryStage);
 

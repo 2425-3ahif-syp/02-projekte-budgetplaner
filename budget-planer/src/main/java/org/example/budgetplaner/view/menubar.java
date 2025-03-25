@@ -26,9 +26,14 @@ public class menubar {
         MenuItem ausgabenItem = new MenuItem("Ausgaben");
         ausgabenItem.setOnAction(e -> primaryStage.setScene(AusgabenController.createAusgabenScene(primaryStage)));
 
+        MenuItem monatsItem = new MenuItem("Monatsvergleich");
+        monatsItem.setOnAction(e -> primaryStage.setScene(MonatsvergleichController.createMonatsvergleichScene(primaryStage)));
+
+
         accountMenu.getItems().add(accountItem);
         planungMenu.getItems().add(budgetPlanerItem);
         ausgabenMenu.getItems().add(ausgabenItem);
+        monatsvergleichMenu.getItems().add(monatsItem);
 
 
         menuBar.getMenus().addAll(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
