@@ -37,10 +37,10 @@ import static org.example.budgetplaner.view.Menubar.createMenuBar;
             überschuss.getData().add(new XYChart.Data<>("Jänner", 1200));
             überschuss.getData().add(new XYChart.Data<>("Februar", 800));
 
-            // Füge Daten dem Chart hinzu
+
             barChart.getData().addAll(einnahmen, ausgaben, überschuss);
 
-            // Erstelle und gebe VBox mit dem BarChart zurück
+
             return new VBox(10, barChart);
         }
 
