@@ -18,6 +18,7 @@ public class AccountUI extends Application {
             primaryStage.setScene(loginScene);
 
             primaryStage.show();
+
         }
 
 
