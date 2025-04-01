@@ -1,4 +1,4 @@
-package org.example.budgetplaner.view;
+package org.example.budgetplaner.controller;
 
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.example.budgetplaner.view.Menubar.createMenuBar;
+import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
 public class BudgetPlanerController {
 

@@ -10,9 +10,9 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.budgetplaner.view.BudgetPlanerController;
+import org.example.budgetplaner.controller.BudgetPlanerController;
 
-import static org.example.budgetplaner.view.Menubar.createMenuBar;
+import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
 
 public class BudgetPlaner extends Application {
