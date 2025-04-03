@@ -1,4 +1,4 @@
-package org.example.budgetplaner.view;
+package org.example.budgetplaner.controller;
 
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
@@ -8,7 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import static org.example.budgetplaner.view.Menubar.createMenuBar;
+import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
 
 

@@ -1,14 +1,12 @@
 package org.example.budgetplaner;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.budgetplaner.view.AusgabenController;
-import org.example.budgetplaner.view.LoginController;
+import org.example.budgetplaner.controller.LoginController;
 
 
 
-public class AccountUI extends Application {
+public class AccountView extends Application {
         @Override
         public void start(Stage primaryStage) {
             primaryStage.setTitle("Account Verwaltung");
@@ -18,6 +16,7 @@ public class AccountUI extends Application {
             primaryStage.setScene(loginScene);
 
             primaryStage.show();
+
         }
 
 

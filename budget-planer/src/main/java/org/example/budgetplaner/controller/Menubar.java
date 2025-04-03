@@ -1,11 +1,11 @@
-package org.example.budgetplaner.view;
+package org.example.budgetplaner.controller;
 
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-import static org.example.budgetplaner.view.BudgetPlanerController.createBudgetPlanerScene;
-import static org.example.budgetplaner.view.LoginController.createAccountScene;
+import static org.example.budgetplaner.controller.BudgetPlanerController.createBudgetPlanerScene;
+import static org.example.budgetplaner.controller.LoginController.createAccountScene;
 
 public class Menubar {
     public static MenuBar createMenuBar(Stage primaryStage) {

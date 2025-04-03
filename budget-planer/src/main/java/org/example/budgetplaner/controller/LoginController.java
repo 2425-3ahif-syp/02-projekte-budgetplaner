@@ -1,4 +1,4 @@
-package org.example.budgetplaner.view;
+package org.example.budgetplaner.controller;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import static org.example.budgetplaner.view.Menubar.createMenuBar;
+import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
 public class LoginController {
 

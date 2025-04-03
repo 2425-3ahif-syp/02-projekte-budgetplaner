@@ -3,7 +3,7 @@ package org.example.budgetplaner;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.budgetplaner.view.MonatsvergleichController;
+import org.example.budgetplaner.controller.MonatsvergleichController;
 
 public class Monatsvergleich extends Application {
     @Override
