@@ -1,6 +1,8 @@
 package org.example.budgetplaner.database;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -8,15 +10,19 @@ import static java.sql.DriverManager.getConnection;
 
 public class H2DatabaseExample {
 
-    public static void main(String[] args) {
-        String url = "jdbc:h2:./database/budgetDB";
-        String user = "sa";
-        String password = "";
 
-        try (Connection conn = getConnection(url, user, password)) {
-            createTable(conn);
-            insertFakeData(conn);
-            System.out.println("Daten erfolgreich eingefügt!");
+    private static final String URL = "jdbc:h2:./database/budgetDB";
+    private static final String USER = "sa";
+    private static final String PASSWORD = "";
+
+    public static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+
+    public static void main(String[] args) {
+        try (Connection conn = getConnection()) {
+            System.out.println("Verbindung erfolgreich hergestellt!");
+            // Weitere DB-Operationen hier durchführen
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -62,8 +68,8 @@ public class H2DatabaseExample {
                 stmt.setString(2, (String) entry[1]);
                 stmt.setString(3, (String) entry[2]);
                 stmt.setString(4, (String) entry[3]);
-                stmt.setBigDecimal(5, new java.math.BigDecimal(entry[4].toString()));  // betrag
-                stmt.setBigDecimal(6, new java.math.BigDecimal(entry[5].toString()));  // saldo
+                stmt.setBigDecimal(5, new BigDecimal(entry[4].toString()));  // betrag
+                stmt.setBigDecimal(6, new BigDecimal(entry[5].toString()));  // saldo
                 stmt.executeUpdate();
             }
         }
