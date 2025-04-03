@@ -7,46 +7,78 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.budgetplaner.database.H2DatabaseExample;
-import org.h2.engine.Database;
 
-import java.sql.Connection;
-import java.sql.Connection;
-import java.sql.SQLException;
-
+import java.sql.*;
 
 import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
+public class AusgabenController {
 
-public class AusgabenController  {
-
-    public H2DatabaseExample database = new H2DatabaseExample();
+    private static Connection connection;
 
     public AusgabenController() throws SQLException {
-        Connection databasee = H2DatabaseExample.getConnection();
+        this.connection = H2DatabaseExample.getConnection();
     }
 
-    public static VBox createUI(Stage primaryStage) {
+    private static String[] getValuesFromDB(String query) throws SQLException {
+        try (PreparedStatement stmt = connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            StringBuilder result = new StringBuilder();
+            while (rs.next()) {
+                result.append(rs.getString(1)).append(",");
+            }
+
+            return result.toString().split(",");
+        }
+    }
+
+    public static VBox createUI(Stage primaryStage) throws SQLException {
         String[] categories = {"Haushalt", "Freizeit", "Abos", "Klamotten", "Lebensmittel", "Überschuss"};
+        double[] values = {0, 0, 0, 0, 0, 0};
 
-        double[] values = {20, 15, 10, 10, 25, 20};
-        
-        double total = 0;
-        for (double value : values) total += value;
+        String[] verwendungszwecke = getValuesFromDB("SELECT verwendungszweck FROM transactions");
+        String[] betraege = getValuesFromDB("SELECT betrag FROM transactions");
 
-        PieChart pieChart = new PieChart();
-        for (int i = 0; i < categories.length; i++) {
-            PieChart.Data slice = new PieChart.Data(categories[i], values[i]);
-            double percentage = (values[i] / total) * 100;
-            slice.setName(String.format("%s: %.2f%%", categories[i], percentage));  // Prozentsatz hinzufügen
-            pieChart.getData().add(slice);
+        for (int i = 0; i < verwendungszwecke.length; i++) {
+            double betrag = Double.parseDouble(betraege[i].trim());
+
+            if (verwendungszwecke[i].toLowerCase().contains("wasserrechnung") ||
+                    verwendungszwecke[i].toLowerCase().contains("miete") ||
+                    verwendungszwecke[i].toLowerCase().contains("strom") ||
+                    verwendungszwecke[i].toLowerCase().contains("heizungsrechnung")) {
+                values[0] += betrag;
+            }
+            if (verwendungszwecke[i].toLowerCase().contains("freunde") ||
+                    verwendungszwecke[i].toLowerCase().contains("pizzaabend")) {
+                values[1] += betrag;
+            }
+            if (verwendungszwecke[i].toLowerCase().contains("klamotten") ||
+                    verwendungszwecke[i].toLowerCase().contains("bestellnr.")) {
+                values[3] += betrag;
+            }
+            if (verwendungszwecke[i].toLowerCase().contains("monatsbeitrag") ||
+                    verwendungszwecke[i].toLowerCase().contains("abo")) {
+                values[2] += betrag;
+            }
+            if (verwendungszwecke[i].toLowerCase().contains("einkauf")) {
+                values[4] += betrag;
+            }
         }
 
 
-        VBox root = new VBox(10, pieChart);
-        return root;
-    }
+        PieChart pieChart = new PieChart();
 
-    public static Scene createAusgabenScene(Stage primaryStage) {
+        for (int i = 0; i < categories.length; i++) {
+
+                PieChart.Data slice = new PieChart.Data(categories[i], values[i]);
+                pieChart.getData().add(slice);
+
+        }
+
+        return new VBox(10, pieChart);
+    }
+    public static Scene createAusgabenScene(Stage primaryStage) throws SQLException {
         MenuBar menuBar = createMenuBar(primaryStage);
 
         BorderPane root = new BorderPane();

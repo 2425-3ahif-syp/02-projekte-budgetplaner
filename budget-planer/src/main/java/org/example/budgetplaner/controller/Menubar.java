@@ -4,6 +4,9 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+
+import java.sql.SQLException;
+
 import static org.example.budgetplaner.controller.BudgetPlanerController.createBudgetPlanerScene;
 import static org.example.budgetplaner.controller.LoginController.createAccountScene;
 
@@ -24,7 +27,14 @@ public class Menubar {
         budgetPlanerItem.setOnAction(e -> primaryStage.setScene(createBudgetPlanerScene(primaryStage)));
 
         MenuItem ausgabenItem = new MenuItem("Ausgaben");
-        ausgabenItem.setOnAction(e -> primaryStage.setScene(AusgabenController.createAusgabenScene(primaryStage)));
+        ausgabenItem.setOnAction(e -> {
+            try {
+                primaryStage.setScene(AusgabenController.createAusgabenScene(primaryStage));
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+
+        });
 
         MenuItem monatsItem = new MenuItem("Monatsvergleich");
         monatsItem.setOnAction(e -> primaryStage.setScene(MonatsvergleichController.createMonatsvergleichScene(primaryStage)));
