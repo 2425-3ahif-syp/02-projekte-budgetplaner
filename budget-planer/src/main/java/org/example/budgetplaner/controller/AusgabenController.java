@@ -123,7 +123,7 @@ public class AusgabenController {
 
         BorderPane root = new BorderPane();
         root.setTop(menuBar);
-        root.setCenter(ui);    
+        root.setCenter(ui);
 
         Scene scene = new Scene(root, 800, 600);
         return scene;
