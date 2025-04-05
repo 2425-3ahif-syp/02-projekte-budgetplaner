@@ -33,7 +33,6 @@ public class Menubar {
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-
         });
 
         MenuItem monatsItem = new MenuItem("Monatsvergleich");
