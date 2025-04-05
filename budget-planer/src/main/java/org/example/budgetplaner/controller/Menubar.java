@@ -1,5 +1,6 @@
 package org.example.budgetplaner.controller;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -31,10 +32,10 @@ public class Menubar {
             try {
                 primaryStage.setScene(AusgabenController.createAusgabenScene(primaryStage));
             } catch (SQLException ex) {
-                throw new RuntimeException(ex);
+                ex.printStackTrace();
+                // Optional: Fehler anzeigen
             }
         });
-
         MenuItem monatsItem = new MenuItem("Monatsvergleich");
         monatsItem.setOnAction(e -> primaryStage.setScene(MonatsvergleichController.createMonatsvergleichScene(primaryStage)));
 

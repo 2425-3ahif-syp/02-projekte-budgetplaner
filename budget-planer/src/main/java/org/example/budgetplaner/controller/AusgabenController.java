@@ -45,7 +45,7 @@ public class AusgabenController {
         int len = Math.min(verwendungszwecke.length, betraege.length);
 
         Map<String, Integer> keywordToCategoryIndex = Map.ofEntries(
-                Map.entry("miet", 0),             
+                Map.entry("miet", 0),
                 Map.entry("strom", 0),
                 Map.entry("heizung", 0),
                 Map.entry("wasser", 0),
@@ -117,11 +117,15 @@ public class AusgabenController {
     }
 
     public static Scene createAusgabenScene(Stage primaryStage) throws SQLException {
+
         MenuBar menuBar = createMenuBar(primaryStage);
+        VBox ui = createUI(primaryStage);
 
         BorderPane root = new BorderPane();
         root.setTop(menuBar);
-        root.setCenter(createUI(primaryStage));
-        return new Scene(root, 800, 600);
+        root.setCenter(ui);    
+
+        Scene scene = new Scene(root, 800, 600);
+        return scene;
     }
 }
