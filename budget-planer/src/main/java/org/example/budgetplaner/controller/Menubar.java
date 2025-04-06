@@ -1,9 +1,6 @@
 package org.example.budgetplaner.controller;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
@@ -12,6 +9,14 @@ import static org.example.budgetplaner.controller.BudgetPlanerController.createB
 import static org.example.budgetplaner.controller.LoginController.createAccountScene;
 
 public class Menubar {
+
+    // Methode zum Zurücksetzen aller Menü-Stile
+    private static void resetMenuStyles(Menu... menus) {
+        for (Menu menu : menus) {
+            menu.setStyle(""); // Zurücksetzen auf Standard
+        }
+    }
+
     public static MenuBar createMenuBar(Stage primaryStage) {
         MenuBar menuBar = new MenuBar();
 
@@ -22,29 +27,42 @@ public class Menubar {
         Menu datenimportMenu = new Menu("Datenimport");
 
         MenuItem accountItem = new MenuItem("Account Übersicht");
-        accountItem.setOnAction(e -> primaryStage.setScene(createAccountScene(primaryStage, false)));
+        accountItem.setOnAction(e -> {
+            primaryStage.setScene(createAccountScene(primaryStage, false));
+            resetMenuStyles(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
+            accountMenu.setStyle("-fx-font-weight: bold;");
+        });
 
         MenuItem budgetPlanerItem = new MenuItem("BudgetPlaner");
-        budgetPlanerItem.setOnAction(e -> primaryStage.setScene(createBudgetPlanerScene(primaryStage)));
+        budgetPlanerItem.setOnAction(e -> {
+            primaryStage.setScene(createBudgetPlanerScene(primaryStage));
+            resetMenuStyles(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
+            planungMenu.setStyle("-fx-font-weight: bold;");
+        });
 
         MenuItem ausgabenItem = new MenuItem("Ausgaben");
         ausgabenItem.setOnAction(e -> {
+
             try {
                 primaryStage.setScene(AusgabenController.createAusgabenScene(primaryStage));
             } catch (SQLException ex) {
-                ex.printStackTrace();
-                // Optional: Fehler anzeigen
+                throw new RuntimeException(ex);
             }
+            resetMenuStyles(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
+                ausgabenMenu.setStyle("-fx-font-weight: bold;");
         });
-        MenuItem monatsItem = new MenuItem("Monatsvergleich");
-        monatsItem.setOnAction(e -> primaryStage.setScene(MonatsvergleichController.createMonatsvergleichScene(primaryStage)));
 
+        MenuItem monatsItem = new MenuItem("Monatsvergleich");
+        monatsItem.setOnAction(e -> {
+            primaryStage.setScene(MonatsvergleichController.createMonatsvergleichScene(primaryStage));
+            resetMenuStyles(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
+            monatsvergleichMenu.setStyle("-fx-font-weight: bold;");
+        });
 
         accountMenu.getItems().add(accountItem);
         planungMenu.getItems().add(budgetPlanerItem);
         ausgabenMenu.getItems().add(ausgabenItem);
         monatsvergleichMenu.getItems().add(monatsItem);
-
 
         menuBar.getMenus().addAll(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
         menuBar.setStyle("-fx-background-color: grey;");
