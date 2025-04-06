@@ -10,42 +10,59 @@ ifndef::backend[:backend: html5]
 :source-highlighter: rouge
 :docinfo: shared
 
-
-Findenig Leonie, Lena Graßauer, Lind Arifi
+Findenig Leonie, Lena Graßauer, Lind Arifi, Leona Feichtinger
 
 === Ausgangssituation:
-Viele Menschen haben Schwierigkeiten, ihre Finanzen im Blick zu behalten und ein effektives Budget zu verwalten. Besonders unerwartete Ausgaben oder fehlende Transparenz über laufende Kosten führen oft zu finanziellen Engpässen.
+
+In der heutigen Zeit haben viele Menschen Schwierigkeiten, ihre finanziellen Mittel gezielt zu steuern und dauerhaft den Überblick über ihre Einnahmen und Ausgaben zu behalten. Besonders in einer digitalen und schnelllebigen Gesellschaft, in der sich finanzielle Verpflichtungen und Lebensumstände rasch verändern können, fällt es schwer, langfristige finanzielle Stabilität zu gewährleisten. Unerwartete Ausgaben wie Reparaturen, medizinische Notfälle oder andere unvorhersehbare Ereignisse führen nicht selten zu Engpässen. Das Fehlen geeigneter Tools zur Verwaltung privater Finanzen verschärft diese Problematik zusätzlich.
 
 === Problemstellung:
 
-Wir möchten, dass unsere Nutzer auf einen Blick sehen können, wie viel Budget ihnen zur Verfügung steht, welche Ausgaben sie haben und wie sie ihre Finanzen effizienter verwalten können.
-Derzeit ist es jedoch sehr zeitaufwendig und kompliziert, alle Einnahmen und Ausgaben manuell zu erfassen und zu analysieren.
-Dadurch fehlt vielen Nutzern die Kontrolle über ihre Finanzen.
+Ziel dieses Projekts ist es, eine Lösung bereitzustellen, mit der Nutzer jederzeit eine transparente und strukturierte Übersicht über ihre finanzielle Situation erhalten können. Sie sollen klar erkennen, wie viel Budget ihnen zur Verfügung steht, welche regelmäßigen Ausgaben anfallen und wie sich ihre Finanzlage im Laufe der Zeit verändert. Aktuell gestaltet sich dieser Prozess allerdings äußerst mühsam: Die manuelle Erfassung von Einnahmen und Ausgaben, etwa über Tabellenkalkulationen oder Notizen, ist fehleranfällig und zeitaufwendig. Viele Menschen verlieren dadurch den Überblick und riskieren finanzielle Fehlentscheidungen.
 
-=== Aufgabenstellung
+=== Aufgabenstellung:
 
-Eine App oder WebApp, mit der Nutzer ihre Einnahmen und Ausgaben verwalten und analysieren können.
-Das erleichtert es unseren Kunden, ihre finanzielle Situation im Blick zu behalten und fundierte Entscheidungen zu treffen.
+Zur Lösung dieser Herausforderungen soll eine moderne und benutzerfreundliche Software-Anwendung – in Form einer App oder WebApp – entwickelt werden. Diese soll es ermöglichen, finanzielle Daten schnell und bequem zu erfassen, zu analysieren und verständlich darzustellen. Das Hauptziel der Anwendung besteht darin, den Nutzer bei der Verwaltung seiner persönlichen Finanzen zu unterstützen, indem fundierte Entscheidungen durch transparente Darstellungen und clevere Auswertungsfunktionen erleichtert werden. Die App soll somit zu einem alltäglichen Werkzeug für finanzielle Selbstbestimmung werden.
 
-==== Funktionale Anforderungen
+==== Ablaufdiagramm der Hauptfunktionen
 
-Unsere Software soll einer Person ermöglichen, ihre finanziellen Daten strukturiert zu erfassen und auszuwerten.
-Sie können die Daten eingeben, indem sie manuell Einnahmen und Ausgaben erfassen oder bestehende Transaktionsdaten importieren.
-Die Software soll auf eine Datenbank zugreifen können, in der finanzielle Informationen gespeichert und analysiert werden.
-Die Software soll die Finanzdaten in einem strukturierten Format anzeigen.
+Das folgende Ablaufdiagramm zeigt den grundlegenden Ablauf bei der Nutzung der Anwendung – von der Eingabe der Daten bis zur Anzeige der Analyseergebnisse.
 
+[plantuml, ablauf, png]
+....
+@startuml
+start
+:App öffnen;
+:Benutzer gibt Einnahmen/Ausgaben ein;
+if (Import von Daten?) then (Ja)
+  :Daten importieren;
+else (Nein)
+  :Manuelle Eingabe;
+endif
+:Daten werden gespeichert;
+:Analyse wird durchgeführt;
+:Ausgabe in Form von Diagrammen;
+stop
+@enduml
+....
 
-==== Nichtfunktionale Anforderungen (NFA)
+==== Funktionale Anforderungen:
 
-Die Benutzeroberfläche soll so gestaltet sein, dass auch unerfahrene Nutzer problemlos die benötigten Informationen finden und die Software bedienen können.
-Sie wird auch ein einfaches, minimalistisches und strukturiertes Layout bekommen, um es Kunden einfacher zu machen einen überblick über ihre Finanzen zu bewahren. Unteranderem sollen die Benutzer auch diagramme über ihre Monatliche veränderungen, Ausgaben und Einnahmen sehen können.
+Die Software soll ihren Anwendern erlauben, Einnahmen und Ausgaben strukturiert zu erfassen und übersichtlich auszuwerten. Die Eingabe der Daten kann entweder manuell erfolgen oder über die Integration von externen Datenquellen, z. B. durch Import vorhandener Transaktionsdaten. Diese Informationen werden in einer dafür vorgesehenen Datenbank gespeichert, auf die die Anwendung in Echtzeit zugreifen kann. Die Darstellung der Daten erfolgt in einem strukturierten und klar gegliederten Layout, um eine möglichst hohe Lesbarkeit und Verständlichkeit zu gewährleisten.
 
-=== Ziele
-Mehr Menschen beginnen zu sparen, da sie ihre Finanzen leichter überblicken können. Dies führt dazu, dass bereits junge Menschen frühzeitig mit dem Sparen beginnen und sich eine finanzielle Reserve aufbauen.
+==== Nichtfunktionale Anforderungen (NFA):
 
-=== Mengengerüst
-Die Software muss eine große Anzahl an Transaktionen verarbeiten können. Geplant ist eine Kapazität von mindestens 10.000 Transaktionen pro Monat. Zudem sollte die App problemlos bis zu 1000 gleichzeitige Nutzer unterstützen können, ohne Leistungseinbußen zu erleiden. Die Daten sollen in Echtzeit verarbeitet werden, damit Nutzer stets aktuelle Informationen über ihre Finanzen erhalten.
+Die Benutzeroberfläche der Anwendung wird intuitiv, schlicht und benutzerfreundlich gestaltet. Ziel ist es, dass auch technisch wenig versierte Nutzer die Software problemlos bedienen und sämtliche Funktionen ohne Hürden nutzen können. Das Design folgt einem minimalistischen Stil und legt besonderen Wert auf Übersichtlichkeit und Klarheit. Zusätzlich sollen grafische Auswertungen wie Diagramme integriert werden, mit denen Nutzer Veränderungen in ihren monatlichen Einnahmen und Ausgaben visuell nachvollziehen können. Dies ermöglicht ein besseres Verständnis für das eigene Konsumverhalten.
 
-=== Rahmenbedingungen
-Die App soll für iOS, Android und als Web-Version verfügbar sein. Sie muss intuitiv bedienbar und sicher sein. Besondere Beachtung liegt auf dem Datenschutz: Alle Nutzerdaten müssen sicher gespeichert und verarbeitet werden, wobei sämtliche Datenschutzanforderungen gemäß DSGVO strikt eingehalten werden. Zudem soll eine Cloud-basierte Speicherung der Daten optional möglich sein, damit Nutzer geräteübergreifend auf ihre Finanzdaten zugreifen können.
+=== Ziele:
+
+Die Software soll dazu beitragen, dass mehr Menschen bewusster mit ihren Finanzen umgehen und gezielt Rücklagen bilden. Ein klarer Überblick über Einnahmen, Ausgaben und verfügbare Mittel fördert das Vertrauen in die eigene Finanzkompetenz. Insbesondere junge Menschen sollen frühzeitig an das Thema Finanzplanung herangeführt werden, um langfristig eine solide finanzielle Basis zu schaffen. Durch den Einsatz unserer Lösung kann das Sparverhalten verbessert und finanzielle Resilienz aufgebaut werden.
+
+=== Mengengerüst:
+
+Die technische Architektur der Anwendung muss darauf ausgelegt sein, eine hohe Anzahl an Transaktionen zuverlässig und performant zu verarbeiten. Angestrebt wird eine Verarbeitungskapazität von mindestens 10.000 Transaktionen pro Monat. Zusätzlich soll die Anwendung in der Lage sein, bis zu 1.000 gleichzeitige Nutzer zu unterstützen, ohne dass es zu Beeinträchtigungen in der Performance kommt. Die Verarbeitung der Daten erfolgt in Echtzeit, sodass die Nutzer jederzeit mit aktuellen Informationen über ihre Finanzen versorgt werden.
+
+=== Rahmenbedingungen:
+
+Die Anwendung soll sowohl als mobile App für iOS und Android als auch als Web-Version verfügbar sein. Dabei ist auf eine intuitive Bedienbarkeit sowie auf die Einhaltung höchster Sicherheitsstandards zu achten. Besonders im Fokus steht der Schutz personenbezogener Daten: Alle Informationen müssen entsprechend der geltenden Datenschutz-Grundverordnung (DSGVO) sicher verarbeitet und gespeichert werden. Zusätzlich soll den Nutzern optional eine Cloud-basierte Speicherung angeboten werden, um den Zugriff auf ihre Daten von verschiedenen Geräten aus zu ermöglichen – etwa über Smartphone, Tablet oder Desktop-PC.
 
