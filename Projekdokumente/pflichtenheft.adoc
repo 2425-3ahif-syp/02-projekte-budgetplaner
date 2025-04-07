@@ -5,7 +5,7 @@ ifndef::sourcedir[:sourcedir: ../src/main/java]
 ifndef::imagesdir[:imagesdir: images]
 ifndef::backend[:backend: html5]
 :icons: font
-:sectnums:    // Nummerierung der Überschriften / section numbering
+:sectnums:
 :toc: left
 :source-highlighter: rouge
 :docinfo: shared
@@ -14,11 +14,15 @@ Findenig Leonie, Lena Graßauer, Lind Arifi, Leona Feichtinger
 
 === Ausgangssituation:
 
-In der heutigen Zeit haben viele Menschen Schwierigkeiten, ihre finanziellen Mittel gezielt zu steuern und dauerhaft den Überblick über ihre Einnahmen und Ausgaben zu behalten. Besonders in einer digitalen und schnelllebigen Gesellschaft, in der sich finanzielle Verpflichtungen und Lebensumstände rasch verändern können, fällt es schwer, langfristige finanzielle Stabilität zu gewährleisten. Unerwartete Ausgaben wie Reparaturen, medizinische Notfälle oder andere unvorhersehbare Ereignisse führen nicht selten zu Engpässen. Das Fehlen geeigneter Tools zur Verwaltung privater Finanzen verschärft diese Problematik zusätzlich.
+Die meisten Menschen planen ihre Ausgaben nicht aktiv – viele verlassen sich darauf, dass es sich ausgeht. Einige Banken bieten mittlerweile eigene Tools zur Finanzübersicht an, allerdings sind diese stark an das jeweilige Konto gebunden. Sobald man die Bank wechselt oder mehrere Konten bei verschiedenen Banken nutzt, verliert man den Überblick oder muss verschiedene Systeme parallel verwenden
 
 === Problemstellung:
 
-Ziel dieses Projekts ist es, eine Lösung bereitzustellen, mit der Nutzer jederzeit eine transparente und strukturierte Übersicht über ihre finanzielle Situation erhalten können. Sie sollen klar erkennen, wie viel Budget ihnen zur Verfügung steht, welche regelmäßigen Ausgaben anfallen und wie sich ihre Finanzlage im Laufe der Zeit verändert. Aktuell gestaltet sich dieser Prozess allerdings äußerst mühsam: Die manuelle Erfassung von Einnahmen und Ausgaben, etwa über Tabellenkalkulationen oder Notizen, ist fehleranfällig und zeitaufwendig. Viele Menschen verlieren dadurch den Überblick und riskieren finanzielle Fehlentscheidungen.
+Ziel dieses Projekts ist es, eine Lösung bereitzustellen, mit der Nutzer jederzeit eine transparente und strukturierte Übersicht über ihre finanzielle Situation erhalten – unabhängig davon, bei welcher Bank sie sind oder wie sie ihre Ausgaben erfassen. Nutzer sollen klar erkennen können, wie viel Budget ihnen zur Verfügung steht, welche regelmäßigen Ausgaben anfallen und wie sich ihre Finanzen im Laufe der Zeit entwickeln.
+
+Derzeit ist dieser Prozess jedoch kompliziert: Viele Menschen nutzen manuelle Methoden wie Excel-Tabellen oder Notizzettel, die fehleranfällig und unübersichtlich sind. Andere verlassen sich auf die Finanzübersichten ihrer Bank, diese sind jedoch an das jeweilige Konto gebunden und funktionieren oft nur eingeschränkt oder gar nicht, sobald man die Bank wechselt oder mehrere Konten nutzt. So verlieren viele den Überblick über ihre Ausgaben, verpassen Einsparpotenziale und treffen schlechte finanzielle Entscheidungen.
+
+Es braucht daher ein zentrales, bankunabhängiges Tool, das Einnahmen und Ausgaben aus verschiedenen Quellen flexibel verarbeiten, strukturieren und visuell auswerten kann
 
 === Aufgabenstellung:
 
@@ -48,7 +52,7 @@ stop
 
 ==== Funktionale Anforderungen:
 
-Die Software soll ihren Anwendern erlauben, Einnahmen und Ausgaben strukturiert zu erfassen und übersichtlich auszuwerten. Die Eingabe der Daten kann entweder manuell erfolgen oder über die Integration von externen Datenquellen, z. B. durch Import vorhandener Transaktionsdaten. Diese Informationen werden in einer dafür vorgesehenen Datenbank gespeichert, auf die die Anwendung in Echtzeit zugreifen kann. Die Darstellung der Daten erfolgt in einem strukturierten und klar gegliederten Layout, um eine möglichst hohe Lesbarkeit und Verständlichkeit zu gewährleisten.
+Die Software soll ihren Anwendern erlauben, Einnahmen und Ausgaben strukturiert zu erfassen und übersichtlich auszuwerten. Die Eingabe der Daten kann entweder manuell erfolgen oder über die Integration von externen Datenquellen, z.B. durch Import vorhandener Transaktionsdaten. Diese Informationen werden in einer dafür vorgesehenen Datenbank gespeichert, auf die die Anwendung in Echtzeit zugreifen kann. Die Darstellung der Daten erfolgt in einem strukturierten und klar gegliederten Layout, um eine möglichst hohe Lesbarkeit und Verständlichkeit zu gewährleisten.
 
 ==== Nichtfunktionale Anforderungen (NFA):
 
@@ -64,5 +68,5 @@ Die technische Architektur der Anwendung muss darauf ausgelegt sein, eine hohe A
 
 === Rahmenbedingungen:
 
-Die Anwendung soll sowohl als mobile App für iOS und Android als auch als Web-Version verfügbar sein. Dabei ist auf eine intuitive Bedienbarkeit sowie auf die Einhaltung höchster Sicherheitsstandards zu achten. Besonders im Fokus steht der Schutz personenbezogener Daten: Alle Informationen müssen entsprechend der geltenden Datenschutz-Grundverordnung (DSGVO) sicher verarbeitet und gespeichert werden. Zusätzlich soll den Nutzern optional eine Cloud-basierte Speicherung angeboten werden, um den Zugriff auf ihre Daten von verschiedenen Geräten aus zu ermöglichen – etwa über Smartphone, Tablet oder Desktop-PC.
+Die Anwendung soll für Windows, Linux und MacOS als JavaFx-App verfügbar sein. Die Daten werden anonym gespeichert und sind nur für den Nutzer sichtbar.
 
