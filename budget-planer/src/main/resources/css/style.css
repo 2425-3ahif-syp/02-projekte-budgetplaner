@@ -1,0 +1,21 @@
+.chart-bar.default-color0 { -fx-bar-fill: #40b4ff; }  /* Haushalt */
+.chart-bar.default-color1 { -fx-bar-fill: #8e5dbf; }  /* Freizeit */
+.chart-bar.default-color2 { -fx-bar-fill: #66c2ff; }  /* Abos */
+.chart-bar.default-color3 { -fx-bar-fill: #a066a0; }  /* Klamotten */
+.chart-bar.default-color4 { -fx-bar-fill: #3a7cb8; }  /* Lebensmittel */
+.chart-bar.default-color5 { -fx-bar-fill: #63457f; }  /* Überschuss */
+.chart-bar.default-color6 { -fx-bar-fill: #6bdcff; }  /* Einnahmen */
+
+.chart-legend {
+    -fx-font-weight: bold;
+}
+
+.axis .axis-label {
+    -fx-font-weight: bold;
+}
+
+.axis .tick-label {
+    -fx-font-weight: bold;
+}
+
+
