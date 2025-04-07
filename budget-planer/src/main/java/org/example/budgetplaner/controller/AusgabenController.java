@@ -125,6 +125,6 @@ public class AusgabenController {
         root.setTop(menuBar);
         root.setCenter(ui);
 
-        return new Scene(root, 800, 600);
+        return new Scene(root, 1000, 600);
     }
 }

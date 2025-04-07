@@ -1,4 +1,5 @@
-/*package org.example.budgetplaner.controller;
+
+package org.example.budgetplaner.controller;
 
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -10,16 +11,16 @@ import static org.example.budgetplaner.controller.LoginController.createAccountS
 
 public class Menubar {
 
-    // Methode zum Zurücksetzen aller Menü-Stile
+
     private static void resetMenuStyles(Menu... menus) {
         for (Menu menu : menus) {
-            menu.setStyle(""); // Zurücksetzen auf Standard
+            menu.setStyle("");
         }
     }
 
     public static MenuBar createMenuBar(Stage primaryStage) {
         MenuBar menuBar = new MenuBar();
-        menuBar.setStyle("-fx-font-size: 16px; -fx-padding: 10px;"); // Increase font size and padding
+        menuBar.setStyle("-fx-font-size: 10px; -fx-padding: 10px; -fx-spacing: 50px; -fx-font-weight: bold;");
 
         Menu accountMenu = new Menu("Account");
         Menu ausgabenMenu = new Menu("Ausgaben");
@@ -65,14 +66,15 @@ public class Menubar {
         monatsvergleichMenu.getItems().add(monatsItem);
 
         menuBar.getMenus().addAll(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
-        menuBar.setStyle("-fx-background-color: grey; -fx-font-size: 16px; -fx-padding: 10px;"); // Increase font size and padding
+        menuBar.setStyle("-fx-background-color: grey; -fx-font-size: 16px; -fx-padding: 10px; -fx-spacing: 100px; -fx-font-weight: bold;");
 
         return menuBar;
     }
 }
 
- */
 
+
+/*
 package org.example.budgetplaner.controller;
 
 import javafx.scene.control.Menu;
@@ -85,10 +87,9 @@ import static org.example.budgetplaner.controller.LoginController.createAccountS
 
 public class Menubar {
 
-    // Methode zum Zurücksetzen aller Menü-Stile
     private static void resetMenuStyles(MenuItem... menuItems) {
         for (MenuItem menuItem : menuItems) {
-            menuItem.setStyle(""); // Zurücksetzen auf Standard
+            menuItem.setStyle("");
         }
     }
 
@@ -141,3 +142,5 @@ public class Menubar {
         return menuBar;
     }
 }
+
+ */
