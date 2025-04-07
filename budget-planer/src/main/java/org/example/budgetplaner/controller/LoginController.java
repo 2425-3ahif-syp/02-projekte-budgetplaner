@@ -91,7 +91,7 @@ public class LoginController {
         dollarButton.setDisable(!editMode);
 
         HBox currencyBox = new HBox(10, euroButton, dollarButton);
-        currencyBox.setAlignment(Pos.CENTER_LEFT);
+
 
 
         Button actionButton;
@@ -133,8 +133,9 @@ public class LoginController {
         imageBox.setMaxWidth(Double.MAX_VALUE);
 
 
-        HBox contentBox = new HBox(40, formGrid, imageBox);
+        HBox contentBox = new HBox(50, formGrid, imageBox);
         contentBox.setPadding(new Insets(20));
+
 
         BorderPane root = new BorderPane();
         root.setTop(menuBar);
