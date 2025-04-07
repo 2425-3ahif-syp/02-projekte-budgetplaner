@@ -11,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.budgetplaner.controller.BudgetPlanerController;
-
 import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
 

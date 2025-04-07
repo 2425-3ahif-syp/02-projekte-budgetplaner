@@ -7,6 +7,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.budgetplaner.controller.AusgabenController;
 
+
 import java.sql.SQLException;
 
 
