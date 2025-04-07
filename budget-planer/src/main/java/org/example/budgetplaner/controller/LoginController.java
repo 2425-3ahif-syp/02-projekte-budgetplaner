@@ -48,6 +48,7 @@ public class LoginController {
     public static Scene createAccountScene(Stage primaryStage, boolean editMode) {
         MenuBar menuBar = createMenuBar(primaryStage);
 
+
         GridPane formGrid = new GridPane();
         formGrid.setPadding(new Insets(40));
         formGrid.setVgap(15);

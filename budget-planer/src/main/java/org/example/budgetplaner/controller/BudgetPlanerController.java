@@ -134,7 +134,7 @@ public class BudgetPlanerController {
         root.setCenter(BudgetPlanerController.createPieChart());
         root.setRight(BudgetPlanerController.createInputFields());
 
-        return new Scene(root, 800, 600);
+        return new Scene(root, 1000, 600);
 
     }
 }
