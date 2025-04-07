@@ -5,7 +5,6 @@ import javafx.stage.Stage;
 
 import java.sql.SQLException;
 
-import static org.example.budgetplaner.controller.AusgabenController.createAusgabenScene;
 import static org.example.budgetplaner.controller.BudgetPlanerController.createBudgetPlanerScene;
 import static org.example.budgetplaner.controller.LoginController.createAccountScene;
 
@@ -43,12 +42,14 @@ public class Menubar {
 
         MenuItem ausgabenItem = new MenuItem("Ausgaben");
         ausgabenItem.setOnAction(e -> {
+
             try {
-                primaryStage.setScene(createAusgabenScene(primaryStage));
+                primaryStage.setScene(AusgabenController.createAusgabenScene(primaryStage));
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-
+            resetMenuStyles(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
+                ausgabenMenu.setStyle("-fx-font-weight: bold;");
         });
 
         MenuItem monatsItem = new MenuItem("Monatsvergleich");

@@ -11,7 +11,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.budgetplaner.controller.BudgetPlanerController;
-
 import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
 
@@ -21,18 +20,25 @@ public class BudgetPlaner extends Application {
     public void start(Stage stage) {
         MenuBar menuBar = createMenuBar(stage);
         PieChart pieChart = BudgetPlanerController.createPieChart();
+
         VBox eingaben = BudgetPlanerController.createInputFields();
         eingaben.setPadding(new Insets(10));
         eingaben.setAlignment(Pos.CENTER);
 
+
         VBox root = new VBox(menuBar);
         Label heading = new Label("Planung");
-        heading.setStyle("-fx-font-weight: bold; fx-font-size: 50px;");
+        heading.setStyle("-fx-font-weight: bold; -fx-font-size: 50px;");
         heading.setPadding(new Insets(10));
-        heading.setAlignment(Pos.CENTER);
+
+        HBox headingBox = new HBox(heading);
+        headingBox.setAlignment(Pos.TOP_CENTER);
+
         HBox content = new HBox(10, pieChart, eingaben);
         content.setPadding(new Insets(20));
         root.getChildren().addAll(heading, content);
+
+
 
         Scene scene = new Scene(root, 800, 500);
         stage.setTitle("Budget Planer");
