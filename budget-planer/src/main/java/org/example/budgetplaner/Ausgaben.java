@@ -13,6 +13,7 @@ import java.sql.SQLException;
 public class Ausgaben extends Application {
     @Override
     public void start(Stage stage) throws SQLException {
+
         AusgabenController controller = new AusgabenController();
 
         VBox root = AusgabenController.createUI(stage);

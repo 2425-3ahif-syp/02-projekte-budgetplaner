@@ -12,6 +12,7 @@ import org.example.budgetplaner.database.H2DatabaseExample;
 
 import java.sql.*;
 import java.util.Map;
+import java.util.Objects;
 
 import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
@@ -19,28 +20,41 @@ public class AusgabenController {
 
     private static Connection connection;
 
-    public AusgabenController() throws SQLException {
-        this.connection = H2DatabaseExample.getConnection();
+    public AusgabenController()  {
+        try {
+            connection = H2DatabaseExample.getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private static String[] getValuesFromDB(String query) throws SQLException {
+    private static String[] getValuesFromDB(String query)  {
         try (PreparedStatement stmt = connection.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
 
             StringBuilder result = new StringBuilder();
             while (rs.next()) {
-                result.append(rs.getString(1)).append(",");
+                String value = rs.getString(1);
+                System.out.println("Gefundener Wert aus DB: " + value);  // Debugging-Ausgabe
+                result.append(value).append(",");
             }
 
             return result.toString().split(",");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
+
     public static VBox createUI(Stage primaryStage) throws SQLException {
         String[] categories = {"Haushalt", "Freizeit", "Abos", "Klamotten", "Lebensmittel", "Überschuss"};
         double[] values = new double[categories.length];
 
         String[] verwendungszwecke = getValuesFromDB("SELECT verwendungszweck FROM transactions");
         String[] betraege = getValuesFromDB("SELECT betrag FROM transactions");
+
+
+        System.out.println("Länge der verwendungszwecke: " + verwendungszwecke.length);
+        System.out.println("Länge der betraege: " + betraege.length);
 
         int len = Math.min(verwendungszwecke.length, betraege.length);
 
@@ -64,6 +78,7 @@ public class AusgabenController {
                 Map.entry("lebensmittel", 4)
         );
 
+        
         for (int i = 0; i < len; i++) {
             String verwendung = verwendungszwecke[i].toLowerCase();
             double betrag;
@@ -72,7 +87,6 @@ public class AusgabenController {
             } catch (NumberFormatException e) {
                 continue;
             }
-
 
             if (betrag < 0) {
                 betrag = -betrag;
@@ -87,45 +101,54 @@ public class AusgabenController {
                 }
             }
 
-
             if (!matched) {
                 values[5] += betrag;
             }
         }
 
-        PieChart pieChart = new PieChart();
 
+        System.out.println("Finale Werte für das PieChart:");
+        for (double value : values) {
+            System.out.println(value);
+        }
+
+
+        PieChart pieChart = new PieChart();
         for (int i = 0; i < categories.length; i++) {
             PieChart.Data slice = new PieChart.Data(categories[i], values[i]);
             pieChart.getData().add(slice);
+            System.out.println("Hinzufügen der Kategorie: " + categories[i] + " mit Wert: " + values[i]);
         }
 
-        pieChart.sceneProperty().addListener((obs, oldScene, newScene) -> {
-            if (newScene != null) {
-                Platform.runLater(() -> {
-                    for (int i = 0; i < pieChart.getData().size(); i++) {
-                        Node node = pieChart.getData().get(i).getNode();
-                        if (node != null) {
-                            node.getStyleClass().add("default-color" + i);
-                        }
-                    }
-                });
-            }
-        });
+
+        connection.close();
 
         return new VBox(10, pieChart);
     }
 
     public static Scene createAusgabenScene(Stage primaryStage) throws SQLException {
-
+        // MenuBar erstellen
         MenuBar menuBar = createMenuBar(primaryStage);
-        VBox ui = createUI(primaryStage);
+        System.out.println("Menü wird erstellt");
+
+
+        menuBar.getMenus().stream()
+                .filter(menu -> menu.getText().equals("Ausgaben"))
+                .findFirst().ifPresent(menu -> {
+                    menu.getStyleClass().add("highlighted");
+                    System.out.println("CSS-Klasse 'highlighted' zu Ausgaben-Menü hinzugefügt");
+                });
+
 
         BorderPane root = new BorderPane();
         root.setTop(menuBar);
-        root.setCenter(ui);
+        root.setCenter(createUI(primaryStage));
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 1000, 600);
+        scene.getStylesheets().add(Objects.requireNonNull(AusgabenController.class.getResource("/css/style.css")).toExternalForm());
+
+
         return scene;
     }
+
 }
