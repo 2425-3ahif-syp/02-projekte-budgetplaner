@@ -62,23 +62,23 @@ public class LoginController {
         Label nameLabel = new Label("Name:");
         TextField nameField = new TextField(gespeicherterName);
         nameField.setEditable(editMode);
-        nameField.setStyle("-fx-padding: 10px; -fx-background-color: #ffffff; -fx-border-radius: 5px;");
+        nameField.setStyle("-fx-padding: 8px; -fx-background-color: #ffffff; -fx-border-radius: 5px;");
 
         Label geburtstagLabel = new Label("Geburtstag:");
         TextField geburtstagField = new TextField(gespeicherterGeburtstag);
         geburtstagField.setEditable(editMode);
-        geburtstagField.setStyle("-fx-padding: 10px; -fx-background-color: #ffffff; -fx-border-radius: 5px;");
+        geburtstagField.setStyle("-fx-padding: 8px; -fx-background-color: #ffffff; -fx-border-radius: 5px;");
 
         Label emailLabel = new Label("E-Mail:");
         TextField emailField = new TextField(gespeicherteEmail);
         emailField.setEditable(editMode);
-        emailField.setStyle("-fx-padding: 10px; -fx-background-color: #ffffff; -fx-border-radius: 5px;");
+        emailField.setStyle("-fx-padding: 8px; -fx-background-color: #ffffff; -fx-border-radius: 5px;");
 
         Label passwortLabel = new Label("Passwort:");
         PasswordField passwortField = new PasswordField();
         passwortField.setText(gespeichertesPasswort);
         passwortField.setEditable(editMode);
-        passwortField.setStyle("-fx-padding: 10px; -fx-background-color: #ffffff; -fx-border-radius: 5px;");
+        passwortField.setStyle("-fx-padding: 8px; -fx-background-color: #ffffff; -fx-border-radius: 5px;");
 
 
         ToggleGroup currencyGroup = new ToggleGroup();
@@ -91,7 +91,7 @@ public class LoginController {
         dollarButton.setDisable(!editMode);
 
         HBox currencyBox = new HBox(10, euroButton, dollarButton);
-        currencyBox.setAlignment(Pos.CENTER_LEFT);
+
 
 
         Button actionButton;
@@ -133,8 +133,9 @@ public class LoginController {
         imageBox.setMaxWidth(Double.MAX_VALUE);
 
 
-        HBox contentBox = new HBox(40, formGrid, imageBox);
+        HBox contentBox = new HBox(150, formGrid, imageBox);
         contentBox.setPadding(new Insets(20));
+
 
         BorderPane root = new BorderPane();
         root.setTop(menuBar);

@@ -19,6 +19,7 @@ public class BudgetPlaner extends Application {
     @Override
     public void start(Stage stage) {
         MenuBar menuBar = createMenuBar(stage);
+        stage.setTitle("Planung");
         PieChart pieChart = BudgetPlanerController.createPieChart();
 
         VBox eingaben = BudgetPlanerController.createInputFields();
@@ -40,7 +41,7 @@ public class BudgetPlaner extends Application {
 
 
 
-        Scene scene = new Scene(root, 800, 500);
+        Scene scene = new Scene(root, 1000, 600);
         stage.setTitle("Budget Planer");
         stage.setScene(scene);
         stage.show();
