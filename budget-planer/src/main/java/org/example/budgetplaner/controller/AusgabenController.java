@@ -113,17 +113,15 @@ public class AusgabenController {
             }
         });
 
-        return new VBox(10, pieChart);
+        MenuBar menubar= Menubar.createMenuBar(primaryStage);
+
+        return new VBox(0,menubar, pieChart);
     }
 
     public static Scene createAusgabenScene(Stage primaryStage) throws SQLException {
+        AusgabenController controller = new AusgabenController();
 
-        MenuBar menuBar = createMenuBar(primaryStage);
-        VBox ui = createUI(primaryStage);
-
-        BorderPane root = new BorderPane();
-        root.setTop(menuBar);
-        root.setCenter(ui);
+        VBox root = createUI(primaryStage);
 
         return new Scene(root, 800, 600);
     }

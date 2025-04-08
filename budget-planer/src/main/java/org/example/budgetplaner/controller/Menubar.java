@@ -20,7 +20,7 @@ public class Menubar {
 
     public static MenuBar createMenuBar(Stage primaryStage) {
         MenuBar menuBar = new MenuBar();
-        menuBar.setStyle("-fx-font-size: 10px; -fx-padding: 10px; -fx-spacing: 50px; -fx-font-weight: bold;");
+        menuBar.setStyle("-fx-font-size: 10px; -fx-padding: 10px; -fx-spacing: 10px; -fx-font-weight: bold;");
 
         Menu accountMenu = new Menu("Account");
         Menu ausgabenMenu = new Menu("Ausgaben");
