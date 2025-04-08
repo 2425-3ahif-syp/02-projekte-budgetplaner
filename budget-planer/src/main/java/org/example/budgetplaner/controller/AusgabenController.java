@@ -13,7 +13,7 @@ import org.example.budgetplaner.database.H2DatabaseExample;
 import java.sql.*;
 import java.util.Map;
 
-import static org.example.budgetplaner.controller.Menubar.createMenuBar;
+import static org.example.budgetplaner.controller.Menubar.*;
 
 public class AusgabenController {
 
@@ -119,6 +119,7 @@ public class AusgabenController {
     public static Scene createAusgabenScene(Stage primaryStage) throws SQLException {
 
         MenuBar menuBar = createMenuBar(primaryStage);
+        ausgabenMenu.setStyle("-fx-font-weight: bold;");
         VBox ui = createUI(primaryStage);
 
         BorderPane root = new BorderPane();
