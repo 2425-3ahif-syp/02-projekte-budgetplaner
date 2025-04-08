@@ -109,6 +109,7 @@ public class Menubar {
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
+
             resetMenuStyles(accountMenuItem, ausgabenMenuItem, planungMenuItem, monatsvergleichMenuItem, datenimportMenuItem);
             ausgabenMenuItem.setStyle("-fx-font-weight: bold;");
         });

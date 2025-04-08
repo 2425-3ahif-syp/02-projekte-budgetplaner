@@ -35,7 +35,7 @@ public class AusgabenController {
             return result.toString().split(",");
         }
     }
-    public static VBox createUI(Stage primaryStage) throws SQLException {
+    public VBox createUI(Stage stage) throws SQLException {
         String[] categories = {"Haushalt", "Freizeit", "Abos", "Klamotten", "Lebensmittel", "Überschuss"};
         double[] values = new double[categories.length];
 
@@ -112,19 +112,20 @@ public class AusgabenController {
                 });
             }
         });
-
-        return new VBox(10, pieChart);
+        VBox box = new VBox(10);
+        MenuBar menubar =Menubar.createMenuBar(stage);
+        box.getChildren().addAll(menubar, pieChart);
+        return box;
     }
 
     public static Scene createAusgabenScene(Stage primaryStage) throws SQLException {
 
-        MenuBar menuBar = createMenuBar(primaryStage);
-        VBox ui = createUI(primaryStage);
+        AusgabenController controller = new AusgabenController();
 
-        BorderPane root = new BorderPane();
-        root.setTop(menuBar);
-        root.setCenter(ui);
+        VBox root = controller.createUI(primaryStage);
 
-        return new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 800, 600);
+
+        return scene;
     }
 }

@@ -17,7 +17,8 @@ public class Ausgaben extends Application {
 
         AusgabenController controller = new AusgabenController();
 
-        VBox root = AusgabenController.createUI(stage);
+       VBox root = controller.createUI(stage);
+
         Scene scene = new Scene(root, 800, 600);
         stage.setTitle("Budget Übersicht");
         stage.setScene(scene);
