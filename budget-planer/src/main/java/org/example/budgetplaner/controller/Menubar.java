@@ -1,71 +1,112 @@
 
 package org.example.budgetplaner.controller;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.function.Consumer;
 
-import static org.example.budgetplaner.controller.BudgetPlanerController.createBudgetPlanerScene;
-import static org.example.budgetplaner.controller.LoginController.createAccountScene;
 
 public class Menubar {
 
 
-    private static void resetMenuStyles(Menu... menus) {
-        for (Menu menu : menus) {
-            menu.setStyle("");
+
+    public static BorderPane createMenuBar(Stage primaryStage) {
+        Button login = new Button("Account Information");
+        Button budgetPlaner = new Button("Budget Planer");
+        Button ausgaben = new Button("Ausgaben Übersicht");
+        Button monatsVergleich = new Button("Monats Vergleich");
+
+        List<Button> menuButtons = List.of(login, budgetPlaner, ausgaben, monatsVergleich);
+
+        HBox menubar = new HBox();
+        menubar.setSpacing(0);
+        menubar.setPadding(new Insets(0));
+        menubar.setStyle("-fx-background-color: #cccccc; -fx-border-color: #999999; -fx-border-width: 0 0 1 0;");
+        menubar.setPrefHeight(50);
+
+        // Alle Buttons gleichmäßig verteilen
+        for (Button btn : menuButtons) {
+            btn.setMaxWidth(Double.MAX_VALUE);
+            btn.setMinHeight(50);
+            btn.setCursor(Cursor.HAND);
+            btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #333; -fx-font-size: 14px;");
+
+            // Hover-Effekt
+            btn.setOnMouseEntered(e -> {
+                if (!btn.getStyleClass().contains("active")) {
+                    btn.setStyle("-fx-background-color: #e0e0e0; -fx-text-fill: #000;");
+                }
+            });
+            btn.setOnMouseExited(e -> {
+                if (!btn.getStyleClass().contains("active")) {
+                    btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #333;");
+                }
+            });
+
+            HBox.setHgrow(btn, Priority.ALWAYS);
         }
-    }
 
-    public static MenuBar createMenuBar(Stage primaryStage) {
-        MenuBar menuBar = new MenuBar();
-        menuBar.setStyle("-fx-font-size: 10px; -fx-padding: 10px; -fx-spacing: 10px; -fx-font-weight: bold;");
+        // Aktiver Button
+        Consumer<Button> setActiveButton = (activeBtn) -> {
+            for (Button btn : menuButtons) {
+                btn.getStyleClass().remove("active");
+                btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #333;");
+            }
+            activeBtn.getStyleClass().add("active");
+            activeBtn.setStyle("-fx-background-color: #aaccff; -fx-text-fill: black;");
+        };
 
-        Menu accountMenu = new Menu("Account");
-        Menu ausgabenMenu = new Menu("Ausgaben");
-        Menu planungMenu = new Menu("Planung");
-        Menu monatsvergleichMenu = new Menu("Monatsvergleich");
-        Menu datenimportMenu = new Menu("Datenimport");
-
-        MenuItem accountItem = new MenuItem("Account Übersicht");
-        accountItem.setOnAction(e -> {
-            primaryStage.setScene(createAccountScene(primaryStage, false));
-            resetMenuStyles(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
+        // Aktionen
+        login.setOnAction(e -> {
+            Scene loginScene = new LoginController().createAccountScene(primaryStage, false);
+            primaryStage.setScene(loginScene);
+            primaryStage.show();
+            setActiveButton.accept(login);
         });
 
-        MenuItem budgetPlanerItem = new MenuItem("BudgetPlaner");
-        budgetPlanerItem.setOnAction(e -> {
-            primaryStage.setScene(createBudgetPlanerScene(primaryStage));
-            resetMenuStyles(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
+        budgetPlaner.setOnAction(e -> {
+            Scene budgetScene = new BudgetPlanerController().createBudgetPlanerScene(primaryStage);
+            primaryStage.setScene(budgetScene);
+            primaryStage.show();
+            setActiveButton.accept(budgetPlaner);
         });
 
-        MenuItem ausgabenItem = new MenuItem("Ausgaben");
-        ausgabenItem.setOnAction(e -> {
+        ausgaben.setOnAction(e -> {
             try {
-                primaryStage.setScene(AusgabenController.createAusgabenScene(primaryStage));
+                Scene ausgabenScene = new AusgabenController().createAusgabenScene(primaryStage);
+                primaryStage.setScene(ausgabenScene);
+                primaryStage.show();
+                setActiveButton.accept(ausgaben);
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
-            resetMenuStyles(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
         });
 
-        MenuItem monatsItem = new MenuItem("Monatsvergleich");
-        monatsItem.setOnAction(e -> {
-            primaryStage.setScene(MonatsvergleichController.createMonatsvergleichScene(primaryStage));
-            resetMenuStyles(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
+        monatsVergleich.setOnAction(e -> {
+            Scene vergleichScene = new MonatsvergleichController().createMonatsvergleichScene(primaryStage);
+            primaryStage.setScene(vergleichScene);
+            primaryStage.show();
+            setActiveButton.accept(monatsVergleich);
         });
 
-        accountMenu.getItems().add(accountItem);
-        planungMenu.getItems().add(budgetPlanerItem);
-        ausgabenMenu.getItems().add(ausgabenItem);
-        monatsvergleichMenu.getItems().add(monatsItem);
+        menubar.getChildren().addAll(menuButtons);
 
-        menuBar.getMenus().addAll(accountMenu, ausgabenMenu, planungMenu, monatsvergleichMenu, datenimportMenu);
-        menuBar.setStyle("-fx-background-color: grey; -fx-font-size: 16px; -fx-padding: 10px; -fx-spacing: 100px; -fx-font-weight: bold;");
+        BorderPane root = new BorderPane();
+        root.setTop(menubar);
 
-        return menuBar;
+        return root;
     }
+
 }
 
 

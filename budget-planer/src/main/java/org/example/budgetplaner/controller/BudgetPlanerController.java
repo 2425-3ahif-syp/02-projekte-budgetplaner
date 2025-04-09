@@ -127,7 +127,7 @@ public class BudgetPlanerController {
         updatePieChart();
     }
     public static Scene createBudgetPlanerScene(Stage primaryStage) {
-        MenuBar menuBar = createMenuBar(primaryStage);
+        BorderPane menuBar = createMenuBar(primaryStage);
 
         BorderPane root = new BorderPane();
         root.setTop(menuBar);

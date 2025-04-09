@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -18,7 +19,7 @@ public class BudgetPlaner extends Application {
 
     @Override
     public void start(Stage stage) {
-        MenuBar menuBar = createMenuBar(stage);
+        BorderPane menuBar = createMenuBar(stage);
         stage.setTitle("Planung");
         PieChart pieChart = BudgetPlanerController.createPieChart();
 

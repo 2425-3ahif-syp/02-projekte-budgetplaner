@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.MenuBar;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -113,7 +114,8 @@ public class AusgabenController {
             }
         });
 
-        MenuBar menubar= Menubar.createMenuBar(primaryStage);
+        BorderPane menubar= Menubar.createMenuBar(primaryStage);
+        pieChart.setPrefSize(800, 600);
 
         return new VBox(0,menubar, pieChart);
     }
@@ -123,6 +125,6 @@ public class AusgabenController {
 
         VBox root = createUI(primaryStage);
 
-        return new Scene(root, 800, 600);
+        return new Scene(root, 1000, 600);
     }
 }

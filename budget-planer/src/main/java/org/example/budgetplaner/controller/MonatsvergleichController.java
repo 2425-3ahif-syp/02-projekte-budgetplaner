@@ -102,13 +102,8 @@ public class MonatsvergleichController {
     }
 
     public static Scene createMonatsvergleichScene(Stage primaryStage) {
-        MenuBar menuBar = createMenuBar(primaryStage);
-        Menu monatsvergleich = menuBar.getMenus().stream()
-                .filter(menu -> menu.getText().equals("Monatsvergleich"))
-                .findFirst().orElse(null);
-        if (monatsvergleich != null) {
-            monatsvergleich.getStyleClass().add("monatsvergleich");
-        }
+        BorderPane menuBar = createMenuBar(primaryStage);
+
 
         BorderPane root = new BorderPane();
         root.setTop(menuBar);
