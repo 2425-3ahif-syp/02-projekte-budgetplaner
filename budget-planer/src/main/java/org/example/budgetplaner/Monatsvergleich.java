@@ -8,8 +8,7 @@ import org.example.budgetplaner.controller.MonatsvergleichController;
 public class Monatsvergleich extends Application {
     @Override
     public void start(Stage stage) {
-        MonatsvergleichController controller = new MonatsvergleichController();
-        Scene scene = controller.createMonatsvergleichScene(stage);
+        Scene scene = MonatsvergleichController.createMonatsvergleichScene(stage);
         stage.setTitle("Monatsvergleich");
         stage.setScene(scene);
         stage.show();
@@ -19,4 +18,5 @@ public class Monatsvergleich extends Application {
         launch(args);
     }
 }
+
 
