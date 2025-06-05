@@ -20,3 +20,4 @@ public class Monatsvergleich extends Application {
 }
 
 
+

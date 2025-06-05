@@ -53,7 +53,7 @@ public class DatabaseManager {
     public static Connection connect() throws SQLException {
         return DriverManager.getConnection(DB_URL, USER, PASSWORD);
     }
-    
+
     public static Map<String, Map<String, Double>> getMonatsdaten(int jahr) {
         Map<String, Map<String, Double>> daten = new HashMap<>();
 
@@ -86,3 +86,4 @@ public class DatabaseManager {
         return daten;
     }
 }
+

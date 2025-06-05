@@ -44,9 +44,8 @@ public class MonatsvergleichController {
 
         for (String kategorie : daten.keySet()) {
             XYChart.Series<String, Number> serie = new XYChart.Series<>();
-            serie.setName(kategorie);
-
             Map<String, Double> monatswerte = daten.get(kategorie);
+
             for (Map.Entry<String, Double> entry : monatswerte.entrySet()) {
                 serie.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
             }
@@ -91,5 +90,6 @@ public class MonatsvergleichController {
         return scene;
     }
 }
+
 
 
