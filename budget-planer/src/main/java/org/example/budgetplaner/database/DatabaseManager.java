@@ -14,7 +14,6 @@ public class DatabaseManager {
         try (Connection conn = connect();
              Statement stmt = conn.createStatement()) {
 
-            // Tabelle anlegen, wenn nicht vorhanden
             stmt.execute("""
                 CREATE TABLE IF NOT EXISTS eintraege (
                     id IDENTITY PRIMARY KEY,
@@ -25,7 +24,6 @@ public class DatabaseManager {
                 );
             """);
 
-            // Nur Beispieldaten einfügen, wenn Tabelle leer
             ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM eintraege");
             if (rs.next() && rs.getInt(1) == 0) {
                 stmt.executeUpdate("""
@@ -55,10 +53,7 @@ public class DatabaseManager {
     public static Connection connect() throws SQLException {
         return DriverManager.getConnection(DB_URL, USER, PASSWORD);
     }
-
-    /**
-     * Gibt für jede Kategorie (Haushalt, Freizeit usw.) eine Map von Monat → Betrag zurück.
-     */
+    
     public static Map<String, Map<String, Double>> getMonatsdaten(int jahr) {
         Map<String, Map<String, Double>> daten = new HashMap<>();
 
