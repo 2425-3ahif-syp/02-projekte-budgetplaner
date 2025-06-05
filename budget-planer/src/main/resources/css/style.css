@@ -18,4 +18,10 @@
     -fx-font-weight: bold;
 }
 
+.chart {
+    -fx-background-color: #f9f9f9;
+}
+.chart-plot-background {
+    -fx-background-color: white;
+}
 
