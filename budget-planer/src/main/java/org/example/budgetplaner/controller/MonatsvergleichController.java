@@ -9,6 +9,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import org.example.budgetplaner.database.DatabaseManager;
 
 import java.util.*;
 

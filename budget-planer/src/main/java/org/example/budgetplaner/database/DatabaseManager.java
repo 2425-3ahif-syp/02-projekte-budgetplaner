@@ -1,4 +1,4 @@
-package org.example.budgetplaner.controller;
+package org.example.budgetplaner.database;
 
 import java.sql.*;
 import java.util.HashMap;
