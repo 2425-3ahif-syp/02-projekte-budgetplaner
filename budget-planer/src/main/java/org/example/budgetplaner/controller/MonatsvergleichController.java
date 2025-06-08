@@ -3,14 +3,21 @@ package org.example.budgetplaner.controller;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.chart.*;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.layout.*;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import org.example.budgetplaner.database.DatabaseManager;
+import org.example.budgetplaner.util.Toast;
+
+import java.util.*;
 
 import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
@@ -18,76 +25,63 @@ public class MonatsvergleichController {
 
     public static VBox createUI(Stage primaryStage) {
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Einnahmen/Ausgaben pro Monat");
+        xAxis.setLabel("Monate");
 
-        NumberAxis yAxis = new NumberAxis(0, 3500, 500); // Min = 0, Max = 4000, Schritt = 500
-        yAxis.setLabel("Anzahl in €");
-
+        NumberAxis yAxis = new NumberAxis(0, 4000, 500);
+        yAxis.setLabel("Betrag (€)");
 
         BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
         barChart.setTitle("Monatsvergleich");
         barChart.setLegendVisible(false);
+        barChart.setAnimated(true);
 
-        // Datenserien
-        XYChart.Series<String, Number> haushalt = new XYChart.Series<>();
-        haushalt.setName("Haushalt");
-        haushalt.getData().add(new XYChart.Data<>("Jänner", 900));
-        haushalt.getData().add(new XYChart.Data<>("Februar", 1000));
+        Map<String, Map<String, Double>> daten = DatabaseManager.getMonatsdaten(2025);
 
-        XYChart.Series<String, Number> freizeit = new XYChart.Series<>();
-        freizeit.setName("Freizeit");
-        freizeit.getData().add(new XYChart.Data<>("Jänner", 300));
-        freizeit.getData().add(new XYChart.Data<>("Februar", 200));
-
-        XYChart.Series<String, Number> abos = new XYChart.Series<>();
-        abos.setName("Abos");
-        abos.getData().add(new XYChart.Data<>("Jänner", 80));
-        abos.getData().add(new XYChart.Data<>("Februar", 60));
-
-        XYChart.Series<String, Number> klamotten = new XYChart.Series<>();
-        klamotten.setName("Klamotten");
-        klamotten.getData().add(new XYChart.Data<>("Jänner", 250));
-        klamotten.getData().add(new XYChart.Data<>("Februar", 300));
-
-        XYChart.Series<String, Number> lebensmittel = new XYChart.Series<>();
-        lebensmittel.setName("Lebensmittel");
-        lebensmittel.getData().add(new XYChart.Data<>("Jänner", 200));
-        lebensmittel.getData().add(new XYChart.Data<>("Februar", 250));
-
-        XYChart.Series<String, Number> überschuss = new XYChart.Series<>();
-        überschuss.setName("Überschuss");
-        überschuss.getData().add(new XYChart.Data<>("Jänner", 950));
-        überschuss.getData().add(new XYChart.Data<>("Februar", 1400));
-
-        XYChart.Series<String, Number> einnahmen = new XYChart.Series<>();
-        einnahmen.setName("Einnahmen");
-        einnahmen.getData().add(new XYChart.Data<>("Jänner", 3000));
-        einnahmen.getData().add(new XYChart.Data<>("Februar", 3200));
-
-        barChart.getData().addAll(
-                haushalt,
-                freizeit,
-                abos,
-                klamotten,
-                lebensmittel,
-                überschuss,
-                einnahmen
+        Map<String, String> farben = Map.of(
+                "Haushalt",    "#40b4ff",
+                "Freizeit",    "#8e5dbf",
+                "Abos",        "#66c2ff",
+                "Klamotten",   "#a066a0",
+                "Lebensmittel","#3a7cb8",
+                "Überschuss",  "#63457f",
+                "Einnahmen",   "#6bdcff"
         );
 
-        // Manuelle Legende
+        List<HBox> legendenEintraege = new ArrayList<>();
+
+        for (String kategorie : daten.keySet()) {
+            XYChart.Series<String, Number> serie = new XYChart.Series<>();
+            serie.setName(kategorie);
+
+            Map<String, Double> monatswerte = daten.get(kategorie);
+            String farbe = farben.getOrDefault(kategorie, randomColor());
+
+            for (Map.Entry<String, Double> entry : monatswerte.entrySet()) {
+                XYChart.Data<String, Number> dataPoint = new XYChart.Data<>(entry.getKey(), entry.getValue());
+
+                dataPoint.nodeProperty().addListener((obs, oldNode, newNode) -> {
+                    if (newNode != null) {
+                        newNode.setStyle("-fx-bar-fill: " + farbe + ";");
+
+                        String tooltipText = entry.getKey() + ": " + entry.getValue() + " €";
+                        Tooltip.install(newNode, new Tooltip(tooltipText));
+                    }
+                });
+
+                serie.getData().add(dataPoint);
+            }
+
+            barChart.getData().add(serie);
+
+            legendenEintraege.add(createLegendItem(kategorie, farbe));
+        }
+
         HBox legend = new HBox(10);
         legend.setPadding(new Insets(10));
         legend.setAlignment(Pos.CENTER);
+        legend.getChildren().addAll(legendenEintraege);
 
-        legend.getChildren().addAll(
-                createLegendItem("Haushalt", "#40b4ff"),
-                createLegendItem("Freizeit", "#8e5dbf"),
-                createLegendItem("Abos", "#66c2ff"),
-                createLegendItem("Klamotten", "#a066a0"),
-                createLegendItem("Lebensmittel", "#3a7cb8"),
-                createLegendItem("Überschuss", "#63457f"),
-                createLegendItem("Einnahmen", "#6bdcff")
-        );
+        Toast.show(primaryStage, "Monatsvergleich erfolgreich geladen");
 
         return new VBox(legend, barChart);
     }
@@ -95,24 +89,28 @@ public class MonatsvergleichController {
     private static HBox createLegendItem(String name, String color) {
         Rectangle rect = new Rectangle(15, 15);
         rect.setFill(Paint.valueOf(color));
-        Label label = new Label(name);
+        javafx.scene.control.Label label = new javafx.scene.control.Label(name);
         HBox box = new HBox(5, rect, label);
         box.setAlignment(Pos.CENTER);
         return box;
     }
 
+    private static String randomColor() {
+        Random rand = new Random();
+        return String.format("#%06x", rand.nextInt(0xFFFFFF + 1));
+    }
+
     public static Scene createMonatsvergleichScene(Stage primaryStage) {
         BorderPane menuBar = createMenuBar(primaryStage);
-
 
         BorderPane root = new BorderPane();
         root.setTop(menuBar);
         root.setCenter(createUI(primaryStage));
 
         Scene scene = new Scene(root, 1000, 600);
-        scene.getStylesheets().add(MonatsvergleichController.class.getResource("/css/style.css").toExternalForm());
+        scene.getStylesheets().add(MonatsvergleichController.class
+                .getResource("/css/style.css")
+                .toExternalForm());
         return scene;
     }
 }
-
-
