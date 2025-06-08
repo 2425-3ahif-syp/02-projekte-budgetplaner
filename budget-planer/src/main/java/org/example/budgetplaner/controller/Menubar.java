@@ -2,7 +2,6 @@
 package org.example.budgetplaner.controller;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -15,18 +14,16 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.function.Consumer;
 
-
 public class Menubar {
-
-
 
     public static BorderPane createMenuBar(Stage primaryStage) {
         Button login = new Button("Account Information");
         Button budgetPlaner = new Button("Budget Planer");
         Button ausgaben = new Button("Ausgaben Übersicht");
         Button monatsVergleich = new Button("Monats Vergleich");
+        Button datenimport = new Button("Datenimport");
 
-        List<Button> menuButtons = List.of(login, budgetPlaner, ausgaben, monatsVergleich);
+        List<Button> menuButtons = List.of(login, budgetPlaner, ausgaben, monatsVergleich, datenimport);
 
         HBox menubar = new HBox();
         menubar.setSpacing(0);
@@ -56,50 +53,56 @@ public class Menubar {
             HBox.setHgrow(btn, Priority.ALWAYS);
         }
 
-        // Aktiver Button
-        Consumer<Button> setActiveButton = (activeBtn) -> {
-            for (Button btn : menuButtons) {
-                btn.getStyleClass().remove("active");
-                btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #333;");
-            }
-            activeBtn.getStyleClass().add("active");
-            activeBtn.setStyle("-fx-background-color: #aaccff; -fx-text-fill: black;");
-        };
+            Consumer<Button> setActiveButton = (activeBtn) -> {
+                for (Button btn : menuButtons) {
+                    btn.getStyleClass().remove("active");
+                    btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #333;");
+                }
+                activeBtn.getStyleClass().add("active");
+                activeBtn.setStyle("-fx-background-color: #aaccff; -fx-text-fill: black;");
+            };
 
-        // Aktionen
-        login.setOnAction(e -> {
-            Scene loginScene = new LoginController().createAccountScene(primaryStage, false);
-            primaryStage.setScene(loginScene);
-            primaryStage.show();
-            setActiveButton.accept(login);
-        });
+            // Aktionen
+            login.setOnAction(e -> {
+                Scene loginScene = new LoginController().createAccountScene(primaryStage, false);
+                primaryStage.setScene(loginScene);
+                primaryStage.show();
+                setActiveButton.accept(login);
+            });
 
-        budgetPlaner.setOnAction(e -> {
+            budgetPlaner.setOnAction(e -> {
             Scene budgetScene = new BudgetPlanerController().createBudgetPlanerScene(primaryStage);
             primaryStage.setScene(budgetScene);
             primaryStage.show();
             setActiveButton.accept(budgetPlaner);
-        });
+            });
 
-        ausgaben.setOnAction(e -> {
-            try {
-                Scene ausgabenScene = new AusgabenController().createAusgabenScene(primaryStage);
-                primaryStage.setScene(ausgabenScene);
-                primaryStage.show();
-                setActiveButton.accept(ausgaben);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
+            ausgaben.setOnAction(e -> {
+                    try {
+                        Scene ausgabenScene = new AusgabenController().createAusgabenScene(primaryStage);
+                        primaryStage.setScene(ausgabenScene);
+                        primaryStage.show();
+                        setActiveButton.accept(ausgaben);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+            });
 
-        monatsVergleich.setOnAction(e -> {
+            monatsVergleich.setOnAction(e -> {
             Scene vergleichScene = new MonatsvergleichController().createMonatsvergleichScene(primaryStage);
             primaryStage.setScene(vergleichScene);
             primaryStage.show();
             setActiveButton.accept(monatsVergleich);
+            });
+
+            datenimport.setOnAction(e -> {
+            Scene datenimportScene = new DatenimportController().createManualInputPane(primaryStage).getScene();
+            primaryStage.setScene(datenimportScene);
+            primaryStage.show();
+            setActiveButton.accept(monatsVergleich);
         });
 
-        menubar.getChildren().addAll(menuButtons);
+            menubar.getChildren().addAll(menuButtons);
 
         BorderPane root = new BorderPane();
         root.setTop(menubar);
@@ -108,6 +111,7 @@ public class Menubar {
     }
 
 }
+
 
 
 

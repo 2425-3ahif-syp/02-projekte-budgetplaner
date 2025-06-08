@@ -1,24 +1,40 @@
 package org.example.budgetplaner.controller;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class DatenimportController{
+import java.io.File;
+import java.util.List;
 
+import static org.example.budgetplaner.controller.Menubar.createMenuBar;
+
+public class DatenimportController {
 
     private BorderPane mainPane;
-    private VBox manualInputPane;
+    private BorderPane manualInputPane;
     private VBox dragDropPane;
 
+    public Parent createContent(Stage primaryStage) {
+        mainPane = new BorderPane();
 
-    void createManualInputPane(Stage primaryStage) {
+        // Initial Ansicht: manuelle Eingabe
+        manualInputPane = createManualInputPane(primaryStage);
+        dragDropPane = createDragDropPane(primaryStage);
+
+        mainPane.setCenter(manualInputPane);
+
+        return mainPane;
+    }
+
+    public BorderPane createManualInputPane(Stage primaryStage) {
+        BorderPane menuBar = createMenuBar(primaryStage);
         Label dateLabel = new Label("Datum:");
         TextField dateField = new TextField();
 
@@ -48,38 +64,75 @@ public class DatenimportController{
         contentBox.setPadding(new Insets(50));
         contentBox.setAlignment(Pos.CENTER);
 
-        manualInputPane = new VBox(contentBox);
+        BorderPane root = new BorderPane();
+        root.setTop(menuBar);
+        root.setCenter(contentBox);
+
+        return root;
     }
 
-    private void createDragDropPane() {
-        Label uploadLabel = new Label("Dokument mit\n Drag & Drop hochlade ");
-        uploadLabel.setStyle("-fx-border-color: black; -fx-border-style: dashed; -fx-padding: 60;-fx-alignment: center;");
-        uploadLabel.setPrefSize(300, 200);
-        uploadLabel.setAlignment(Pos.CENTER);
+    private VBox createDragDropPane(Stage primaryStage) {
+        BorderPane menuBar = createMenuBar(primaryStage);
+        VBox root = new VBox(10);
+        root.setPadding(new Insets(20));
+        root.setStyle("-fx-background-color: white;");
 
-        uploadLabel.setOnDragOver(event -> {
-            if (event.getGestureSource() != uploadLabel && event.getDragboard().hasFiles()) {
+        Label title = new Label("Dateien per Drag & Drop hochladen");
+        title.setStyle("-fx-font-size: 20; -fx-font-weight: bold;");
+
+        VBox dropZone = new VBox();
+        dropZone.setStyle("-fx-border-color: gray; -fx-border-style: dashed; -fx-padding: 40; -fx-alignment: center;");
+        Label dropLabel = new Label("Dateien hierher ziehen oder auswählen...");
+        dropZone.getChildren().add(dropLabel);
+
+        ListView<String> fileListView = new ListView<>();
+
+        dropZone.setOnDragOver(event -> {
+            if (event.getGestureSource() != dropZone && event.getDragboard().hasFiles()) {
                 event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
             }
             event.consume();
         });
 
-        uploadLabel.setOnDragDropped(event -> {
-            event.setDropCompleted(true);
+        dropZone.setOnDragDropped(event -> {
+            Dragboard db = event.getDragboard();
+            boolean success = false;
+            if (db.hasFiles()) {
+                for (File file : db.getFiles()) {
+                    fileListView.getItems().add(file.getName());
+                }
+                success = true;
+            }
+            event.setDropCompleted(success);
             event.consume();
         });
 
-        Button confirmButton = new Button("Bestätigen");
-        Button switchToManualButton = new Button("Manuelle Eingabe");
-        switchToManualButton.setOnAction(e -> mainPane.setCenter(manualInputPane));
+        Button chooseFileBtn = new Button("Dateien auswählen");
+        chooseFileBtn.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Dokumente", "*.pdf", "*.csv", "*.xlsx", "*.xls")
+            );
+            List<File> files = fileChooser.showOpenMultipleDialog(primaryStage);
+            if (files != null) {
+                for (File file : files) {
+                    fileListView.getItems().add(file.getName());
+                }
+            }
+        });
 
-        VBox rightBox = new VBox(10, confirmButton, switchToManualButton);
-        rightBox.setAlignment(Pos.CENTER);
+        Button submitBtn = new Button("Bestätigen");
+        submitBtn.setOnAction(e -> {
+            System.out.println("Hochgeladene Dateien:");
+            fileListView.getItems().forEach(System.out::println);
+        });
 
-        HBox dragBox = new HBox(60, uploadLabel, rightBox);
-        dragBox.setPadding(new Insets(50));
-        dragBox.setAlignment(Pos.CENTER);
+        Button switchToManualBtn = new Button("Manuell eingeben");
+        switchToManualBtn.setOnAction(e -> mainPane.setCenter(manualInputPane));
 
-        dragDropPane = new VBox(dragBox);
+        HBox bottomButtons = new HBox(10, switchToManualBtn, submitBtn);
+        root.getChildren().addAll(title, dropZone, chooseFileBtn, fileListView, bottomButtons);
+
+        return root;
     }
 }

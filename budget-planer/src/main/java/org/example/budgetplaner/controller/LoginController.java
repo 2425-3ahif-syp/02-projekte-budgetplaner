@@ -48,6 +48,7 @@ public class LoginController {
     public static Scene createAccountScene(Stage primaryStage, boolean editMode) {
         BorderPane menuBar = createMenuBar(primaryStage);
 
+
         GridPane formGrid = new GridPane();
         formGrid.setPadding(new Insets(40));
         formGrid.setVgap(15);
@@ -63,6 +64,7 @@ public class LoginController {
         TextField nameField = new TextField(gespeicherterName);
         nameField.setEditable(editMode);
         nameField.setStyle("-fx-padding: 8px; -fx-background-color: #ffffff; -fx-border-radius: 5px;");
+        nameField.setPrefWidth(200);
 
         Label geburtstagLabel = new Label("Geburtstag:");
         TextField geburtstagField = new TextField(gespeicherterGeburtstag);

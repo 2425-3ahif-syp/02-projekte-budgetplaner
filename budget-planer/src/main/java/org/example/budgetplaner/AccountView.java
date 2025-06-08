@@ -12,7 +12,7 @@ public class AccountView extends Application {
             primaryStage.setTitle("Account Verwaltung");
 
             LoginController loginView = new LoginController();
-            Scene loginScene = new Scene(loginView.createLoginView(primaryStage), 400, 300);
+            Scene loginScene = new Scene(LoginController.createLoginView(primaryStage), 400, 300);
             primaryStage.setScene(loginScene);
 
             primaryStage.show();
