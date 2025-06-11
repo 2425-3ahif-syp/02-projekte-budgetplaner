@@ -1,4 +1,4 @@
-package org.example.budgetplaner.database;
+package org.example.budgetplaner.databasepack.database;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -11,7 +11,7 @@ import static java.sql.DriverManager.getConnection;
 public class H2DatabaseExample {
 
 
-    private static final String URL = "jdbc:h2:./database/budgetDB";
+    private static final String URL = "jdbc:h2:./database/BudgetDB";
     private static final String USER = "sa";
     private static final String PASSWORD = "";
 
@@ -22,7 +22,9 @@ public class H2DatabaseExample {
     public static void main(String[] args) {
         try (Connection conn = getConnection()) {
             System.out.println("Verbindung erfolgreich hergestellt!");
-            // Weitere DB-Operationen hier durchführen
+            createTable(conn);       // Tabelle anlegen
+            insertFakeData(conn);    // Beispieldaten einfügen
+            System.out.println("Tabelle erstellt und Daten eingefügt!");
         } catch (SQLException e) {
             e.printStackTrace();
         }

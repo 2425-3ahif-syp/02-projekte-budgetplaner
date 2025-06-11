@@ -1,4 +1,4 @@
-package org.example.budgetplaner.database;
+package org.example.budgetplaner.databasepack.database;
 
 import java.sql.*;
 import java.util.HashMap;

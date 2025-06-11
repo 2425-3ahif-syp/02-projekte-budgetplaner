@@ -14,9 +14,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import org.example.budgetplaner.database.DatabaseManager;
+import org.example.budgetplaner.databasepack.database.DatabaseManager;
 import org.example.budgetplaner.util.Toast;
-
 import java.util.*;
 
 import static org.example.budgetplaner.controller.Menubar.createMenuBar;
