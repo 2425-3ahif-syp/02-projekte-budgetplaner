@@ -4,8 +4,6 @@ import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.MenuBar;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -13,8 +11,6 @@ import org.example.budgetplaner.database.H2DatabaseExample;
 
 import java.sql.*;
 import java.util.Map;
-
-import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
 public class AusgabenController {
 
