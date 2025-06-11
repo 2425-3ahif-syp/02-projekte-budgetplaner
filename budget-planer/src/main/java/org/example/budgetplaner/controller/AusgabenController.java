@@ -7,7 +7,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.budgetplaner.database.H2DatabaseExample;
+import org.example.budgetplaner.databasepack.database.H2DatabaseExample;
 
 import java.sql.*;
 import java.util.Map;

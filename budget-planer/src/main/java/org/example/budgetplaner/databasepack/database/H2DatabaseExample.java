@@ -11,7 +11,7 @@ import static java.sql.DriverManager.getConnection;
 public class H2DatabaseExample {
 
 
-    private static final String URL = "jdbc:h2:./database/BudgetDB";
+    private static final String URL = "../database/BudgetDB.db";
     private static final String USER = "sa";
     private static final String PASSWORD = "";
 
@@ -30,7 +30,7 @@ public class H2DatabaseExample {
         }
     }
 
-    private static void createTable(Connection conn) throws SQLException {
+    public static void createTable(Connection conn) throws SQLException {
         String sql = """
             CREATE TABLE IF NOT EXISTS transactions (
                 id IDENTITY PRIMARY KEY,
@@ -45,7 +45,7 @@ public class H2DatabaseExample {
         conn.createStatement().execute(sql);
     }
 
-    private static void insertFakeData(Connection conn) throws SQLException {
+    public static void insertFakeData(Connection conn) throws SQLException {
         String sql = """
             INSERT INTO transactions (datum, valuta, empfaenger, verwendungszweck, betrag, saldo)
             VALUES (?, ?, ?, ?, ?, ?)
