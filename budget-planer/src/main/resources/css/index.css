@@ -1,0 +1,68 @@
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-background-color: -fx-bg;
+    -fx-text-fill: -fx-text;
+}
+
+.light-mode {
+    -fx-bg: #f7f7f7;
+    -fx-card-bg: #ffffff;
+    -fx-input-bg: #ffffff;
+    -fx-border: #e0e0e0;
+    -fx-text: #222;
+    -fx-primary: #1976d2;
+}
+
+.dark-mode {
+    -fx-bg: #121212;
+    -fx-card-bg: #1e1e1e;
+    -fx-input-bg: #2a2a2a;
+    -fx-border: #333;
+    -fx-text: #e0e0e0;
+    -fx-primary: #90caf9;
+}
+
+.card {
+    -fx-background-color: -fx-card-bg;
+    -fx-background-radius: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);
+    -fx-padding: 24px;
+    -fx-spacing: 16px;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: -fx-text;
+}
+
+.text-field, .password-field {
+    -fx-background-color: -fx-input-bg;
+    -fx-background-radius: 8px;
+    -fx-border-color: -fx-border;
+    -fx-border-radius: 8px;
+    -fx-padding: 10px;
+    -fx-text-fill: -fx-text;
+}
+
+.button {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 16px;
+}
+
+.menu-bar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text;
+    -fx-font-size: 14px;
+}
+
+.menu-bar-button:hover {
+    -fx-background-color: rgba(0,0,0,0.05);
+}
+
+.active {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: white;
+}

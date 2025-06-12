@@ -3,6 +3,7 @@ package org.example.budgetplaner.controller;
 
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -28,87 +29,87 @@ public class Menubar {
         HBox menubar = new HBox();
         menubar.setSpacing(0);
         menubar.setPadding(new Insets(0));
-        menubar.setStyle("-fx-background-color: #cccccc; -fx-border-color: #999999; -fx-border-width: 0 0 1 0;");
+        menubar.setStyle("-fx-background-color: #f8c6cb; -fx-border-color: #f6ddde; -fx-border-width: 0 0 1 0;");
         menubar.setPrefHeight(50);
 
-        // Alle Buttons gleichmäßig verteilen
         for (Button btn : menuButtons) {
             btn.setMaxWidth(Double.MAX_VALUE);
             btn.setMinHeight(50);
             btn.setCursor(Cursor.HAND);
-            btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #333; -fx-font-size: 14px;");
+            btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #6a353f; -fx-font-size: 14px; -fx-font-weight: bold;");
 
-            // Hover-Effekt
             btn.setOnMouseEntered(e -> {
                 if (!btn.getStyleClass().contains("active")) {
-                    btn.setStyle("-fx-background-color: #e0e0e0; -fx-text-fill: #000;");
+                    btn.setStyle("-fx-background-color: #f7a1a3; -fx-text-fill: #4b2228; -fx-font-weight: bold;");
                 }
             });
             btn.setOnMouseExited(e -> {
                 if (!btn.getStyleClass().contains("active")) {
-                    btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #333;");
+                    btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #6a353f; -fx-font-weight: bold;");
                 }
             });
 
             HBox.setHgrow(btn, Priority.ALWAYS);
         }
 
-            Consumer<Button> setActiveButton = (activeBtn) -> {
-                for (Button btn : menuButtons) {
-                    btn.getStyleClass().remove("active");
-                    btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #333;");
-                }
-                activeBtn.getStyleClass().add("active");
-                activeBtn.setStyle("-fx-background-color: #aaccff; -fx-text-fill: black;");
-            };
+        Consumer<Button> setActiveButton = (activeBtn) -> {
+            for (Button btn : menuButtons) {
+                btn.getStyleClass().remove("active");
+                btn.setStyle("-fx-background-color: transparent; -fx-text-fill: #6a353f; -fx-font-weight: normal;");
+            }
+            activeBtn.getStyleClass().add("active");
+            activeBtn.setStyle("-fx-background-color: #f697a7; -fx-text-fill: white; -fx-font-weight: bold;");
+        };
 
-            // Aktionen
-            login.setOnAction(e -> {
-                Scene loginScene = new LoginController().createAccountScene(primaryStage, false);
-                primaryStage.setScene(loginScene);
-                primaryStage.show();
-                setActiveButton.accept(login);
-            });
 
-            budgetPlaner.setOnAction(e -> {
+        login.setOnAction(e -> {
+            Scene loginScene = new LoginController().createAccountScene(primaryStage, false);
+            primaryStage.setScene(loginScene);
+            primaryStage.show();
+            setActiveButton.accept(login);
+        });
+
+        budgetPlaner.setOnAction(e -> {
             Scene budgetScene = new BudgetPlanerController().createBudgetPlanerScene(primaryStage);
             primaryStage.setScene(budgetScene);
             primaryStage.show();
             setActiveButton.accept(budgetPlaner);
-            });
+        });
 
-            ausgaben.setOnAction(e -> {
-                    try {
-                        Scene ausgabenScene = new AusgabenController().createAusgabenScene(primaryStage);
-                        primaryStage.setScene(ausgabenScene);
-                        primaryStage.show();
-                        setActiveButton.accept(ausgaben);
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
-            });
+        ausgaben.setOnAction(e -> {
+            try {
+                Scene ausgabenScene = new AusgabenController().createAusgabenScene(primaryStage);
+                primaryStage.setScene(ausgabenScene);
+                primaryStage.show();
+                setActiveButton.accept(ausgaben);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
-            monatsVergleich.setOnAction(e -> {
+        monatsVergleich.setOnAction(e -> {
             Scene vergleichScene = new MonatsvergleichController().createMonatsvergleichScene(primaryStage);
             primaryStage.setScene(vergleichScene);
             primaryStage.show();
             setActiveButton.accept(monatsVergleich);
-            });
-
-            datenimport.setOnAction(e -> {
-            Scene datenimportScene = new DatenimportController().createManualInputPane(primaryStage).getScene();
-            primaryStage.setScene(datenimportScene);
-            primaryStage.show();
-            setActiveButton.accept(monatsVergleich);
         });
 
-            menubar.getChildren().addAll(menuButtons);
+        datenimport.setOnAction(e -> {
+            Parent datenimportRoot = new DatenimportController().createContent(primaryStage);
+            Scene datenimportScene = new Scene(datenimportRoot, 1000, 600);
+            primaryStage.setScene(datenimportScene);
+            primaryStage.show();
+            setActiveButton.accept(datenimport);
+        });
+
+        menubar.getChildren().addAll(menuButtons);
 
         BorderPane root = new BorderPane();
         root.setTop(menubar);
 
         return root;
     }
+
 
 }
 
