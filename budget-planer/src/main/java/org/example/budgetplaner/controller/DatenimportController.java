@@ -39,7 +39,10 @@ public class DatenimportController {
         Label dateLabel = new Label("Datum:");
         dateLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
         DatePicker datePicker = new DatePicker();
+        Label dateLabelsSpace = new Label("  ");
         datePicker.setPrefWidth(300);
+        dateLabelsSpace.setStyle("-fx-font-size: 14px;");
+
 
         Label amountLabel = new Label("Betrag:");
         amountLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
@@ -54,6 +57,8 @@ public class DatenimportController {
         categoryLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
         ComboBox<String> categoryBox = new ComboBox<>();
         categoryBox.setPrefWidth(300);
+        Label categoryLabelsSpace = new Label("  ");
+        dateLabelsSpace.setStyle("-fx-font-size: 14px;");
         categoryBox.setPromptText("Bitte wählen");
         categoryBox.getItems().addAll("Lebensmittel", "Freizeit", "Haushalt", "Kleidung");
 
@@ -74,7 +79,7 @@ public class DatenimportController {
 
         switchToDragDropButton.setOnAction(e -> mainPane.setCenter(dragDropPane));
 
-        HBox dateBox = new HBox(10, dateLabel, datePicker);
+        HBox dateBox = new HBox(10, dateLabel, datePicker, dateLabelsSpace);
         dateBox.setAlignment(Pos.CENTER);
 
         HBox amountInputBox = new HBox(10, amountField, euroLabel);
@@ -83,7 +88,7 @@ public class DatenimportController {
         HBox amountBox = new HBox(5, amountLabel, amountInputBox);
         amountBox.setAlignment(Pos.CENTER);
 
-        HBox categoryBoxContainer = new HBox(10, categoryLabel, categoryBox);
+        HBox categoryBoxContainer = new HBox(10, categoryLabel, categoryBox, categoryLabelsSpace);
         categoryBoxContainer.setAlignment(Pos.CENTER);
 
         VBox inputFieldsBox = new VBox(20, dateBox, amountBox, categoryBoxContainer);
@@ -91,6 +96,11 @@ public class DatenimportController {
 
         HBox buttonBox = new HBox(20, confirmButton, switchToDragDropButton);
         buttonBox.setAlignment(Pos.CENTER);
+
+        VBox contentBox = new VBox(25, inputFieldsBox, buttonBox);
+        contentBox.setAlignment(Pos.CENTER);
+        contentBox.setPadding(new Insets(60));
+
 
         VBox mainContent = new VBox(30, inputFieldsBox, buttonBox);
         mainContent.setAlignment(Pos.CENTER);

@@ -15,6 +15,7 @@ public class AccountView extends Application {
             Scene loginScene = new Scene(LoginController.createLoginView(primaryStage), 400, 300);
             primaryStage.setScene(loginScene);
 
+
             primaryStage.show();
 
         }

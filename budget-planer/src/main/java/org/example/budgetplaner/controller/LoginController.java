@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 
 import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
-
 public class LoginController {
 
     private static String gespeicherterName = "Max Mustermann";
@@ -22,6 +21,8 @@ public class LoginController {
     public static VBox createLoginView(Stage primaryStage) {
         VBox loginLayout = new VBox(10);
         loginLayout.setPadding(new Insets(20));
+        loginLayout.setAlignment(Pos.CENTER);
+        loginLayout.setStyle("-fx-background-color: #fff0f2;");
 
         Label userLabel = new Label("Benutzername:");
         TextField userField = new TextField();
@@ -33,6 +34,29 @@ public class LoginController {
         errorLabel.setStyle("-fx-text-fill: red;");
 
         Button loginButton = new Button("Login");
+        loginButton.setStyle("""
+            -fx-background-color: #f8c6cb;
+            -fx-text-fill: #6a353f;
+            -fx-font-weight: bold;
+            -fx-background-radius: 10;
+            -fx-padding: 10 20;
+        """);
+
+        loginButton.setOnMouseEntered(e -> loginButton.setStyle("""
+            -fx-background-color: #e3aeb0;
+            -fx-text-fill: #6a353f;
+            -fx-font-weight: bold;
+            -fx-background-radius: 10;
+            -fx-padding: 10 20;
+        """));
+        loginButton.setOnMouseExited(e -> loginButton.setStyle("""
+            -fx-background-color: #f8c6cb;
+            -fx-text-fill: #6a353f;
+            -fx-font-weight: bold;
+            -fx-background-radius: 10;
+            -fx-padding: 10 20;
+        """));
+
         loginButton.setOnAction(e -> {
             if (userField.getText().equals("Max Mustermann") && passField.getText().equals("geheim123")) {
                 primaryStage.setScene(createAccountScene(primaryStage, false));
@@ -48,7 +72,6 @@ public class LoginController {
     public static Scene createAccountScene(Stage primaryStage, boolean editMode) {
         BorderPane menuBar = createMenuBar(primaryStage);
 
-
         GridPane formGrid = new GridPane();
         formGrid.setPadding(new Insets(40));
         formGrid.setVgap(15);
@@ -59,29 +82,22 @@ public class LoginController {
         col2.setPercentWidth(60);
         formGrid.getColumnConstraints().addAll(col1, col2);
 
-
         Label nameLabel = new Label("Name:");
         TextField nameField = new TextField(gespeicherterName);
         nameField.setEditable(editMode);
-        nameField.setStyle("-fx-padding: 8px; -fx-background-color: #ffffff; -fx-border-radius: 5px;");
-        nameField.setPrefWidth(200);
 
         Label geburtstagLabel = new Label("Geburtstag:");
         TextField geburtstagField = new TextField(gespeicherterGeburtstag);
         geburtstagField.setEditable(editMode);
-        geburtstagField.setStyle("-fx-padding: 8px; -fx-background-color: #ffffff; -fx-border-radius: 5px;");
 
         Label emailLabel = new Label("E-Mail:");
         TextField emailField = new TextField(gespeicherteEmail);
         emailField.setEditable(editMode);
-        emailField.setStyle("-fx-padding: 8px; -fx-background-color: #ffffff; -fx-border-radius: 5px;");
 
         Label passwortLabel = new Label("Passwort:");
         PasswordField passwortField = new PasswordField();
         passwortField.setText(gespeichertesPasswort);
         passwortField.setEditable(editMode);
-        passwortField.setStyle("-fx-padding: 8px; -fx-background-color: #ffffff; -fx-border-radius: 5px;");
-
 
         ToggleGroup currencyGroup = new ToggleGroup();
         RadioButton euroButton = new RadioButton("€");
@@ -94,24 +110,39 @@ public class LoginController {
 
         HBox currencyBox = new HBox(10, euroButton, dollarButton);
 
-
-
-        Button actionButton;
-        if (editMode) {
-            actionButton = new Button("Speichern");
-            actionButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-padding: 10px 20px; -fx-border-radius: 5px;");
-            actionButton.setOnAction(e -> {
+        Button actionButton = new Button(editMode ? "Speichern" : "Bearbeiten");
+        actionButton.setOnAction(e -> {
+            if (editMode) {
                 gespeicherterName = nameField.getText();
                 gespeicherterGeburtstag = geburtstagField.getText();
                 gespeicherteEmail = emailField.getText();
                 gespeichertesPasswort = passwortField.getText();
-                primaryStage.setScene(createAccountScene(primaryStage, false));
-            });
-        } else {
-            actionButton = new Button("Bearbeiten");
-            actionButton.setStyle("-fx-background-color: #008CBA; -fx-text-fill: white; -fx-padding: 10px 20px; -fx-border-radius: 5px;");
-            actionButton.setOnAction(e -> primaryStage.setScene(createAccountScene(primaryStage, true)));
-        }
+            }
+            primaryStage.setScene(createAccountScene(primaryStage, !editMode));
+        });
+
+        String buttonStyle = """
+            -fx-background-color: #f8c6cb;
+            -fx-text-fill: #6a353f;
+            -fx-font-weight: bold;
+            -fx-background-radius: 10;
+            -fx-padding: 10 20;
+        """;
+
+        String buttonHoverStyle = """
+            -fx-background-color: #e3aeb0;
+            -fx-text-fill: #6a353f;
+            -fx-font-weight: bold;
+            -fx-background-radius: 10;
+            -fx-padding: 10 20;
+        """;
+
+        actionButton.setStyle(buttonStyle);
+        actionButton.setOnMouseEntered(e -> actionButton.setStyle(buttonHoverStyle));
+        actionButton.setOnMouseExited(e -> actionButton.setStyle(buttonStyle));
+
+        euroButton.setStyle(buttonStyle);
+        dollarButton.setStyle(buttonStyle);
 
         formGrid.add(nameLabel, 0, 0);
         formGrid.add(nameField, 1, 0);
@@ -132,18 +163,15 @@ public class LoginController {
         VBox imageBox = new VBox(imageView);
         imageBox.setAlignment(Pos.TOP_CENTER);
         imageBox.setPadding(new Insets(40, 20, 20, 30));
-        imageBox.setMaxWidth(Double.MAX_VALUE);
-
 
         HBox contentBox = new HBox(150, formGrid, imageBox);
         contentBox.setPadding(new Insets(20));
 
-
         BorderPane root = new BorderPane();
         root.setTop(menuBar);
         root.setCenter(contentBox);
+        root.setStyle("-fx-background-color: #fff0f2;");
 
         return new Scene(root, 1000, 600);
     }
-
 }
