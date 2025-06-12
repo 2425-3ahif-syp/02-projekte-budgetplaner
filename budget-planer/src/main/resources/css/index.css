@@ -1,68 +1,70 @@
-.root {
-    -fx-font-family: 'Segoe UI', sans-serif;
-    -fx-background-color: -fx-bg;
-    -fx-text-fill: -fx-text;
+.main-pane {
+    -fx-background-color: #f7f8fa;
 }
 
-.light-mode {
-    -fx-bg: #f7f7f7;
-    -fx-card-bg: #ffffff;
-    -fx-input-bg: #ffffff;
-    -fx-border: #e0e0e0;
-    -fx-text: #222;
-    -fx-primary: #1976d2;
+.bar-chart.main-pane {
+    -fx-background-color: #f7f8fa;
 }
 
-.dark-mode {
-    -fx-bg: #121212;
-    -fx-card-bg: #1e1e1e;
-    -fx-input-bg: #2a2a2a;
-    -fx-border: #333;
-    -fx-text: #e0e0e0;
-    -fx-primary: #90caf9;
+
+.manual-pane {
+    -fx-background-color: #fff0f2;
 }
 
-.card {
-    -fx-background-color: -fx-card-bg;
-    -fx-background-radius: 16px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);
-    -fx-padding: 24px;
-    -fx-spacing: 16px;
+.dragdrop-pane {
+    -fx-background-color: #fef7f8;
 }
 
-.label {
+.dragdrop-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #a55a66;
+}
+
+.drop-zone {
+    -fx-border-color: #f7c6c7;
+    -fx-border-style: dashed;
+    -fx-padding: 60;
+    -fx-alignment: center;
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(247,198,199,0.2), 10, 0, 0, 4);
+}
+
+.drop-zone-active {
+    -fx-border-color: #f7a1a3;
+    -fx-border-style: solid;
+    -fx-background-color: #ffe9ea;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(247,161,163,0.4), 15, 0, 0, 6);
+}
+
+.drop-label {
+    -fx-text-fill: #bb8891;
+    -fx-font-size: 16px;
+}
+
+.file-list {
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #f7c6c7;
+    -fx-background-color: #fff0f2;
+}
+
+.primary-button {
+    -fx-background-color: #f8c6cb;
+    -fx-text-fill: #6a353f;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 20 8 20;
     -fx-font-size: 14px;
-    -fx-text-fill: -fx-text;
 }
 
 .text-field, .password-field {
-    -fx-background-color: -fx-input-bg;
-    -fx-background-radius: 8px;
-    -fx-border-color: -fx-border;
-    -fx-border-radius: 8px;
-    -fx-padding: 10px;
-    -fx-text-fill: -fx-text;
-}
-
-.button {
-    -fx-background-color: -fx-primary;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-background-radius: 8px;
-    -fx-padding: 10px 16px;
-}
-
-.menu-bar-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: -fx-text;
-    -fx-font-size: 14px;
-}
-
-.menu-bar-button:hover {
-    -fx-background-color: rgba(0,0,0,0.05);
-}
-
-.active {
-    -fx-background-color: -fx-primary;
-    -fx-text-fill: white;
+    -fx-padding: 8px;
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 5px;
+    -fx-font-length: 14px;
 }

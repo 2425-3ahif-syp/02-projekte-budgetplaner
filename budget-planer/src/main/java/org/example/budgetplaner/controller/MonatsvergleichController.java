@@ -34,6 +34,11 @@ public class MonatsvergleichController {
         barChart.setLegendVisible(false);
         barChart.setAnimated(true);
 
+        barChart.setStyle("-fx-background-color: transparent;");
+        barChart.getStyleClass().add("main-pane");
+
+
+
         Map<String, Map<String, Double>> daten = DatabaseManager.getMonatsdaten(2025);
 
         Map<String, String> farben = Map.of(
@@ -107,9 +112,7 @@ public class MonatsvergleichController {
         root.setCenter(createUI(primaryStage));
 
         Scene scene = new Scene(root, 1000, 600);
-        scene.getStylesheets().add(MonatsvergleichController.class
-                .getResource("/css/style.css")
-                .toExternalForm());
+        scene.getStylesheets().add(MonatsvergleichController.class.getResource("/css/index.css").toExternalForm());
         return scene;
     }
 }

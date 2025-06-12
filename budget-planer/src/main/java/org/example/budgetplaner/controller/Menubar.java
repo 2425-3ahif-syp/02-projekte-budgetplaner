@@ -97,6 +97,7 @@ public class Menubar {
         datenimport.setOnAction(e -> {
             Parent datenimportRoot = new DatenimportController().createContent(primaryStage);
             Scene datenimportScene = new Scene(datenimportRoot, 1000, 600);
+            datenimportScene.getStylesheets().add(Menubar.class.getResource("/css/index.css").toExternalForm());
             primaryStage.setScene(datenimportScene);
             primaryStage.show();
             setActiveButton.accept(datenimport);

@@ -17,6 +17,8 @@ public class DatenimportView extends Application {
 
         DatenimportController controller = new DatenimportController();
         Scene scene = new Scene(controller.createContent(primaryStage), 1000, 600);
+        scene.getStylesheets().add(getClass().getResource("/css/index.css").toExternalForm());
+
 
         primaryStage.setScene(scene);
         primaryStage.show();
