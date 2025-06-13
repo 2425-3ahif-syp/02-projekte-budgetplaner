@@ -9,8 +9,11 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.example.budgetplaner.databasepack.database.Database;
+import org.example.budgetplaner.databasepack.database.transactions.TransactionRepository;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.example.budgetplaner.controller.Menubar.createMenuBar;
@@ -80,6 +83,38 @@ public class DatenimportController {
 
         HBox buttonBox = new HBox(20, confirmButton, switchToDragDropButton);
         buttonBox.setAlignment(Pos.CENTER_LEFT);
+
+        ToggleGroup typeGroup = new ToggleGroup();
+        RadioButton incomeBtn = new RadioButton("Einnahme");
+        RadioButton expenseBtn = new RadioButton("Ausgabe");
+        incomeBtn.setToggleGroup(typeGroup);
+        expenseBtn.setToggleGroup(typeGroup);
+        incomeBtn.setSelected(true);
+
+        HBox typeBox = new HBox(10, incomeBtn, expenseBtn);
+        typeBox.setAlignment(Pos.CENTER_LEFT);
+
+        formGrid.add(new Label("Typ:"), 1, 3);
+        formGrid.add(typeBox, 2, 3);
+        formGrid.setStyle("-fx-font-weight: bold;");
+
+        confirmButton.setOnAction(e -> {
+            LocalDate date = datePicker.getValue();
+            String amountText = amountField.getText().replace(" ", "").replace(",", ".");
+            String category = categoryBox.getValue();
+            boolean isIncome = incomeBtn.isSelected();
+
+
+            try {
+                double amount = Double.parseDouble(amountText);
+                TransactionRepository.saveTransaction(date, amount, category, isIncome);
+                amountField.clear();
+                categoryBox.getSelectionModel().clearSelection();
+                datePicker.setValue(null);
+            } catch (NumberFormatException ex) {
+                ex.printStackTrace();
+            }
+        });
 
 
         formGrid.add(dateLabel, 1, 5);
