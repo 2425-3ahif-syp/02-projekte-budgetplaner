@@ -2,10 +2,8 @@ package org.example.budgetplaner.databasepack.database;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.Properties;
 
 public class Database {
@@ -26,6 +24,7 @@ public class Database {
             e.printStackTrace();
         }
     }
+
 
     private void loadProperties() {
         Properties prop = new Properties();
