@@ -50,4 +50,41 @@ public class BudgetReposetory {
         }
         return budgetList;
     }
+    public List<Integer> getLatestYearAndMonth() {
+        List<Integer> result = new ArrayList<>();
+        String sql = "SELECT jahr, MAX(monat) as max_monat FROM budget WHERE jahr = (SELECT MAX(jahr) FROM budget) GROUP BY jahr";
+        try (var stmt = connection.createStatement();
+             var rs = stmt.executeQuery(sql)) {
+            if (rs.next()) {
+                int year = rs.getInt("jahr");
+                int month = rs.getInt("max_monat");
+                result.add(year);
+                result.add(month);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public List<BudgetModel> getBudgetModelsByMonthAndYear(int month, int year) {
+        List<BudgetModel> budgetList = new ArrayList<>();
+        String sql = "SELECT * FROM budget WHERE monat = ? AND jahr = ?";
+        try (var pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, month);
+            pstmt.setInt(2, year);
+            var rs = pstmt.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString("id");
+                Float betrag = rs.getFloat("betrag");
+                int monat = rs.getInt("monat");
+                int jahr = rs.getInt("jahr");
+                int kategorieId = rs.getInt("kategorie_id");
+                budgetList.add(new BudgetModel(id, betrag, monat, jahr, kategorieId));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return budgetList;
+    }
 }

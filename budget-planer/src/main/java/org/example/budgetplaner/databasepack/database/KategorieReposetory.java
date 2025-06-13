@@ -48,7 +48,7 @@ public class KategorieReposetory {
         return kategorieList;
     }
 
-    public int getKategoryIdByName(String name) {
+    public int getCategoryIdByName(String name) {
         String sql = "SELECT id FROM kategorie WHERE name = ?";
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, name);
@@ -60,5 +60,18 @@ public class KategorieReposetory {
             e.printStackTrace();
         }
         return 7;
+    }
+    public String getCategoryNameById(int id) {
+        String sql = "SELECT name FROM kategorie WHERE id = ?";
+        try (var pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            var rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("name");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
