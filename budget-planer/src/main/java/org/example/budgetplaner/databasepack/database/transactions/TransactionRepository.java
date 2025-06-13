@@ -93,4 +93,43 @@ public class TransactionRepository {
             throw new RuntimeException("Fehler beim Löschen aller Transaktionen: " + e.getMessage(), e);
         }
     }
+
+    public List<Transactions> findByMonth(int month, int year) {
+        List<Transactions> transactions = new ArrayList<>();
+        String sql = "SELECT * FROM transactions WHERE MONTH(date) = ? AND YEAR(date) = ? ORDER BY date DESC";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, month);
+            pstmt.setInt(2, year);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Transactions t = new Transactions(
+                            rs.getLong("id"),
+                            rs.getDate("date").toLocalDate(),
+                            rs.getDouble("amount"),
+                            rs.getInt("category_id"),
+                            rs.getString("type")
+                    );
+                    transactions.add(t);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Fehler beim Abrufen der Transaktionen: " + e.getMessage(), e);
+        }
+
+        return transactions;
+    }
+
+    public boolean existsByMonthAndYear(int month, int year) {
+        String sql = "SELECT 1 FROM transactions WHERE MONTH(date) = ? AND YEAR(date) = ? LIMIT 1";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, month);
+            pstmt.setInt(2, year);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Fehler beim Überprüfen des Monats: " + e.getMessage(), e);
+        }
+    }
 }
