@@ -1,7 +1,6 @@
 package org.example.budgetplaner.databasepack.database.transactions;
 
 import org.example.budgetplaner.databasepack.database.transactions.Transactions;
-import org.h2.mvstore.tx.Transaction;
 
 
 import java.sql.*;
@@ -50,8 +49,8 @@ public class TransactionRepository {
         }
     }
 
-    public List<Transaction> findAll() {
-        List<Transaction> transactions = new ArrayList<>();
+    public List<Transactions> findAll() {
+        List<Transactions> transactions = new ArrayList<>();
         String sql = "SELECT * FROM transactions ORDER BY date DESC";
 
         try (Statement stmt = connection.createStatement();

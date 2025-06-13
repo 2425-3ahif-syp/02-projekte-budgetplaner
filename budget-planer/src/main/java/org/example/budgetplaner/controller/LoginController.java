@@ -142,9 +142,15 @@ public class LoginController {
         Image image = profilBildPfad != null
                 ? new Image(profilBildPfad, true)
                 : new Image("file:images/profile.png", true);
+
         ImageView imageView = new ImageView(image);
-        imageView.setPreserveRatio(true);
         imageView.setFitWidth(250);
+        imageView.setFitHeight(250);
+        imageView.setPreserveRatio(false);
+
+        javafx.scene.shape.Circle clip = new javafx.scene.shape.Circle(120, 110, 110); 
+        imageView.setClip(clip);
+
 
         VBox imageBox = new VBox(10, imageView);
         imageBox.setAlignment(Pos.TOP_CENTER);
@@ -176,7 +182,6 @@ public class LoginController {
         root.setCenter(contentBox);
         root.getStyleClass().add("manual-pane");
 
-        // SCENE mit Stylesheet
         Scene scene = new Scene(root, 1000, 600);
         scene.getStylesheets().add(LoginController.class.getResource("/css/index.css").toExternalForm());
 
