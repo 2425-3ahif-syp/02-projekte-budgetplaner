@@ -7,7 +7,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.example.budgetplaner.databasepack.database.H2DatabaseExample;
+import org.example.budgetplaner.databasepack.database.Database;
 
 import java.sql.*;
 import java.util.Map;
@@ -17,7 +17,7 @@ public class AusgabenController {
     private static Connection connection;
 
     public AusgabenController() throws SQLException {
-        this.connection = H2DatabaseExample.getConnection();
+        this.connection = Database.getConnection();
     }
 
     private static String[] getValuesFromDB(String query) throws SQLException {

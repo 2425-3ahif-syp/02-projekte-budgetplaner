@@ -20,12 +20,14 @@ import org.example.budgetplaner.databasepack.database.transactions.TransactionRe
 import org.example.budgetplaner.databasepack.database.transactions.Transactions;
 import org.example.budgetplaner.util.Toast;
 
+import java.sql.Connection;
 import java.util.*;
 
 import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
 public class MonatsvergleichController {
-    private static TransactionRepository transactionRepository = new TransactionRepository();
+    private static Connection connection;
+    private static TransactionRepository transactionRepository = new TransactionRepository(connection);
     private static KategorieReposetory kategorieReposetory = new KategorieReposetory();
 
     public static VBox createUI(Stage primaryStage) {
