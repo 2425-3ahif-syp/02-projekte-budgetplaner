@@ -48,4 +48,17 @@ public class KategorieReposetory {
         return kategorieList;
     }
 
+    public int getKategoryIdByName(String name) {
+        String sql = "SELECT id FROM kategorie WHERE name = ?";
+        try (var pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, name);
+            var rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 7;
+    }
 }
