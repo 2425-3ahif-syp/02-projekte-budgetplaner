@@ -110,7 +110,8 @@ public class Database {
                 "INSERT INTO Categorys (name) VALUES ('Freizeit');",
                 "INSERT INTO Categorys (name) VALUES ('Abos');",
                 "INSERT INTO Categorys (name) VALUES ('Kleidung');",
-                "INSERT INTO Categorys (name) VALUES ('Lebensmittel');"
+                "INSERT INTO Categorys (name) VALUES ('Lebensmittel');",
+                "INSERT INTO Categorys (name) VALUES ('Sonstiges');"
         };
 
 

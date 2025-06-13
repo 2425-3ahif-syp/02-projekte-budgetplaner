@@ -20,14 +20,14 @@ public class TransactionRepository {
 
     private void createTableIfNotExists() {
         String sql = """
-            CREATE TABLE IF NOT EXISTS transactions (
-                id IDENTITY PRIMARY KEY,
-                date DATE NOT NULL,
-                amount DOUBLE NOT NULL,
-                category VARCHAR(255),
-                type VARCHAR(10) -- "income" or "expense"
-            );
-        """;
+                    CREATE TABLE IF NOT EXISTS transactions (
+                        id IDENTITY PRIMARY KEY,
+                        date DATE NOT NULL,
+                        amount DOUBLE NOT NULL,
+                        categorie_id INTEGER NOT NULL,
+                        type VARCHAR(10) -- "income" or "expense"
+                    );
+                """;
 
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
@@ -62,7 +62,7 @@ public class TransactionRepository {
                         rs.getLong("id"),
                         rs.getDate("date").toLocalDate(),
                         rs.getDouble("amount"),
-                        rs.getString("category"),
+                        rs.getInt("category_id"),
                         rs.getString("type")
                 );
 
