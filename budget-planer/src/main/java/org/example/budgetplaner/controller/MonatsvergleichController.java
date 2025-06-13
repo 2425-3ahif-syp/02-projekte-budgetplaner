@@ -34,8 +34,7 @@ public class MonatsvergleichController {
         barChart.setLegendVisible(false);
         barChart.setAnimated(true);
 
-        barChart.setStyle("-fx-background-color: transparent;");
-        barChart.getStyleClass().add("main-pane");
+        barChart.setStyle("-fx-background-color: #ffe9ea;");
 
 
 
@@ -56,6 +55,7 @@ public class MonatsvergleichController {
         for (String kategorie : daten.keySet()) {
             XYChart.Series<String, Number> serie = new XYChart.Series<>();
             serie.setName(kategorie);
+
 
             Map<String, Double> monatswerte = daten.get(kategorie);
             String farbe = farben.getOrDefault(kategorie, randomColor());
@@ -96,6 +96,7 @@ public class MonatsvergleichController {
         javafx.scene.control.Label label = new javafx.scene.control.Label(name);
         HBox box = new HBox(5, rect, label);
         box.setAlignment(Pos.CENTER);
+        box.getStyleClass().add("main-pane");
         return box;
     }
 
@@ -110,6 +111,7 @@ public class MonatsvergleichController {
         BorderPane root = new BorderPane();
         root.setTop(menuBar);
         root.setCenter(createUI(primaryStage));
+        root.getStyleClass().add("main-pane");
 
         Scene scene = new Scene(root, 1000, 600);
         scene.getStylesheets().add(MonatsvergleichController.class.getResource("/css/index.css").toExternalForm());

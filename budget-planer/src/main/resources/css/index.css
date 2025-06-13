@@ -1,22 +1,25 @@
 .main-pane {
-    -fx-background-color: #f7f8fa;
+    -fx-background-color: #ffe9ea;
 }
 
 .bar-chart.main-pane {
-    -fx-background-color: #f7f8fa;
+    -fx-background-color: #ffe9ea;
 }
 
+.vbox.main-pane {
+    -fx-background-color: #ffe9ea;
+}
 
 .manual-pane {
-    -fx-background-color: #fff0f2;
+    -fx-background-color:#ffe9ea;
 }
 
 .dragdrop-pane {
-    -fx-background-color: #fef7f8;
+    -fx-background-color: #ffe9ea;
 }
 
 .dragdrop-title {
-    -fx-font-size: 24px;
+    -fx-font-size: 12px;
     -fx-font-weight: bold;
     -fx-text-fill: #a55a66;
 }

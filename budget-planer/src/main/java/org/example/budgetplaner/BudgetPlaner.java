@@ -43,6 +43,9 @@ public class BudgetPlaner extends Application {
 
 
         Scene scene = new Scene(root, 1000, 600);
+
+        scene.getStylesheets().add(getClass().getResource("/css/index.css").toExternalForm());
+
         stage.setTitle("Budget Planer");
         stage.setScene(scene);
         stage.show();

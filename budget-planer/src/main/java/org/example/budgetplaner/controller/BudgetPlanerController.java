@@ -37,7 +37,7 @@ public class BudgetPlanerController {
         pieChart.setLabelsVisible(true);
         pieChart.setLegendSide(javafx.geometry.Side.TOP);
         pieChart.setPrefWidth(400);
-
+        pieChart.getStyleClass().add("main-pane");
         return pieChart;
     }
 
@@ -53,7 +53,6 @@ public class BudgetPlanerController {
                 new PieChart.Data(ergebnisTyp, kategorieProzente.get(5))
         );
 
-        // Prozentwerte im Chart anzeigen
         pieChart.getData().forEach(data ->
                 data.nameProperty().bind(
                         Bindings.concat(data.getName(), ": ", data.pieValueProperty().asString("%.0f %%"))
@@ -67,15 +66,18 @@ public class BudgetPlanerController {
 
         String[] kategorien = {"Einnahmen", "Haushalt", "Freizeit", "Abos", "Klamotten", "Lebensmittel", "Überschuss"};
 
+
         for (String kategorie : kategorien) {
             HBox hbox = new HBox(10);
             hbox.setAlignment(Pos.CENTER_LEFT);
 
             Label label = new Label(kategorie + ":");
             label.setPrefWidth(100);
+            label.getStyleClass().add("-fx-font-weight: bold;");
 
             TextField textField = new TextField();
             textField.setPrefWidth(100);
+            textField.getStyleClass().add("text-field");
 
             textFieldMap.put(kategorie, textField);
 
@@ -85,7 +87,9 @@ public class BudgetPlanerController {
 
         Button enterButton = new Button("Enter");
         enterButton.setOnAction(BudgetPlanerController::saveInputValues);
+        enterButton.getStyleClass().add("primary-button");
         eingaben.getChildren().add(enterButton);
+
 
         return eingaben;
     }
@@ -131,10 +135,17 @@ public class BudgetPlanerController {
 
         BorderPane root = new BorderPane();
         root.setTop(menuBar);
+        root.getStyleClass().add("main-pane");
         root.setCenter(BudgetPlanerController.createPieChart());
         root.setRight(BudgetPlanerController.createInputFields());
 
-        return new Scene(root, 1000, 600);
+        Scene scene = new Scene(root, 1000, 600);
+
+        scene.getStylesheets().add(
+                BudgetPlanerController.class.getResource("/css/index.css").toExternalForm()
+        );
+
+        return scene;
 
     }
 }
