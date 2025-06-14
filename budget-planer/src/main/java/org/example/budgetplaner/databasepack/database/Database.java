@@ -122,6 +122,23 @@ public class Database {
                 "INSERT INTO Categorys (name) VALUES ('Lebensmittel');",
                 "INSERT INTO Categorys (name) VALUES ('Sonstiges');"
         };
+        String[] insertTransactions = {
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-06-01', 2500.00, 1, 'income');",
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-06-02', 300.00, 2, 'expense');",
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-06-03', 120.00, 3, 'expense');",
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-06-04', 15.99, 4, 'expense');",
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-06-05', 80.00, 5, 'expense');",
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-06-06', 200.00, 6, 'expense');",
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-06-07', 50.00, 7, 'expense');",
+
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-05-01', 2500.00, 1, 'income');",
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-05-02', 300.00, 2, 'expense');",
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-05-03', 120.00, 3, 'expense');",
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-05-04', 15.99, 4, 'expense');",
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-05-05', 80.00, 5, 'expense');",
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-05-06', 200.00, 6, 'expense');",
+                "INSERT INTO transactions (date, amount, categorie_id, type) VALUES ('2025-05-07', 50.00, 7, 'expense');"
+        };
 
 
         try (Statement stmt = connection.createStatement()) {
@@ -134,7 +151,11 @@ public class Database {
             for (String category : insertCategories) {
                 stmt.execute(category);
             }
+            for (String transaction : insertTransactions) {
+                stmt.execute(transaction);
+            }
             */
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

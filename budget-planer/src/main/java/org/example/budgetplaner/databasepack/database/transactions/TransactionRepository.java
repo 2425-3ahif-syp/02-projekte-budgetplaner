@@ -113,7 +113,7 @@ public class TransactionRepository {
                             rs.getLong("id"),
                             rs.getDate("date").toLocalDate(),
                             rs.getDouble("amount"),
-                            rs.getInt("category_id"),
+                            rs.getInt("categorie_id"),
                             rs.getString("type")
                     );
                     transactions.add(t);
@@ -125,6 +125,7 @@ public class TransactionRepository {
 
         return transactions;
     }
+
 
     public boolean existsByMonthAndYear(int month, int year) {
         String sql = "SELECT 1 FROM transactions WHERE EXTRACT(MONTH FROM date) = ? AND EXTRACT(YEAR FROM date) = ? LIMIT 1";
