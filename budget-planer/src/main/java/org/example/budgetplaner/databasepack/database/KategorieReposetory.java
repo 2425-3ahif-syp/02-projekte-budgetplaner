@@ -13,7 +13,7 @@ public class KategorieReposetory {
     }
 
     public void createNewKategorie(String name) {
-        String sql = "INSERT INTO kategorie (name) VALUES (?)";
+        String sql = "INSERT INTO CATEGORYS (name) VALUES (?)";
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, name);
             pstmt.executeUpdate();
@@ -23,7 +23,7 @@ public class KategorieReposetory {
     }
 
     public void deleteKategorie(int id) {
-        String sql = "DELETE FROM kategorie WHERE id = ?";
+        String sql = "DELETE FROM CATEGORYS WHERE id = ?";
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
@@ -33,7 +33,7 @@ public class KategorieReposetory {
     }
 
     public List<KategorieModel> getCategories() {
-        String sql = "SELECT * FROM kategorie";
+        String sql = "SELECT * FROM CATEGORYS";
         List<KategorieModel> kategorieList = new java.util.ArrayList<>();
         try (var stmt = connection.createStatement();
              var rs = stmt.executeQuery(sql)) {
@@ -49,7 +49,7 @@ public class KategorieReposetory {
     }
 
     public int getCategoryIdByName(String name) {
-        String sql = "SELECT id FROM kategorie WHERE name = ?";
+        String sql = "SELECT id FROM CATEGORYS WHERE name = ?";
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, name);
             var rs = pstmt.executeQuery();
@@ -62,7 +62,7 @@ public class KategorieReposetory {
         return 7;
     }
     public String getCategoryNameById(int id) {
-        String sql = "SELECT name FROM kategorie WHERE id = ?";
+        String sql = "SELECT name FROM CATEGORYS WHERE id = ?";
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             var rs = pstmt.executeQuery();

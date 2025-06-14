@@ -1,5 +1,6 @@
 package org.example.budgetplaner.databasepack.database.transactions;
 
+import org.example.budgetplaner.databasepack.database.Database;
 import org.example.budgetplaner.databasepack.database.transactions.Transactions;
 
 
@@ -10,35 +11,41 @@ import java.util.List;
 
 public class TransactionRepository {
 
-    private static Connection connection;
+    private final Connection connection;
 
+    /*
     public TransactionRepository(Connection connection) {
         this.connection = connection;
         createTableIfNotExists();
+    }*/
+
+    public TransactionRepository() {
+        this.connection = Database.getInstance().getConnection();
     }
 
-    private void createTableIfNotExists() {
-        String sql = """
-                    CREATE TABLE IF NOT EXISTS transactions (
-                        id IDENTITY PRIMARY KEY,
-                        date DATE NOT NULL,
-                        amount DOUBLE NOT NULL,
-                        categorie_id INTEGER NOT NULL,
-                        type VARCHAR(10) -- "income" or "expense"
-                    );
-                """;
+    /*
+        private void createTableIfNotExists() {
+            String sql = """
+                        CREATE TABLE IF NOT EXISTS transactions (
+                            id IDENTITY PRIMARY KEY,
+                            date DATE NOT NULL,
+                            amount DOUBLE NOT NULL,
+                            categorie_id INTEGER NOT NULL,
+                            type VARCHAR(10) -- "income" or "expense"
+                        );
+                    """;
 
-        try (Statement stmt = connection.createStatement()) {
-            stmt.execute(sql);
-        } catch (SQLException e) {
-            throw new RuntimeException("Fehler beim Erstellen der Tabelle: " + e.getMessage(), e);
+            try (Statement stmt = connection.createStatement()) {
+                stmt.execute(sql);
+            } catch (SQLException e) {
+                throw new RuntimeException("Fehler beim Erstellen der Tabelle: " + e.getMessage(), e);
+            }
         }
-    }
-
-    public static void saveTransaction(LocalDate date, double amount, String category, boolean isIncome) {
+    */
+    public void saveTransaction(LocalDate date, double amount, String category, boolean isIncome) {
         String sql = "INSERT INTO transactions (date, amount, category, type) VALUES (?, ?, ?, ?)";
 
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setDate(1, Date.valueOf(date));
             pstmt.setDouble(2, amount);
             pstmt.setString(3, category);
@@ -120,7 +127,7 @@ public class TransactionRepository {
     }
 
     public boolean existsByMonthAndYear(int month, int year) {
-        String sql = "SELECT 1 FROM transactions WHERE MONTH(date) = ? AND YEAR(date) = ? LIMIT 1";
+        String sql = "SELECT 1 FROM transactions WHERE EXTRACT(MONTH FROM date) = ? AND EXTRACT(YEAR FROM date) = ? LIMIT 1";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, month);
             pstmt.setInt(2, year);

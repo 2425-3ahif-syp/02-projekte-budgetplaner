@@ -29,7 +29,6 @@ public class Database {
     private void loadProperties() {
         Properties prop = new Properties();
 
-        // Load properties file
         try (InputStream input = getClass().getClassLoader().getResourceAsStream("database.properties")) {
             if (input == null) {
                 System.out.println("Error: File 'database.properties' not found.");
@@ -37,7 +36,7 @@ public class Database {
             }
 
             prop.load(input);
-            url = "jdbc:h2:tcp://localhost:%s/./%s".formatted(prop.getProperty("port"), prop.getProperty("database"));
+            url = prop.getProperty("url");
             username = prop.getProperty("username");
             password = prop.getProperty("password");
 
@@ -63,7 +62,7 @@ public class Database {
 
     private void initialize() {
 
-        String createTransactionTable = "   CREATE TABLE IF NOT EXISTS transactions (\n" +
+       /* String createTransactionTable = "   CREATE TABLE IF NOT EXISTS transactions (\n" +
                 "                id INT AUTO_INCREMENT PRIMARY KEY," +
                 "                datum DATE,\n" +
                 "                valuta DATE,\n" +
@@ -71,38 +70,48 @@ public class Database {
                 "                verwendungszweck VARCHAR(255),\n" +
                 "                betrag DECIMAL(10,2),\n" +
                 "                saldo DECIMAL(10,2)\n" +
-                "            )";
+                "            )";*/
 
-        String createUserTable = "CREATE TABLE IF NOT EXISTS users (\n" +
-                "                id PRIMARY AUTIINCREAMENT KEY,\n" +
-                "                username VARCHAR(255)  NOT NULL,\n" +
-                "                full_name  VARCHAR(255),\n" +
-                "                password VARCHAR(255) NOT NULL,\n" +
-                "                email VARCHAR(200)" +
-                "            )";// Profile picture and Birthday adden
+        String createTransactionTable = "CREATE TABLE IF NOT EXISTS transactions (" +
+                "id IDENTITY PRIMARY KEY," +
+                "date DATE NOT NULL," +
+                "amount REAL NOT NULL," +
+                "categorie_id INTEGER NOT NULL," +
+                "type VARCHAR(10)" + // \"income\" or \"expense\"
+                ");";
 
-        String createBudgetTable = "CREATE TABLE IF NOT EXISTS budget (\n" +
-                "                id INT AUTO_INCREMENT PRIMARY KEY," +
-                "                betrag DECIMAL(10,2) NOT NULL,\n" +
-                "                monat INT NOT NULL,\n" +
-                "                jahr INT NOT NULL\n" +
-                "                kategorie_id INTEGER NOT NULL,\n" +
-                "                FOREIGN KEY (kategorie_id) REFERENCES Categorys(id)" +
-                "            )";
+        String createUserTable = "CREATE TABLE IF NOT EXISTS users (" +
+                "id INT AUTO_INCREMENT PRIMARY KEY," +
+                "username VARCHAR(255) NOT NULL," +
+                "full_name VARCHAR(255)," +
+                "password VARCHAR(255) NOT NULL," +
+                "email VARCHAR(200)," +
+                "profile_picture VARCHAR(255)," +
+                "birthday DATE" +
+                ");";
 
-        String createCashFlowTable = "CREATE TABLE IF NOT EXISTS cash_flow (\n" +
-                "                id INT AUTO_INCREMENT PRIMARY KEY," +
-                "                datum DATE NOT NULL,\n" +
-                "                betrag DECIMAL(10,2) NOT NULL,\n" +
-                "                kategorie_id INTEGER NOT NULL,\n" +
-                "                FOREIGN KEY (kategorie_id) REFERENCES Categorys(id)" +
-                "                type VARCHAR(255)\n" +
-                "            )";
+        String createKategorienTable = "CREATE TABLE IF NOT EXISTS Categorys (" +
+                "id INT AUTO_INCREMENT PRIMARY KEY," +
+                "name VARCHAR(255) NOT NULL" +
+                ");";
 
-        String createKategorienTable = "CREATE TABLE IF NOT EXISTS Categorys (\n" +
-                "                id INT AUTO_INCREMENT PRIMARY KEY,\n" +
-                "                name VARCHAR(255) NOT NULL\n" +
-                "            )";
+        String createBudgetTable = "CREATE TABLE IF NOT EXISTS budget (" +
+                "id INT AUTO_INCREMENT PRIMARY KEY," +
+                "betrag DECIMAL(10,2) NOT NULL," +
+                "monat INT NOT NULL," +
+                "jahr INT NOT NULL," +
+                "kategorie_id INTEGER NOT NULL," +
+                "FOREIGN KEY (kategorie_id) REFERENCES Categorys(id)" +
+                ");";
+
+        String createCashFlowTable = "CREATE TABLE IF NOT EXISTS cash_flow (" +
+                "id INT AUTO_INCREMENT PRIMARY KEY," +
+                "datum DATE NOT NULL," +
+                "betrag DECIMAL(10,2) NOT NULL," +
+                "kategorie_id INTEGER NOT NULL," +
+                "type VARCHAR(255)," +
+                "FOREIGN KEY (kategorie_id) REFERENCES Categorys(id)" +
+                ");";
 
         String[] insertCategories = {
                 "INSERT INTO Categorys (name) VALUES ('Einnahmen');",
@@ -116,14 +125,16 @@ public class Database {
 
 
         try (Statement stmt = connection.createStatement()) {
+            stmt.execute(createKategorienTable);
             stmt.execute(createTransactionTable);
             stmt.execute(createUserTable);
             stmt.execute(createBudgetTable);
             stmt.execute(createCashFlowTable);
-            stmt.execute(createKategorienTable);
+            /*
             for (String category : insertCategories) {
                 stmt.execute(category);
             }
+            */
         } catch (SQLException e) {
             e.printStackTrace();
         }
