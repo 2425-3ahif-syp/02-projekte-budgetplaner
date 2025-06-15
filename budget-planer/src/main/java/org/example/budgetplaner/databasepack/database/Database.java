@@ -68,8 +68,8 @@ public class Database {
                 "id IDENTITY PRIMARY KEY," +
                 "date DATE NOT NULL," +
                 "amount REAL NOT NULL," +
-                "categorie_id INTEGER NOT NULL," +
-                "type VARCHAR(10)" + // \"income\" or \"expense\"
+                "category_id INTEGER NOT NULL," +
+                "is_income BOOLEAN" +
                 ");";
 
         String createUserTable = "CREATE TABLE IF NOT EXISTS users (" +

@@ -10,12 +10,13 @@ import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.budgetplaner.databasepack.database.Database;
+import org.example.budgetplaner.databasepack.database.KategorieReposetory;
 import org.example.budgetplaner.databasepack.database.transactions.TransactionRepository;
+import org.example.budgetplaner.model.KategorieModel;
 
 import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
-
 import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
 public class DatenimportController {
@@ -38,6 +39,9 @@ public class DatenimportController {
 
     public BorderPane createManualInputPane(Stage primaryStage) {
         BorderPane menuBar = createMenuBar(primaryStage);
+
+        KategorieReposetory KategorieReposetory = new KategorieReposetory();
+        List<KategorieModel> kategorien = KategorieReposetory.getCategories();
 
         GridPane formGrid = new GridPane();
         formGrid.setPadding(new Insets(40));
@@ -70,9 +74,11 @@ public class DatenimportController {
         categoryLabel.setStyle("-fx-font-weight: bold;");
         ComboBox<String> categoryBox = new ComboBox<>();
         categoryBox.setPrefWidth(300);
-        categoryBox.setPromptText("Bitte wählen");
-        categoryBox.getItems().addAll("Lebensmittel", "Freizeit", "Haushalt", "Kleidung");
 
+        categoryBox.setPromptText("Bitte wählen");
+        for (KategorieModel kategorie : kategorien) {
+            categoryBox.getItems().add(kategorie.getName());
+        }
         Button confirmButton = new Button("Bestätigen");
         Button switchToDragDropButton = new Button("Drag & Drop Eingabe");
 
@@ -101,21 +107,53 @@ public class DatenimportController {
         confirmButton.setOnAction(e -> {
             LocalDate date = datePicker.getValue();
             String amountText = amountField.getText().replace(" ", "").replace(",", ".");
-            String category = categoryBox.getValue();
+            String categoryName = categoryBox.getValue();
             boolean isIncome = incomeBtn.isSelected();
 
+            if (date == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Bitte wählen Sie ein Datum aus.");
+                alert.showAndWait();
+                return;
+            }
+            if (categoryName == null || categoryName.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Bitte wählen Sie eine Kategorie aus.");
+                alert.showAndWait();
+                return;
+            }
+            if (amountText.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Bitte geben Sie einen Betrag ein.");
+                alert.showAndWait();
+                return;
+            }
 
             try {
                 double amount = Double.parseDouble(amountText);
+
+                KategorieReposetory kategorieReposetory = new KategorieReposetory();
+                int kategorieId = kategorieReposetory.getCategoryIdByName(categoryName);
+
                 TransactionRepository transactionRepository = new TransactionRepository();
-                transactionRepository.saveTransaction(date, amount, category, isIncome);
+                transactionRepository.saveTransaction(date, amount, kategorieId, isIncome);
+
+
                 amountField.clear();
                 categoryBox.getSelectionModel().clearSelection();
                 datePicker.setValue(null);
+
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION, "Daten erfolgreich gespeichert.");
+                successAlert.showAndWait();
+
             } catch (NumberFormatException ex) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Ungültiger Betrag: " + amountText);
+                alert.showAndWait();
+            } catch (Exception ex) {
+                // Allgemeine Fehlerbehandlung (z.B. DB-Fehler)
                 ex.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Fehler beim Speichern der Daten.");
+                alert.showAndWait();
             }
         });
+
 
 
         formGrid.add(dateLabel, 1, 5);

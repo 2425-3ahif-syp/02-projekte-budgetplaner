@@ -128,7 +128,7 @@ public class BudgetPlanerController {
 
             Label label = new Label(kategorie.getName() + ":");
             label.setPrefWidth(100);
-            label.getStyleClass().add("bold-label"); // Use a CSS class, not a property
+            label.setStyle("-fx-font-weight: bold");
 
             TextField textField = new TextField();
             textField.setPrefWidth(100);

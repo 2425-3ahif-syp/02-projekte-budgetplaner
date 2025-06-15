@@ -41,14 +41,14 @@ public class TransactionRepository {
             }
         }
     */
-    public void saveTransaction(LocalDate date, double amount, String category, boolean isIncome) {
-        String sql = "INSERT INTO transactions (date, amount, category, type) VALUES (?, ?, ?, ?)";
+    public void saveTransaction(LocalDate date, double amount, int category_Id, boolean isIncome) {
+        String sql = "INSERT INTO transactions (date, amount, category_id, is_income) VALUES (?, ?, ?, ?)";
 
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setDate(1, Date.valueOf(date));
             pstmt.setDouble(2, amount);
-            pstmt.setString(3, category);
-            pstmt.setString(4, isIncome ? "income" : "expense");
+            pstmt.setInt(3, category_Id);
+            pstmt.setBoolean(4, isIncome);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Fehler beim Speichern der Transaktion: " + e.getMessage(), e);
@@ -68,7 +68,7 @@ public class TransactionRepository {
                         rs.getDate("date").toLocalDate(),
                         rs.getDouble("amount"),
                         rs.getInt("category_id"),
-                        rs.getString("type")
+                        rs.getBoolean("is_income")
                 );
 
             }
@@ -112,8 +112,8 @@ public class TransactionRepository {
                             rs.getLong("id"),
                             rs.getDate("date").toLocalDate(),
                             rs.getDouble("amount"),
-                            rs.getInt("categorie_id"),
-                            rs.getString("type")
+                            rs.getInt("category_id"),
+                            rs.getBoolean("is_income")
                     );
                     transactions.add(t);
                 }
