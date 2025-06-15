@@ -48,9 +48,20 @@ public class BudgetPlanerController {
     private static void updatePieChart() {
         pieChart.getData().clear();
         List<Integer> latestYearAndMonth = budgetReposetory.getLatestYearAndMonth();
-        int month = latestYearAndMonth.get(0);
-        int year = latestYearAndMonth.get(1);
-        List<BudgetModel> budgetList = budgetReposetory.getBudgetModelsByMonthAndYear(month, year);
+        int month, year;
+        List<BudgetModel> budgetList = new ArrayList<>();
+
+        if (latestYearAndMonth.size() >= 2) {
+            month = latestYearAndMonth.get(0);
+            year = latestYearAndMonth.get(1);
+            budgetList.addAll(budgetReposetory.getBudgetModelsByMonthAndYear(month, year));
+        } else {
+            List<KategorieModel> categories = kategorieReposetory.getCategories();
+            for (KategorieModel category : categories) {
+                budgetList.add(new BudgetModel(category.getName(), 0.00f, 0, 0, category.getId()));
+            }
+        }
+
         int einnahmenId = kategorieReposetory.getCategoryIdByName("Einnahmen");
         float ausgaben = 0;
         float einnahmen = 0;
@@ -62,30 +73,43 @@ public class BudgetPlanerController {
                 einnahmen += budgetModel.getBetrag();
             }
         }
-        for (BudgetModel budgetModel : budgetList) {
-            if (einnahmen > ausgaben) {
-                ergebnisTyp = "Überschuss";
-            } else {
-                ergebnisTyp = "Defizit";
+
+        // Avoid division by zero
+        if (einnahmen == 0) {
+            for (BudgetModel budgetModel : budgetList) {
+                if (budgetModel.getKategorieId() != einnahmenId) {
+                    pieChart.getData().add(
+                            new PieChart.Data(kategorieReposetory.getCategoryNameById(budgetModel.getKategorieId()), 0)
+                    );
+                }
             }
-            if (budgetModel.getKategorieId() != einnahmenId) {
+            pieChart.getData().add(new PieChart.Data("Keine Einnahmen", 1));
+        } else {
+            ergebnisTyp = einnahmen > ausgaben ? "Überschuss" : "Defizit";
+            for (BudgetModel budgetModel : budgetList) {
+                if (budgetModel.getKategorieId() != einnahmenId) {
+                    pieChart.getData().add(
+                            new PieChart.Data(
+                                    kategorieReposetory.getCategoryNameById(budgetModel.getKategorieId()),
+                                    budgetModel.getBetrag() / einnahmen
+                            )
+                    );
+                }
+            }
+            if ("Überschuss".equals(ergebnisTyp)) {
                 pieChart.getData().add(
-                        new PieChart.Data(kategorieReposetory.getCategoryNameById(budgetModel.getKategorieId()), ((budgetModel.getBetrag() / einnahmen)))
+                        new PieChart.Data("Überschuss", (einnahmen - ausgaben) / einnahmen)
+                );
+            } else {
+                pieChart.getData().add(
+                        new PieChart.Data("Defizit", (ausgaben - einnahmen) / einnahmen)
                 );
             }
         }
-        if(ergebnisTyp == "Überschuss") {
-            pieChart.getData().add(
-                    new PieChart.Data("Überschuss", ((einnahmen - ausgaben) / einnahmen))
-            );
-        } else {
-            pieChart.getData().add(
-                    new PieChart.Data("Defizit", ((ausgaben - einnahmen) / einnahmen))
-            );
-        }
+
         pieChart.getData().forEach(data ->
                 data.nameProperty().bind(
-                        Bindings.concat(data.getName(), ": ", data.pieValueProperty().asString("%.0f %%"))
+                        Bindings.concat(data.getName(), ": ", data.pieValueProperty().multiply(100).asString("%.0f %%"))
                 )
         );
     }
@@ -96,14 +120,13 @@ public class BudgetPlanerController {
 
         List<KategorieModel> kategorien = kategorieReposetory.getCategories();
 
-
         for (KategorieModel kategorie : kategorien) {
             HBox hbox = new HBox(10);
             hbox.setAlignment(Pos.CENTER_LEFT);
 
-            Label label = new Label(kategorie + ":");
+            Label label = new Label(kategorie.getName() + ":");
             label.setPrefWidth(100);
-            label.getStyleClass().add("-fx-font-weight: bold;");
+            label.getStyleClass().add("bold-label"); // Use a CSS class, not a property
 
             TextField textField = new TextField();
             textField.setPrefWidth(100);
@@ -119,7 +142,6 @@ public class BudgetPlanerController {
         enterButton.setOnAction(BudgetPlanerController::saveInputValues);
         enterButton.getStyleClass().add("primary-button");
         eingaben.getChildren().add(enterButton);
-
 
         return eingaben;
     }

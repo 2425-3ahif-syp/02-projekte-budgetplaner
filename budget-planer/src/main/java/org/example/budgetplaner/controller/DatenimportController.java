@@ -10,7 +10,9 @@ import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.budgetplaner.databasepack.database.Database;
+import org.example.budgetplaner.databasepack.database.KategorieReposetory;
 import org.example.budgetplaner.databasepack.database.transactions.TransactionRepository;
+import org.example.budgetplaner.model.KategorieModel;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -23,6 +25,8 @@ public class DatenimportController {
     private BorderPane mainPane;
     private BorderPane manualInputPane;
     private VBox dragDropPane;
+    private TransactionRepository transactionRepository = new TransactionRepository();
+    private KategorieReposetory kategorieReposetory = new KategorieReposetory();
 
     public Parent createContent(Stage primaryStage) {
         mainPane = new BorderPane();
@@ -71,7 +75,13 @@ public class DatenimportController {
         ComboBox<String> categoryBox = new ComboBox<>();
         categoryBox.setPrefWidth(300);
         categoryBox.setPromptText("Bitte wählen");
-        categoryBox.getItems().addAll("Lebensmittel", "Freizeit", "Haushalt", "Kleidung");
+
+        List<KategorieModel> categories = kategorieReposetory.getCategories();
+        for (KategorieModel c : categories) {
+            categoryBox.getItems().add(c.getName());
+        }
+
+        //categoryBox.getItems().addAll("Lebensmittel", "Freizeit", "Haushalt", "Kleidung");
 
         Button confirmButton = new Button("Bestätigen");
         Button switchToDragDropButton = new Button("Drag & Drop Eingabe");
@@ -107,7 +117,7 @@ public class DatenimportController {
 
             try {
                 double amount = Double.parseDouble(amountText);
-                TransactionRepository.saveTransaction(date, amount, category, isIncome);
+                transactionRepository.saveTransaction(date, amount, category, isIncome);
                 amountField.clear();
                 categoryBox.getSelectionModel().clearSelection();
                 datePicker.setValue(null);
