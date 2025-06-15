@@ -36,8 +36,8 @@ public class AusgabenController {
         String[] categories = {"Haushalt", "Freizeit", "Abos", "Klamotten", "Lebensmittel", "Überschuss"};
         double[] values = new double[categories.length];
 
-        String[] verwendungszwecke = getValuesFromDB("SELECT verwendungszweck FROM transactions");
-        String[] betraege = getValuesFromDB("SELECT betrag FROM transactions");
+        String[] verwendungszwecke = getValuesFromDB("SELECT category_id FROM transactions");
+        String[] betraege = getValuesFromDB("SELECT amount FROM transactions");
 
         int len = Math.min(verwendungszwecke.length, betraege.length);
 

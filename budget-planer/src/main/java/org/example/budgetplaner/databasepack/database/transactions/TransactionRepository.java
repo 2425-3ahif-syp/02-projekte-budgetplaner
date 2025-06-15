@@ -22,32 +22,14 @@ public class TransactionRepository {
         this.connection = Database.getInstance().getConnection();
     }
 
-    /*
-        private void createTableIfNotExists() {
-            String sql = """
-                        CREATE TABLE IF NOT EXISTS transactions (
-                            id IDENTITY PRIMARY KEY,
-                            date DATE NOT NULL,
-                            amount DOUBLE NOT NULL,
-                            categorie_id INTEGER NOT NULL,
-                            type VARCHAR(10) -- "income" or "expense"
-                        );
-                    """;
 
-            try (Statement stmt = connection.createStatement()) {
-                stmt.execute(sql);
-            } catch (SQLException e) {
-                throw new RuntimeException("Fehler beim Erstellen der Tabelle: " + e.getMessage(), e);
-            }
-        }
-    */
-    public void saveTransaction(LocalDate date, double amount, int category_Id, boolean isIncome) {
+    public void saveTransaction(LocalDate date, double amount, int category_id, boolean isIncome) {
         String sql = "INSERT INTO transactions (date, amount, category_id, is_income) VALUES (?, ?, ?, ?)";
 
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setDate(1, Date.valueOf(date));
             pstmt.setDouble(2, amount);
-            pstmt.setInt(3, category_Id);
+            pstmt.setInt(3, category_id);
             pstmt.setBoolean(4, isIncome);
             pstmt.executeUpdate();
         } catch (SQLException e) {
