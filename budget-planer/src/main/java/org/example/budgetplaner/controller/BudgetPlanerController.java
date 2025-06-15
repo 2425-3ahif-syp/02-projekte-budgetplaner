@@ -117,10 +117,12 @@ public class BudgetPlanerController {
     public static VBox createInputFields() {
         VBox eingaben = new VBox(10);
         eingaben.setPadding(new Insets(20));
-
+        System.out.println("Creating input fields for budget categories...");
         List<KategorieModel> kategorien = kategorieReposetory.getCategories();
+        System.out.println("Kategorien: " + kategorien.size());
 
         for (KategorieModel kategorie : kategorien) {
+            System.out.println(kategorie.getName());
             HBox hbox = new HBox(10);
             hbox.setAlignment(Pos.CENTER_LEFT);
 

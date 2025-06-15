@@ -62,15 +62,7 @@ public class Database {
 
     private void initialize() {
 
-       /* String createTransactionTable = "   CREATE TABLE IF NOT EXISTS transactions (\n" +
-                "                id INT AUTO_INCREMENT PRIMARY KEY," +
-                "                datum DATE,\n" +
-                "                valuta DATE,\n" +
-                "                empfaenger VARCHAR(255),\n" +
-                "                verwendungszweck VARCHAR(255),\n" +
-                "                betrag DECIMAL(10,2),\n" +
-                "                saldo DECIMAL(10,2)\n" +
-                "            )";*/
+
 
         String createTransactionTable = "CREATE TABLE IF NOT EXISTS transactions (" +
                 "id IDENTITY PRIMARY KEY," +
@@ -147,14 +139,14 @@ public class Database {
             stmt.execute(createUserTable);
             stmt.execute(createBudgetTable);
             stmt.execute(createCashFlowTable);
-            /*
+
             for (String category : insertCategories) {
                 stmt.execute(category);
             }
             for (String transaction : insertTransactions) {
                 stmt.execute(transaction);
             }
-            */
+
 
         } catch (SQLException e) {
             e.printStackTrace();
