@@ -106,6 +106,7 @@ public class BudgetReposetory {
     }
 
     public void createNewBudgetPlan(Float betrag, int monat, int jahr, int kategorieId) {
+        System.out.println("Creating new budget plan");
         String sql = "INSERT INTO budget (betrag, monat, jahr, kategorie_id) VALUES (?,?,?,?)";
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setDouble(1, betrag);
@@ -113,7 +114,9 @@ public class BudgetReposetory {
             pstmt.setInt(3, jahr);
             pstmt.setInt(4, kategorieId);
             pstmt.executeUpdate();
+            System.out.println("New budget plan created");
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
