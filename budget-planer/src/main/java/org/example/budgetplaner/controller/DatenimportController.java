@@ -10,9 +10,7 @@ import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.budgetplaner.databasepack.database.Database;
-import org.example.budgetplaner.databasepack.database.KategorieReposetory;
 import org.example.budgetplaner.databasepack.database.transactions.TransactionRepository;
-import org.example.budgetplaner.model.KategorieModel;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -25,8 +23,6 @@ public class DatenimportController {
     private BorderPane mainPane;
     private BorderPane manualInputPane;
     private VBox dragDropPane;
-    private TransactionRepository transactionRepository = new TransactionRepository();
-    private KategorieReposetory kategorieReposetory = new KategorieReposetory();
 
     public Parent createContent(Stage primaryStage) {
         mainPane = new BorderPane();
@@ -75,13 +71,7 @@ public class DatenimportController {
         ComboBox<String> categoryBox = new ComboBox<>();
         categoryBox.setPrefWidth(300);
         categoryBox.setPromptText("Bitte wählen");
-
-        List<KategorieModel> categories = kategorieReposetory.getCategories();
-        for (KategorieModel c : categories) {
-            categoryBox.getItems().add(c.getName());
-        }
-
-        //categoryBox.getItems().addAll("Lebensmittel", "Freizeit", "Haushalt", "Kleidung");
+        categoryBox.getItems().addAll("Lebensmittel", "Freizeit", "Haushalt", "Kleidung");
 
         Button confirmButton = new Button("Bestätigen");
         Button switchToDragDropButton = new Button("Drag & Drop Eingabe");
@@ -117,6 +107,7 @@ public class DatenimportController {
 
             try {
                 double amount = Double.parseDouble(amountText);
+                TransactionRepository transactionRepository = new TransactionRepository();
                 transactionRepository.saveTransaction(date, amount, category, isIncome);
                 amountField.clear();
                 categoryBox.getSelectionModel().clearSelection();
@@ -149,8 +140,8 @@ public class DatenimportController {
     private VBox createDragDropPane(Stage primaryStage) {
         BorderPane menuBar = createMenuBar(primaryStage);
         VBox root = new VBox(15);
-        root.setPadding(new Insets(30));
-        root.getStyleClass().add("dragdrop-pane");
+        root.setPadding(Insets.EMPTY);
+        root.getStyleClass().add("main-pane");
 
         Label title = new Label("Dateien per Drag & Drop hochladen");
         title.getStyleClass().add("dragdrop-title");
@@ -227,7 +218,11 @@ public class DatenimportController {
         HBox bottomButtons = new HBox(15, switchToManualBtn, submitBtn);
         bottomButtons.setAlignment(Pos.CENTER_RIGHT);
 
-        root.getChildren().addAll(menuBar, title, dropZone, chooseFileBtn, fileListView, bottomButtons);
+        VBox content = new VBox(15);
+        content.setPadding(new Insets(30));
+        content.getChildren().addAll(title, dropZone, chooseFileBtn, fileListView, bottomButtons);
+
+        root.getChildren().addAll(menuBar, content);
 
         return root;
     }

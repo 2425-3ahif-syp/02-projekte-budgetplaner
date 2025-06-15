@@ -13,11 +13,10 @@ public class TransactionRepository {
 
     private final Connection connection;
 
-    /*
+
     public TransactionRepository(Connection connection) {
         this.connection = connection;
-        createTableIfNotExists();
-    }*/
+    }
 
     public TransactionRepository() {
         this.connection = Database.getInstance().getConnection();

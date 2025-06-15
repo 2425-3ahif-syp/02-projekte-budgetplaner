@@ -141,7 +141,7 @@ public class LoginController {
 
         Image image = profilBildPfad != null
                 ? new Image(profilBildPfad, true)
-                : new Image("file:images/profile.png", true);
+                : new Image("file:images/profile.jpg", true);
 
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(250);
