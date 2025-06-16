@@ -167,7 +167,7 @@ public class BudgetReposetory {
 
     public List<BudgetModel> getBudgetModelsByMonthAndYear(int month, int year) {
         List<BudgetModel> budgetList = new ArrayList<>();
-        String sql = "SELECT * FROM budget WHERE MONTH_NUM = ? AND YEAR_NUM = ?";
+        String sql = "SELECT * FROM budget WHERE MONTH_NUM = ? AND YEAR_NUM = ? ";
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, month);
             pstmt.setInt(2, year);

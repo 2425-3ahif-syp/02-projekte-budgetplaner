@@ -45,6 +45,7 @@ public class BudgetPlanerController {
         return pieChart;
     }
 
+    /*
     private static void updatePieChart() {
         pieChart.getData().clear();
         List<Integer> latestYearAndMonth = budgetReposetory.getLatestYearAndMonth();
@@ -77,7 +78,6 @@ public class BudgetPlanerController {
             }
         }
 
-        // Avoid division by zero
         if (einnahmen == 0) {
             for (BudgetModel budgetModel : budgetList) {
                 if (budgetModel.getKategorieId() != einnahmenId) {
@@ -113,6 +113,86 @@ public class BudgetPlanerController {
         pieChart.getData().forEach(data ->
                 data.nameProperty().bind(
                         Bindings.concat(data.getName(), ": ", data.pieValueProperty().multiply(100).asString("%.0f %%"))
+                )
+        );
+    }
+
+     */
+
+    private static void updatePieChart() {
+        pieChart.getData().clear();
+
+        List<Integer> latestYearAndMonth = budgetReposetory.getLatestYearAndMonth();
+        List<BudgetModel> budgetList = new ArrayList<>();
+        List<KategorieModel> categories = kategorieReposetory.getCategories();
+
+        int einnahmenId = kategorieReposetory.getCategoryIdByName("Einnahmen");
+
+        if (latestYearAndMonth.size() >= 2) {
+            int month = latestYearAndMonth.get(0);
+            int year = latestYearAndMonth.get(1);
+            budgetList.addAll(budgetReposetory.getBudgetModelsByMonthAndYear(month, year));
+        } else {
+            for (KategorieModel category : categories) {
+                budgetList.add(new BudgetModel(category.getName(), 0.00f, 0, 0, category.getId()));
+            }
+        }
+
+        // Summe pro Kategorie berechnen
+        Map<Integer, Float> categorySums = new HashMap<>();
+        float einnahmen = 0f;
+        float ausgaben = 0f;
+
+        for (BudgetModel model : budgetList) {
+            int catId = model.getKategorieId();
+            float betrag = model.getBetrag();
+
+            categorySums.put(catId, categorySums.getOrDefault(catId, 0f) + betrag);
+
+            if (catId == einnahmenId) {
+                einnahmen += betrag;
+            } else {
+                ausgaben += betrag;
+            }
+        }
+
+        if (einnahmen == 0f) {
+            for (KategorieModel category : categories) {
+                if (category.getId() != einnahmenId) {
+                    pieChart.getData().add(new PieChart.Data(category.getName(), 0));
+                }
+            }
+            pieChart.getData().add(new PieChart.Data("Keine Einnahmen", 1));
+            ergebnisTyp = "Keine Einnahmen";
+        } else {
+            for (KategorieModel category : categories) {
+                int catId = category.getId();
+                if (catId == einnahmenId) continue;
+
+                float betrag = categorySums.getOrDefault(catId, 0f);
+                float anteil = betrag / einnahmen;
+
+                pieChart.getData().add(new PieChart.Data(category.getName(), anteil));
+            }
+
+            float diff = einnahmen - ausgaben;
+            if (diff > 0) {
+                pieChart.getData().add(new PieChart.Data("Überschuss", diff / einnahmen));
+                ergebnisTyp = "Überschuss";
+            } else if (diff < 0) {
+                pieChart.getData().add(new PieChart.Data("Defizit", -diff / einnahmen));
+                ergebnisTyp = "Defizit";
+            } else {
+                ergebnisTyp = "Ausgeglichen";
+            }
+        }
+
+        pieChart.getData().forEach(data ->
+                data.nameProperty().bind(
+                        Bindings.concat(
+                                data.getName(), ": ",
+                                data.pieValueProperty().multiply(100).asString("%.0f %%")
+                        )
                 )
         );
     }
@@ -157,6 +237,12 @@ public class BudgetPlanerController {
             String label = entry.getKey();
             String value = entry.getValue().getText();
             System.out.println(label + ": " + value);
+
+            if (value.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Bitte geben Sie einen Betrag für " + label + " ein.");
+                alert.showAndWait();
+                return;
+            }
             try {
                 int kategorieId = kategorieReposetory.getCategoryIdByName(label);
                 float amount = Float.parseFloat(value);
