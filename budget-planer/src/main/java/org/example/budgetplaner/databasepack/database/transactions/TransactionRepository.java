@@ -52,7 +52,7 @@ public class TransactionRepository {
                         rs.getInt("category_id"),
                         rs.getBoolean("is_income")
                 );
-
+                transactions.add(t);
             }
 
         } catch (SQLException e) {

@@ -21,7 +21,7 @@ public class Transactions {
         public LocalDate getDate() { return date; }
         public double getAmount() { return amount; }
         public int getCategoryId() { return category_id; }
-        public String getType() { return is_income ? "income" : "expense"; }
+        public boolean getType() { return is_income; }
 
         @Override
         public String toString() {

@@ -77,14 +77,10 @@ public class Menubar {
         });
 
         ausgaben.setOnAction(e -> {
-            try {
-                Scene ausgabenScene = new AusgabenController().createAusgabenScene(primaryStage);
-                primaryStage.setScene(ausgabenScene);
-                primaryStage.show();
-                setActiveButton.accept(ausgaben);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            Scene ausgabenScene = new AusgabenController().createAusgabenScene(primaryStage);
+            primaryStage.setScene(ausgabenScene);
+            primaryStage.show();
+            setActiveButton.accept(ausgaben);
         });
 
         monatsVergleich.setOnAction(e -> {
