@@ -114,7 +114,8 @@ public class KategorieReposetory {
 
     public void deleteKategorie(int id) {
         System.out.println("Deleting kategorie with id " + id);
-        String sql = "DELETE FROM CATEGORYS WHERE id = ?";
+        String sql = "DELETE FROM CATEGORYS WHERE id = ?" +
+                     "limit 7;";
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
@@ -125,7 +126,9 @@ public class KategorieReposetory {
 
     public List<KategorieModel> getCategories() {
         System.out.println("Fetching all categories");
-        String sql = "SELECT distinct * FROM CATEGORYS LIMIT 7";
+        String sql = "SELECT distinct * FROM CATEGORYS" +
+                     " limit 7;";
+
         List<KategorieModel> kategorieList = new java.util.ArrayList<>();
         try (var stmt = connection.createStatement();
              var rs = stmt.executeQuery(sql)) {
