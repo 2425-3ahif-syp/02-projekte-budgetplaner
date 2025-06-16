@@ -160,6 +160,7 @@ public class BudgetPlanerController {
                 int month = java.time.LocalDate.now().getMonthValue();
                 int year = java.time.LocalDate.now().getYear();
                 budgetReposetory.createNewBudgetPlan(amount, month, year, kategorieId);
+                updatePieChart();
             } catch (NumberFormatException e) {
                 e.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Ungültiger Betrag für " + label + ": " + value);

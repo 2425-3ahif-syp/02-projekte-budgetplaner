@@ -137,13 +137,15 @@ public class Database {
             stmt.execute(createUserTable);
             stmt.execute(createBudgetTable);
             stmt.execute(createCashFlowTable);
-
+/*
             for (String category : insertCategories) {
                 stmt.execute(category);
             }
             for (String transaction : insertTransactions) {
                 stmt.execute(transaction);
             }
+
+ */
 
         } catch (SQLException e) {
             e.printStackTrace();
