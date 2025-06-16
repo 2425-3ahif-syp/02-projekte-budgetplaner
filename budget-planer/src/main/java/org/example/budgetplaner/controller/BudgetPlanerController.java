@@ -50,15 +50,18 @@ public class BudgetPlanerController {
         List<Integer> latestYearAndMonth = budgetReposetory.getLatestYearAndMonth();
         int month, year;
         List<BudgetModel> budgetList = new ArrayList<>();
+        List<KategorieModel> categorieList = kategorieReposetory.getCategories();
 
-        if (latestYearAndMonth.size() >= 2) {
-            month = latestYearAndMonth.get(0);
-            year = latestYearAndMonth.get(1);
-            budgetList.addAll(budgetReposetory.getBudgetModelsByMonthAndYear(month, year));
-        } else {
-            List<KategorieModel> categories = kategorieReposetory.getCategories();
-            for (KategorieModel category : categories) {
-                budgetList.add(new BudgetModel(category.getName(), 0.00f, 0, 0, category.getId()));
+        for (KategorieModel c : categorieList) {
+            if (latestYearAndMonth.size() >= 2) {
+                month = latestYearAndMonth.get(0);
+                year = latestYearAndMonth.get(1);
+                budgetList.addAll(budgetReposetory.getBudgetModelsByMonthAndYear(month, year));
+            } else {
+                List<KategorieModel> categories = kategorieReposetory.getCategories();
+                for (KategorieModel category : categories) {
+                    budgetList.add(new BudgetModel(category.getName(), 0.00f, 0, 0, category.getId()));
+                }
             }
         }
 
@@ -69,7 +72,7 @@ public class BudgetPlanerController {
         for (BudgetModel budgetModel : budgetList) {
             if (budgetModel.getKategorieId() != einnahmenId) {
                 ausgaben += budgetModel.getBetrag();
-            } else {
+            } else if (budgetModel.getKategorieId() == einnahmenId) {
                 einnahmen += budgetModel.getBetrag();
             }
         }
