@@ -148,7 +148,7 @@ public class BudgetReposetory {
         try (var stmt = connection.createStatement();
              var rs = stmt.executeQuery(sql)) {
             if (rs.next()) {
-                int year = rs.getInt("jahr");
+                int year = rs.getInt("year_num");
                 int month = rs.getInt("max_monat");
                 result.add(year);
                 result.add(month);

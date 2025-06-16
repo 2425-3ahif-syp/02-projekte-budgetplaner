@@ -125,7 +125,7 @@ public class KategorieReposetory {
 
     public List<KategorieModel> getCategories() {
         System.out.println("Fetching all categories");
-        String sql = "SELECT * FROM CATEGORYS";
+        String sql = "SELECT distinct * FROM CATEGORYS";
         List<KategorieModel> kategorieList = new java.util.ArrayList<>();
         try (var stmt = connection.createStatement();
              var rs = stmt.executeQuery(sql)) {

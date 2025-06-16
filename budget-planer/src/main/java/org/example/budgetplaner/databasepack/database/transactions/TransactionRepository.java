@@ -24,7 +24,7 @@ public class TransactionRepository {
 
 
     public void saveTransaction(LocalDate date, double amount, int category_id, boolean isIncome) {
-        String sql = "INSERT INTO transactions (date, amount, category_id, is_income) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO TRANSACTIONS (DATE, AMOUNT, CATEGORY_ID, IS_INCOME) VALUES (?, ?, ?, ?)";
 
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setDate(1, Date.valueOf(date));
@@ -83,7 +83,7 @@ public class TransactionRepository {
 
     public List<Transactions> findByMonth(int month, int year) {
         List<Transactions> transactions = new ArrayList<>();
-        String sql = "SELECT * FROM transactions WHERE MONTH(date) = ? AND YEAR(date) = ? ORDER BY date DESC";
+        String sql = "SELECT * from TRANSACTIONS WHERE MONTH(date) = ? AND YEAR(date) = ? ORDER BY date DESC";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, month);
