@@ -147,7 +147,6 @@ public class DatenimportController {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Ungültiger Betrag: " + amountText);
                 alert.showAndWait();
             } catch (Exception ex) {
-                // Allgemeine Fehlerbehandlung (z.B. DB-Fehler)
                 ex.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Fehler beim Speichern der Daten.");
                 alert.showAndWait();

@@ -7,8 +7,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.example.budgetplaner.databasepack.database.UserRepository;
 
 import static org.example.budgetplaner.controller.Menubar.createMenuBar;
 
@@ -112,16 +114,25 @@ public class LoginController {
 
         HBox currencyBox = new HBox(10, euroButton, dollarButton);
 
-        Button actionButton;
+        Button actionButton = new Button("Speichern");
+
         if (editMode) {
-            actionButton = new Button("Speichern");
             actionButton.setOnAction(e -> {
                 gespeicherterName = nameField.getText();
                 gespeicherterGeburtstag = geburtstagField.getText();
                 gespeicherteEmail = emailField.getText();
                 gespeichertesPasswort = passwortField.getText();
+                new UserRepository().saveOrUpdateUser(
+                        gespeicherterName,
+                        gespeicherterGeburtstag,
+                        gespeicherteEmail,
+                        gespeichertesPasswort,
+                        profilBildPfad
+                );
+
                 primaryStage.setScene(createAccountScene(primaryStage, false));
             });
+
         } else {
             actionButton = new Button("Bearbeiten");
             actionButton.setOnAction(e -> primaryStage.setScene(createAccountScene(primaryStage, true)));
@@ -148,7 +159,7 @@ public class LoginController {
         imageView.setFitHeight(250);
         imageView.setPreserveRatio(false);
 
-        javafx.scene.shape.Circle clip = new javafx.scene.shape.Circle(120, 110, 110); 
+        Circle clip = new Circle(120, 110, 110);
         imageView.setClip(clip);
 
 
