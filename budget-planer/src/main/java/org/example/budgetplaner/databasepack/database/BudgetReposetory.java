@@ -107,7 +107,7 @@ public class BudgetReposetory {
 
     public void createNewBudgetPlan(Float betrag, int monat, int jahr, int kategorieId) {
         System.out.println("Creating new budget plan");
-        String sql = "INSERT INTO budget (betrag, monat, jahr, kategorie_id) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO budget (AMOUNT, MONTH_NUM, YEAR_NUM, CATEGORY_ID) VALUES (?,?,?,?)";
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setDouble(1, betrag);
             pstmt.setInt(2, monat);
@@ -123,7 +123,7 @@ public class BudgetReposetory {
 
     public List<BudgetModel> getBudgetplanByMonth(int monat, int jahr) {
         List<BudgetModel> budgetList = new ArrayList<>();
-        String sql = "SELECT * FROM budget WHERE monat = ? AND jahr = ?";
+        String sql = "SELECT * FROM budget WHERE MONTH_NUM = ? AND YEAR_NUM = ?";
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, monat);
             pstmt.setInt(2, jahr);
@@ -144,7 +144,7 @@ public class BudgetReposetory {
 
     public List<Integer> getLatestYearAndMonth() {
         List<Integer> result = new ArrayList<>();
-        String sql = "SELECT jahr, MAX(monat) as max_monat FROM budget WHERE jahr = (SELECT MAX(jahr) FROM budget) GROUP BY jahr";
+        String sql = "SELECT YEAR_NUM, MAX(MONTH_NUM) as max_monat FROM budget WHERE YEAR_NUM = (SELECT MAX(YEAR_NUM) FROM budget) GROUP BY YEAR_NUM";
         try (var stmt = connection.createStatement();
              var rs = stmt.executeQuery(sql)) {
             if (rs.next()) {
@@ -161,17 +161,17 @@ public class BudgetReposetory {
 
     public List<BudgetModel> getBudgetModelsByMonthAndYear(int month, int year) {
         List<BudgetModel> budgetList = new ArrayList<>();
-        String sql = "SELECT * FROM budget WHERE monat = ? AND jahr = ?";
+        String sql = "SELECT * FROM budget WHERE MONTH_NUM = ? AND YEAR_NUM = ?";
         try (var pstmt = connection.prepareStatement(sql)) {
             pstmt.setInt(1, month);
             pstmt.setInt(2, year);
             try (var rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     String id = rs.getString("id");
-                    Float betrag = rs.getFloat("betrag");
-                    int monat = rs.getInt("monat");
-                    int jahr = rs.getInt("jahr");
-                    int kategorieId = rs.getInt("kategorie_id");
+                    Float betrag = rs.getFloat("amount");
+                    int monat = rs.getInt("month_num");
+                    int jahr = rs.getInt("year_num");
+                    int kategorieId = rs.getInt("category_id");
                     budgetList.add(new BudgetModel(id, betrag, monat, jahr, kategorieId));
                 }
             }

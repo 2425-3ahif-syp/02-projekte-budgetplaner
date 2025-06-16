@@ -87,17 +87,17 @@ public class Database {
 
         String createBudgetTable = "CREATE TABLE IF NOT EXISTS budget (" +
                 "id INT AUTO_INCREMENT PRIMARY KEY," +
-                "betrag DECIMAL(10,2) NOT NULL," +
-                "monat INT NOT NULL," +
-                "jahr INT NOT NULL," +
+                "amount DECIMAL(10,2) NOT NULL," +
+                "month_num INT NOT NULL," +
+                "year_num INT NOT NULL," +
                 "category_id INTEGER NOT NULL," +
                 "FOREIGN KEY (category_id) REFERENCES Categorys(id)" +
                 ");";
 
         String createCashFlowTable = "CREATE TABLE IF NOT EXISTS cash_flow (" +
                 "id INT AUTO_INCREMENT PRIMARY KEY," +
-                "datum DATE NOT NULL," +
-                "betrag DECIMAL(10,2) NOT NULL," +
+                "date DATE NOT NULL," +
+                "amount DECIMAL(10,2) NOT NULL," +
                 "category_id INTEGER NOT NULL," +
                 "type VARCHAR(255)," +
                 "FOREIGN KEY (category_id) REFERENCES Categorys(id)" +
