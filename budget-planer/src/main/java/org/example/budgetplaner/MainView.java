@@ -6,7 +6,7 @@ import org.example.budgetplaner.controller.LoginController;
 
 
 
-public class AccountView extends Application {
+public class MainView extends Application {
         @Override
         public void start(Stage primaryStage) {
             primaryStage.setTitle("Account Verwaltung");

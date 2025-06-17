@@ -1,4 +1,4 @@
-package org.example.budgetplaner;
+package org.example.budgetplaner.testviews;
 
 import javafx.application.Application;
 import javafx.scene.Scene;

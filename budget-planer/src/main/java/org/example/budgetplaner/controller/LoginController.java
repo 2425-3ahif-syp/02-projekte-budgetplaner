@@ -74,8 +74,6 @@ public class LoginController {
         ColumnConstraints col2 = new ColumnConstraints();
         col2.setPercentWidth(60);
         formGrid.getColumnConstraints().addAll(col1, col2);
-
-        // Felder
         Label nameLabel = new Label("Name:");
         nameLabel.setStyle("-fx-font-weight: bold;");
 
@@ -105,7 +103,6 @@ public class LoginController {
         passwortField.setEditable(editMode);
         passwortField.getStyleClass().add("password-field");
 
-        // WährungsradioButtons (optional)
         ToggleGroup currencyGroup = new ToggleGroup();
         RadioButton euroButton = new RadioButton("€");
         RadioButton dollarButton = new RadioButton("$");
@@ -145,7 +142,6 @@ public class LoginController {
 
         actionButton.getStyleClass().add("primary-button");
 
-        // Grid befüllen
         formGrid.add(nameLabel, 0, 0);
         formGrid.add(nameField, 1, 0);
         formGrid.add(geburtstagLabel, 0, 1);
@@ -157,7 +153,6 @@ public class LoginController {
         formGrid.add(currencyBox, 1, 4);
         formGrid.add(actionButton, 1, 5);
 
-        // Profilbild
         Image image = (currentUser.getProfilBildPfad() != null)
                 ? new Image(currentUser.getProfilBildPfad(), true)
                 : new Image("file:images/profile.jpg", true);

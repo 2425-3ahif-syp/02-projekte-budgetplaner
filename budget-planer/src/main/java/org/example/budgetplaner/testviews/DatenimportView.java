@@ -1,11 +1,9 @@
-package org.example.budgetplaner;
+package org.example.budgetplaner.testviews;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.example.budgetplaner.controller.DatenimportController;
-import org.example.budgetplaner.controller.LoginController;
 
 import static javafx.application.Application.launch;
 

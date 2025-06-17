@@ -1,4 +1,4 @@
-package org.example.budgetplaner;
+package org.example.budgetplaner.testviews;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -6,7 +6,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
