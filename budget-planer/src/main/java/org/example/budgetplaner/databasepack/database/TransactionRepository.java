@@ -1,7 +1,6 @@
-package org.example.budgetplaner.databasepack.database.transactions;
+package org.example.budgetplaner.databasepack.database;
 
-import org.example.budgetplaner.databasepack.database.Database;
-import org.example.budgetplaner.databasepack.database.transactions.Transactions;
+import org.example.budgetplaner.model.TransactionsModel;
 
 
 import java.sql.*;
@@ -37,15 +36,15 @@ public class TransactionRepository {
         }
     }
 
-    public List<Transactions> findAll() {
-        List<Transactions> transactions = new ArrayList<>();
+    public List<TransactionsModel> findAll() {
+        List<TransactionsModel> transactions = new ArrayList<>();
         String sql = "SELECT * FROM transactions ORDER BY date DESC";
 
         try (Statement stmt = connection.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                Transactions t = new Transactions(
+                TransactionsModel t = new TransactionsModel(
                         rs.getLong("id"),
                         rs.getDate("date").toLocalDate(),
                         rs.getDouble("amount"),
@@ -81,8 +80,8 @@ public class TransactionRepository {
         }
     }
 
-    public List<Transactions> findByMonth(int month, int year) {
-        List<Transactions> transactions = new ArrayList<>();
+    public List<TransactionsModel> findByMonth(int month, int year) {
+        List<TransactionsModel> transactions = new ArrayList<>();
         String sql = "SELECT * from TRANSACTIONS WHERE MONTH(date) = ? AND YEAR(date) = ? ORDER BY date DESC";
 
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -90,7 +89,7 @@ public class TransactionRepository {
             pstmt.setInt(2, year);
             try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
-                    Transactions t = new Transactions(
+                    TransactionsModel t = new TransactionsModel(
                             rs.getLong("id"),
                             rs.getDate("date").toLocalDate(),
                             rs.getDouble("amount"),

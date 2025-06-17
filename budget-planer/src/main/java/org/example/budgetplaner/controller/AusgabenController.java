@@ -8,8 +8,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.budgetplaner.databasepack.database.KategorieReposetory;
-import org.example.budgetplaner.databasepack.database.transactions.TransactionRepository;
-import org.example.budgetplaner.databasepack.database.transactions.Transactions;
+import org.example.budgetplaner.databasepack.database.TransactionRepository;
+import org.example.budgetplaner.model.TransactionsModel;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,11 +34,11 @@ public class AusgabenController {
             Map<String, Double> daten = new HashMap<>();
 
             try {
-                List<Transactions> transactions = transactionRepository.findAll();
+                List<TransactionsModel> transactions = transactionRepository.findAll();
                 double einnahmen = 0;
                 double ausgaben = 0;
 
-                for (Transactions transaction : transactions) {
+                for (TransactionsModel transaction : transactions) {
                     double betrag = transaction.getAmount();
                     if (transaction.getType()) {
                         einnahmen += betrag;
@@ -75,7 +75,6 @@ public class AusgabenController {
                 }
             });
 
-            // Menüleiste hinzufügen
             BorderPane menuBar = Menubar.createMenuBar(primaryStage);
 
             VBox root = new VBox(0, menuBar, pieChart);
@@ -84,7 +83,7 @@ public class AusgabenController {
             return root;
         }
 
-    
+
 
     public Scene createAusgabenScene(Stage primaryStage) {
         VBox root = createUI(primaryStage);

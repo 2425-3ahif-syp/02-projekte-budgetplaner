@@ -11,18 +11,15 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.budgetplaner.databasepack.database.UserRepository;
-
-import static org.example.budgetplaner.controller.Menubar.createMenuBar;
+import org.example.budgetplaner.model.UserModel;
 
 import java.io.File;
 
+import static org.example.budgetplaner.controller.Menubar.createMenuBar;
+
 public class LoginController {
 
-    private static String gespeicherterName = "Max Mustermann";
-    private static String gespeicherterGeburtstag = "01.01.2001";
-    private static String gespeicherteEmail = "maxmustermann@gmail.com";
-    private static String gespeichertesPasswort = "geheim123";
-    private static String profilBildPfad = null;
+    private static UserModel currentUser;
 
     public static VBox createLoginView(Stage primaryStage) {
         VBox loginLayout = new VBox(10);
@@ -48,7 +45,11 @@ public class LoginController {
         loginButton.getStyleClass().add("primary-button");
 
         loginButton.setOnAction(e -> {
-            if (userField.getText().equals("Max Mustermann") && passField.getText().equals("geheim123")) {
+            UserRepository userRepository = new UserRepository();
+            UserModel user = userRepository.findByNameAndPassword(userField.getText(), passField.getText());
+
+            if (user != null) {
+                currentUser = user;
                 primaryStage.setScene(createAccountScene(primaryStage, false));
             } else {
                 errorLabel.setText("Falscher Benutzername oder Passwort!");
@@ -74,24 +75,25 @@ public class LoginController {
         col2.setPercentWidth(60);
         formGrid.getColumnConstraints().addAll(col1, col2);
 
+        // Felder
         Label nameLabel = new Label("Name:");
         nameLabel.setStyle("-fx-font-weight: bold;");
 
-        TextField nameField = new TextField(gespeicherterName);
+        TextField nameField = new TextField(currentUser.getName());
         nameField.setEditable(editMode);
         nameField.getStyleClass().add("text-field");
 
         Label geburtstagLabel = new Label("Geburtstag:");
         geburtstagLabel.setStyle("-fx-font-weight: bold;");
 
-        TextField geburtstagField = new TextField(gespeicherterGeburtstag);
+        TextField geburtstagField = new TextField(currentUser.getGeburtstag());
         geburtstagField.setEditable(editMode);
         geburtstagField.getStyleClass().add("text-field");
 
         Label emailLabel = new Label("E-Mail:");
         emailLabel.setStyle("-fx-font-weight: bold;");
 
-        TextField emailField = new TextField(gespeicherteEmail);
+        TextField emailField = new TextField(currentUser.getEmail());
         emailField.setEditable(editMode);
         emailField.getStyleClass().add("text-field");
 
@@ -99,10 +101,11 @@ public class LoginController {
         passwortLabel.setStyle("-fx-font-weight: bold;");
 
         PasswordField passwortField = new PasswordField();
-        passwortField.setText(gespeichertesPasswort);
+        passwortField.setText(currentUser.getPasswort());
         passwortField.setEditable(editMode);
         passwortField.getStyleClass().add("password-field");
 
+        // WährungsradioButtons (optional)
         ToggleGroup currencyGroup = new ToggleGroup();
         RadioButton euroButton = new RadioButton("€");
         RadioButton dollarButton = new RadioButton("$");
@@ -114,31 +117,35 @@ public class LoginController {
 
         HBox currencyBox = new HBox(10, euroButton, dollarButton);
 
-        Button actionButton = new Button("Speichern");
+        Button actionButton = new Button();
 
         if (editMode) {
+            actionButton.setText("Speichern");
             actionButton.setOnAction(e -> {
-                gespeicherterName = nameField.getText();
-                gespeicherterGeburtstag = geburtstagField.getText();
-                gespeicherteEmail = emailField.getText();
-                gespeichertesPasswort = passwortField.getText();
+                currentUser.setName(nameField.getText());
+                currentUser.setGeburtstag(geburtstagField.getText());
+                currentUser.setEmail(emailField.getText());
+                currentUser.setPasswort(passwortField.getText());
+
                 new UserRepository().saveOrUpdateUser(
-                        gespeicherterName,
-                        gespeicherterGeburtstag,
-                        gespeicherteEmail,
-                        gespeichertesPasswort,
-                        profilBildPfad
+                        currentUser.getName(),
+                        currentUser.getGeburtstag(),
+                        currentUser.getEmail(),
+                        currentUser.getPasswort(),
+                        currentUser.getProfilBildPfad()
                 );
 
                 primaryStage.setScene(createAccountScene(primaryStage, false));
             });
 
         } else {
-            actionButton = new Button("Bearbeiten");
+            actionButton.setText("Bearbeiten");
             actionButton.setOnAction(e -> primaryStage.setScene(createAccountScene(primaryStage, true)));
         }
+
         actionButton.getStyleClass().add("primary-button");
 
+        // Grid befüllen
         formGrid.add(nameLabel, 0, 0);
         formGrid.add(nameField, 1, 0);
         formGrid.add(geburtstagLabel, 0, 1);
@@ -150,8 +157,9 @@ public class LoginController {
         formGrid.add(currencyBox, 1, 4);
         formGrid.add(actionButton, 1, 5);
 
-        Image image = profilBildPfad != null
-                ? new Image(profilBildPfad, true)
+        // Profilbild
+        Image image = (currentUser.getProfilBildPfad() != null)
+                ? new Image(currentUser.getProfilBildPfad(), true)
                 : new Image("file:images/profile.jpg", true);
 
         ImageView imageView = new ImageView(image);
@@ -161,7 +169,6 @@ public class LoginController {
 
         Circle clip = new Circle(120, 110, 110);
         imageView.setClip(clip);
-
 
         VBox imageBox = new VBox(10, imageView);
         imageBox.setAlignment(Pos.TOP_CENTER);
@@ -178,8 +185,9 @@ public class LoginController {
                 );
                 File selectedFile = fileChooser.showOpenDialog(primaryStage);
                 if (selectedFile != null) {
-                    profilBildPfad = selectedFile.toURI().toString();
-                    imageView.setImage(new Image(profilBildPfad, true));
+                    String newPath = selectedFile.toURI().toString();
+                    currentUser.setProfilBildPfad(newPath);
+                    imageView.setImage(new Image(newPath, true));
                 }
             });
             imageBox.getChildren().add(changePicButton);
@@ -198,4 +206,5 @@ public class LoginController {
 
         return scene;
     }
+
 }

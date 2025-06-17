@@ -9,9 +9,8 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.example.budgetplaner.databasepack.database.Database;
 import org.example.budgetplaner.databasepack.database.KategorieReposetory;
-import org.example.budgetplaner.databasepack.database.transactions.TransactionRepository;
+import org.example.budgetplaner.databasepack.database.TransactionRepository;
 import org.example.budgetplaner.model.KategorieModel;
 
 import java.io.File;

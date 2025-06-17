@@ -170,8 +170,8 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import org.example.budgetplaner.databasepack.database.KategorieReposetory;
-import org.example.budgetplaner.databasepack.database.transactions.TransactionRepository;
-import org.example.budgetplaner.databasepack.database.transactions.Transactions;
+import org.example.budgetplaner.databasepack.database.TransactionRepository;
+import org.example.budgetplaner.model.TransactionsModel;
 import org.example.budgetplaner.util.Toast;
 
 import java.util.*;
@@ -212,8 +212,8 @@ public class MonatsvergleichController {
             return new VBox(new Label("Keine Daten für den aktuellen Monat vorhanden"));
         }
 
-        List<Transactions> transactionsMonat1 = transactionRepository.findByMonth(monat1, jahr1);
-        List<Transactions> transactionsMonat2 = transactionRepository.findByMonth(monat2, jahr2);
+        List<TransactionsModel> transactionsMonat1 = transactionRepository.findByMonth(monat1, jahr1);
+        List<TransactionsModel> transactionsMonat2 = transactionRepository.findByMonth(monat2, jahr2);
 
         Map<String, String> farben = Map.of(
                 "Haushalt", "#40b4ff",
@@ -229,14 +229,14 @@ public class MonatsvergleichController {
 
         Map<String, Map<String, Double>> daten = new HashMap<>();
 
-        for (Transactions t : transactionsMonat1) {
+        for (TransactionsModel t : transactionsMonat1) {
             String kategorie = kategorieRepository.getCategoryNameById(t.getCategoryId());
             if (kategorie == null) continue;
             daten.putIfAbsent(kategorie, new HashMap<>());
             daten.get(kategorie).put(monat1 + "/" + jahr1, daten.get(kategorie).getOrDefault(monat1 + "/" + jahr1, 0.0) + t.getAmount());
         }
 
-        for (Transactions t : transactionsMonat2) {
+        for (TransactionsModel t : transactionsMonat2) {
             String kategorie = kategorieRepository.getCategoryNameById(t.getCategoryId());
             if (kategorie == null) continue;
             daten.putIfAbsent(kategorie, new HashMap<>());

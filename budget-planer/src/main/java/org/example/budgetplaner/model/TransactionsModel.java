@@ -1,15 +1,15 @@
-package org.example.budgetplaner.databasepack.database.transactions;
+package org.example.budgetplaner.model;
 import java.time.LocalDate;
 
 
-public class Transactions {
+public class TransactionsModel {
         private long id;
         private LocalDate date;
         private double amount;
         private int category_id;
         private boolean is_income;
 
-        public Transactions(long id, LocalDate date, double amount, int category_id, boolean is_income) {
+        public TransactionsModel(long id, LocalDate date, double amount, int category_id, boolean is_income) {
             this.id = id;
             this.date = date;
             this.amount = amount;
